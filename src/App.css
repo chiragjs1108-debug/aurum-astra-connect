@@ -1,3 +1,26 @@
+.brand-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #3e1113;
+  padding: 16px 24px;
+}
+
+.brand-logo-frame {
+  position: relative;
+  width: clamp(220px, 40vw, 380px);
+  aspect-ratio: 1440 / 270;
+  overflow: hidden;
+}
+
+.brand-logo-frame img {
+  position: absolute;
+  top: -214.8%;
+  left: 0;
+  width: 100%;
+  height: auto;
+}
+
 .site-header {
   text-align: center;
   padding: 64px 24px 32px;

@@ -72,6 +72,12 @@ function App() {
 
   return (
     <>
+      <nav className="brand-nav">
+        <div className="brand-logo-frame">
+          <img src="/Brand Logo.png" alt="Aurum Astra" />
+        </div>
+      </nav>
+
       <header className="site-header">
         <p className="eyebrow">Aurum Astra</p>
         <h1>Salon &amp; Spa Menu</h1>
