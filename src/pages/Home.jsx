@@ -423,7 +423,7 @@ function Home() {
             <h1 className="hero-title">
               The dawn of
               <br />
-              <em>stellar</em> luxury.
+              <em>stellar</em> luxury
             </h1>
             <p className="hero-sub">
               A new standard in unisex salon artistry and spa therapy — open now in Bengaluru.

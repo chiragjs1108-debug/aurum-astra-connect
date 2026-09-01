@@ -130,6 +130,8 @@
 
 .hero-main {
   max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .hero-logo-frame {
@@ -137,7 +139,7 @@
   width: clamp(240px, 60vw, 420px);
   aspect-ratio: 1440 / 300;
   overflow: hidden;
-  margin-bottom: 36px;
+  margin: 0 auto 36px;
   filter: drop-shadow(0 0 30px rgba(240, 195, 130, 0.22));
 }
 
@@ -147,7 +149,7 @@
   left: 0;
   width: 100%;
   height: auto;
-  transform: translate(-7.2%, -37%);
+  transform: translateY(-37%);
 }
 
 .hero-eyebrow {
@@ -171,7 +173,7 @@
 }
 
 .hero-sub {
-  margin-top: 16px;
+  margin: 16px auto 0;
   max-width: 42ch;
   font-size: 1rem;
   color: var(--stone);
@@ -182,18 +184,18 @@
   position: relative;
   width: 64px;
   height: 1px;
-  margin-top: 28px;
-  background: linear-gradient(90deg, var(--gold), transparent);
+  margin: 28px auto 0;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
 
 .hero-divider-spark {
   position: absolute;
   top: 50%;
-  left: 0;
+  left: 50%;
   width: 14px;
   height: 14px;
   color: var(--gold);
-  transform: translate(-4px, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .home .link-quiet {
