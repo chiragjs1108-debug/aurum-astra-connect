@@ -1,0 +1,38 @@
+:root {
+  --gold: #b08d57;
+  --gold-light: #d9c9a3;
+  --ink: #1a1712;
+  --ink-soft: #4a443c;
+  --bg: #faf7f2;
+  --card-bg: #ffffff;
+  --border: #e7ddc9;
+
+  --sans: 'Segoe UI', system-ui, Roboto, sans-serif;
+  --serif: Georgia, 'Times New Roman', serif;
+
+  color-scheme: light;
+  color: var(--ink-soft);
+  background: var(--bg);
+  font: 16px/1.5 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3 {
+  font-family: var(--serif);
+  color: var(--ink);
+  margin: 0;
+}

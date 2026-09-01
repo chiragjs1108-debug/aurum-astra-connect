@@ -1,0 +1,103 @@
+.site-header {
+  text-align: center;
+  padding: 64px 24px 32px;
+}
+
+.eyebrow {
+  font-family: var(--serif);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-size: 14px;
+  margin: 0 0 12px;
+}
+
+.site-header h1 {
+  font-size: 44px;
+  letter-spacing: 1px;
+}
+
+.subhead {
+  max-width: 520px;
+  margin: 16px auto 0;
+  color: var(--ink-soft);
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 0 24px 40px;
+}
+
+.filter {
+  font-family: var(--sans);
+  font-size: 14px;
+  padding: 8px 20px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.filter.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+
+.catalogue {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px 64px;
+  width: 100%;
+}
+
+.service-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  text-align: left;
+}
+
+.service-category {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.service-card h3 {
+  font-size: 20px;
+  margin: 10px 0 8px;
+}
+
+.service-description {
+  font-size: 14px;
+  margin: 0 0 20px;
+}
+
+.service-meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink);
+  border-top: 1px dashed var(--border);
+  padding-top: 16px;
+}
+
+.site-footer {
+  text-align: center;
+  padding: 24px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--border);
+}
