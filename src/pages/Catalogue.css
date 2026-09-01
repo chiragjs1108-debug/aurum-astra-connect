@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #3e1113;
+  background: var(--color-primary);
   padding: 16px 24px;
 }
 
@@ -27,10 +27,10 @@
 }
 
 .eyebrow {
-  font-family: var(--serif);
+  font-family: var(--font-heading);
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--color-secondary);
   font-size: 14px;
   margin: 0 0 12px;
 }
@@ -54,7 +54,7 @@
 }
 
 .filter {
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 14px;
   padding: 8px 20px;
   border: 1px solid var(--border);
@@ -90,11 +90,11 @@
 }
 
 .service-category {
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--color-secondary);
 }
 
 .service-card h3 {
@@ -110,7 +110,7 @@
 .service-meta {
   display: flex;
   justify-content: space-between;
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 14px;
   color: var(--ink);
   border-top: 1px dashed var(--border);

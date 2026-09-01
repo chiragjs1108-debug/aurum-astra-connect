@@ -1,19 +1,26 @@
 :root {
-  --gold: #b08d57;
-  --gold-light: #d9c9a3;
-  --ink: #1a1712;
-  --ink-soft: #4a443c;
-  --bg: #faf7f2;
-  --card-bg: #ffffff;
-  --border: #e7ddc9;
+  /* Brand colors — Aurum Astra Brand Guidelines (2026) */
+  --color-primary: #3f1113; /* deep maroon */
+  --color-secondary: #ac7f3f; /* bronze gold */
+  --color-accent: #f0c382; /* champagne gold */
+  --color-gold: #ba8c50; /* supporting mid-tone gold */
+  --color-white: #ffffff;
 
-  --sans: 'Segoe UI', system-ui, Roboto, sans-serif;
-  --serif: Georgia, 'Times New Roman', serif;
+  /* Brand typography */
+  --font-heading: 'Circe Contrast', Georgia, 'Times New Roman', serif; /* headings, titles, major callouts — licensed font, add @font-face once files are available */
+  --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif; /* body text & supporting content */
+
+  /* Supporting UI tones — not defined in the brand guide, derived from the palette for layout use */
+  --ink: var(--color-primary);
+  --ink-soft: #6b4a44;
+  --bg: #faf6f0;
+  --card-bg: var(--color-white);
+  --border: #e8d9c0;
 
   color-scheme: light;
   color: var(--ink-soft);
   background: var(--bg);
-  font: 16px/1.5 var(--sans);
+  font: 16px/1.5 var(--font-body);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -32,7 +39,7 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: var(--serif);
+  font-family: var(--font-heading);
   color: var(--ink);
   margin: 0;
 }
