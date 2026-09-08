@@ -56,12 +56,12 @@
   color: var(--gold);
 }
 
-.section-pad {
+.home .section-pad {
   padding: 60px var(--edge);
 }
 
 @media (min-width: 720px) {
-  .section-pad {
+  .home .section-pad {
     padding: 96px var(--edge);
   }
 }
@@ -1099,7 +1099,7 @@
   background: var(--void-deep);
 }
 
-.footer-mark {
+.home .footer-mark {
   display: inline-flex;
   align-items: center;
   gap: 9px;
@@ -1110,13 +1110,13 @@
   margin-bottom: 10px;
 }
 
-.footer-mark-spark {
+.home .footer-mark-spark {
   width: 18px;
   height: 18px;
   color: var(--gold);
 }
 
-.footer-tag {
+.home .footer-tag {
   font-size: 0.66rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;

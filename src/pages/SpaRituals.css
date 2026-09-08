@@ -1,6 +1,6 @@
 /* ============================= tokens ============================= */
 
-.catalogue {
+.spa-rituals {
   --display: 'Fraunces', Georgia, 'Times New Roman', serif;
   --body-font: 'Manrope', 'Segoe UI', system-ui, sans-serif;
 
@@ -28,11 +28,11 @@
   line-height: 1.55;
 }
 
-.catalogue a {
+.spa-rituals a {
   color: inherit;
 }
 
-.catalogue .eyebrow {
+.spa-rituals .eyebrow {
   font-family: var(--body-font);
   font-size: 0.68rem;
   font-weight: 700;
@@ -43,7 +43,7 @@
 
 /* ============================= top bar ============================= */
 
-.cat-topbar {
+.sr-topbar {
   position: sticky;
   top: 0;
   z-index: 20;
@@ -52,7 +52,7 @@
   border-bottom: 1px solid var(--hairline);
 }
 
-.cat-topbar-inner {
+.sr-topbar-inner {
   max-width: 1100px;
   margin: 0 auto;
   padding: 14px var(--edge);
@@ -62,14 +62,7 @@
   gap: 16px;
 }
 
-.cat-topbar-row2 {
-  border-top: 1px solid var(--hairline);
-  display: flex;
-  justify-content: center;
-  padding: 10px var(--edge);
-}
-
-.cat-brand {
+.sr-brand {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -80,14 +73,38 @@
   white-space: nowrap;
 }
 
-.cat-brand-spark {
+.sr-brand-spark {
   width: 16px;
   height: 16px;
   color: var(--gold);
   flex-shrink: 0;
 }
 
-.gender-toggle {
+.sr-topbar-call {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--gold-bright), var(--bronze));
+  color: var(--maroon);
+  flex-shrink: 0;
+}
+
+.sr-topbar-call svg {
+  width: 16px;
+  height: 16px;
+}
+
+.sr-mode-row {
+  border-top: 1px solid var(--hairline);
+  display: flex;
+  justify-content: center;
+  padding: 9px var(--edge);
+}
+
+.sr-mode-toggle {
   display: flex;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--hairline);
@@ -96,79 +113,81 @@
   gap: 2px;
 }
 
-.gender-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+.sr-mode-btn {
+  font-family: var(--body-font);
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 999px;
   border: none;
   background: transparent;
   color: var(--stone);
-  font-family: var(--body-font);
-  font-size: 0.78rem;
-  font-weight: 600;
-  padding: 7px 14px;
-  border-radius: 999px;
   cursor: pointer;
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-.gender-btn .crown-icon {
-  background: var(--stone);
-  transition: background-color 0.25s ease;
+.sr-mode-btn.active {
+  background: var(--gold);
+  color: var(--void);
 }
 
-.gender-btn.active {
-  background: linear-gradient(135deg, var(--gold-bright), var(--bronze));
-  color: var(--maroon);
+.sr-topbar-row2 {
+  border-top: 1px solid var(--hairline);
+  padding: 10px 0;
 }
 
-.gender-btn.active .crown-icon {
-  background: var(--maroon);
+.sr-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 0 var(--edge);
+  scrollbar-width: none;
 }
 
-/* mask-based crown icons — recolors the flat PNG silhouettes via currentColor/background */
-.crown-icon {
-  display: inline-block;
-  width: 15px;
-  height: 15px;
+.sr-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.sr-tab {
+  display: flex;
+  align-items: center;
+  gap: 7px;
   flex-shrink: 0;
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
+  font-family: var(--body-font);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--hairline);
+  background: transparent;
+  color: var(--stone);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
 
-.crown-women {
-  -webkit-mask-image: url('/women crown.png');
-  mask-image: url('/women crown.png');
+.sr-tab svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
 }
 
-.crown-men {
-  -webkit-mask-image: url('/men crown.png');
-  mask-image: url('/men crown.png');
-}
-
-.crown-luxe {
-  -webkit-mask-image: url('/gents crown.png');
-  mask-image: url('/gents crown.png');
-  width: 13px;
-  height: 13px;
-  margin-right: 5px;
-  background: currentColor;
+.sr-tab.active {
+  background: linear-gradient(135deg, var(--gold-bright), var(--bronze));
+  border-color: transparent;
+  color: var(--maroon);
 }
 
 /* ============================= header ============================= */
 
-.cat-header {
+.sr-header {
   max-width: 720px;
   margin: 0 auto;
-  padding: 44px var(--edge) 8px;
+  padding: 40px var(--edge) 8px;
   text-align: center;
 }
 
-.cat-header h1 {
+.sr-header h1 {
   font-family: var(--display);
   font-weight: 400;
   font-size: clamp(1.9rem, 4vw, 2.6rem);
@@ -176,17 +195,15 @@
   color: var(--ivory);
 }
 
-.cat-subhead {
+.sr-subhead {
   font-size: 0.92rem;
   color: var(--stone);
   line-height: 1.6;
-  max-width: 48ch;
-  margin: 0 auto;
 }
 
 /* ============================= tier legend ============================= */
 
-.catalogue .tier-legend {
+.spa-rituals .tier-legend {
   max-width: 1000px;
   margin: 32px auto 0;
   padding: 0 var(--edge);
@@ -196,26 +213,26 @@
 }
 
 @media (min-width: 720px) {
-  .catalogue .tier-legend {
+  .spa-rituals .tier-legend {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-.catalogue .tier-legend-item {
+.spa-rituals .tier-legend-item {
   background: var(--surface);
   border: 1px solid var(--hairline);
   border-radius: 12px;
   padding: 16px 18px;
 }
 
-.catalogue .tier-legend-item p {
+.spa-rituals .tier-legend-item p {
   margin-top: 8px;
   font-size: 0.82rem;
   line-height: 1.55;
   color: var(--stone);
 }
 
-.tier-badge {
+.spa-rituals .tier-badge {
   display: inline-flex;
   align-items: center;
   font-family: var(--body-font);
@@ -227,85 +244,50 @@
   border-radius: 999px;
 }
 
-.tier-essential {
+.spa-rituals .tier-badge-spark {
+  width: 11px;
+  height: 11px;
+  margin-right: 4px;
+}
+
+.spa-rituals .tier-essential {
   background: rgba(185, 169, 154, 0.14);
   color: var(--stone);
   border: 1px solid rgba(185, 169, 154, 0.3);
 }
 
-.tier-signature {
+.spa-rituals .tier-signature {
   background: rgba(240, 195, 130, 0.14);
   color: var(--gold-bright);
   border: 1px solid rgba(240, 195, 130, 0.4);
 }
 
-.tier-luxe {
+.spa-rituals .tier-luxe {
   background: linear-gradient(135deg, var(--gold-bright), var(--bronze));
   color: var(--maroon);
   border: 1px solid transparent;
 }
 
-.tier-luxe .crown-icon {
-  background: var(--maroon);
-}
+/* ============================= main ============================= */
 
-/* ============================= category tabs ============================= */
-
-.cat-tabs {
-  display: flex;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--hairline);
-  border-radius: 999px;
-  padding: 3px;
-  gap: 2px;
-}
-
-.cat-tab {
-  font-family: var(--body-font);
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 8px 26px;
-  border-radius: 999px;
-  border: none;
-  background: transparent;
-  color: var(--stone);
-  cursor: pointer;
-  transition: background-color 0.25s ease, color 0.25s ease;
-}
-
-.cat-tab.active {
-  background: linear-gradient(135deg, var(--gold-bright), var(--bronze));
-  color: var(--maroon);
-}
-
-/* ============================= main / disciplines ============================= */
-
-.cat-main {
+.sr-main {
   flex: 1;
   max-width: 1000px;
   margin: 0 auto;
   width: 100%;
-  padding: 40px var(--edge) 64px;
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
+  padding: 36px var(--edge) 64px;
 }
 
-.discipline-section {
+.reason-head {
   display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.discipline-head {
-  display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
   border-bottom: 1px solid var(--hairline);
-  padding-bottom: 14px;
+  padding-bottom: 18px;
+  margin-bottom: 18px;
 }
 
-.discipline-head-icon {
+.reason-head-icon {
   width: 38px;
   height: 38px;
   border-radius: 50%;
@@ -315,78 +297,108 @@
   justify-content: center;
   background: linear-gradient(135deg, var(--gold-bright), var(--bronze));
   color: var(--maroon);
+  margin-top: 2px;
 }
 
-.discipline-head-icon svg {
+.reason-head-icon svg {
   width: 19px;
   height: 19px;
 }
 
-.discipline-head h2 {
+.reason-head h2 {
   font-family: var(--display);
   font-weight: 400;
   font-size: 1.4rem;
   color: var(--ivory);
 }
 
-.service-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.service-block {
-  background: var(--surface);
-  border: 1px solid var(--hairline);
-  border-radius: 14px;
-  padding: 22px 22px 24px;
-}
-
-.service-head h3 {
+.reason-intro {
+  margin-top: 8px;
   font-family: var(--display);
-  font-weight: 400;
-  font-size: 1.15rem;
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.45;
   color: var(--ivory);
+  max-width: 56ch;
 }
 
-.service-summary {
+.reason-sub {
   margin-top: 6px;
-  font-size: 0.86rem;
+  font-size: 0.8rem;
   color: var(--stone);
-  line-height: 1.55;
 }
 
-.tier-grid {
-  margin-top: 18px;
+.spa-rituals .tier-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
+  gap: 14px;
 }
 
-@media (min-width: 720px) {
-  .tier-grid {
+@media (min-width: 640px) {
+  .spa-rituals .tier-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 960px) {
+  .spa-rituals .tier-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-.tier-card {
-  background: rgba(255, 255, 255, 0.03);
+.spa-rituals .tier-card {
+  background: var(--surface);
   border: 1px solid var(--hairline);
-  border-radius: 10px;
-  padding: 14px 16px;
+  border-radius: 12px;
+  padding: 16px 18px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
-.tier-note {
+.therapy-name {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.02rem;
+  color: var(--ivory);
+  margin-top: 4px;
+  line-height: 1.3;
+}
+
+.spa-rituals .tier-note {
   font-size: 0.8rem;
   color: var(--stone);
   line-height: 1.5;
   flex: 1;
 }
 
-.tier-meta {
+.therapy-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.therapy-option {
+  font-family: var(--body-font);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--hairline);
+  background: transparent;
+  color: var(--stone);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.therapy-option.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--void);
+}
+
+.spa-rituals .tier-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -396,11 +408,30 @@
   color: var(--ivory);
   border-top: 1px dashed var(--hairline);
   padding-top: 10px;
+  margin-top: 4px;
+}
+
+.therapy-book {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  align-self: flex-start;
+  margin-top: 2px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--gold-bright);
+  border-bottom: 1px solid rgba(240, 195, 130, 0.4);
+  padding-bottom: 1px;
+}
+
+.therapy-book-chevron {
+  width: 13px;
+  height: 13px;
 }
 
 /* ============================= footer ============================= */
 
-.cat-footer {
+.sr-footer {
   text-align: center;
   padding: 28px var(--edge) 36px;
   border-top: 1px solid var(--hairline);
@@ -409,6 +440,11 @@
   color: var(--stone-dim);
 }
 
-.cat-footer p + p {
+.sr-footer-info {
+  color: var(--stone);
+  margin-bottom: 6px;
+}
+
+.sr-footer p + p {
   margin-top: 4px;
 }
