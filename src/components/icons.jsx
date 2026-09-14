@@ -82,3 +82,40 @@ export const GemIcon = () => (
     <path d="M9 3l3 6 3-6" />
   </IconWrap>
 )
+
+export const FlowerIcon = () => (
+  <IconWrap>
+    <circle cx="12" cy="12" r="2.1" />
+    <path d="M12 9.9C12 7.2 10.3 5.2 9 4.2c0 1.8 1 3.7 3 5.7Z" />
+    <path d="M12 9.9c0-2.7 1.7-4.7 3-5.7 0 1.8-1 3.7-3 5.7Z" />
+    <path d="M14.1 12c2.7 0 4.7-1.7 5.7-3-1.8 0-3.7 1-5.7 3Z" />
+    <path d="M14.1 12c2.7 0 4.7 1.7 5.7 3-1.8 0-3.7-1-5.7-3Z" />
+    <path d="M12 14.1c0 2.7-1.7 4.7-3 5.7 0-1.8 1-3.7 3-5.7Z" />
+    <path d="M12 14.1c0 2.7 1.7 4.7 3 5.7 0-1.8-1-3.7-3-5.7Z" />
+    <path d="M9.9 12c-2.7 0-4.7 1.7-5.7 3 1.8 0 3.7-1 5.7-3Z" />
+    <path d="M9.9 12c-2.7 0-4.7-1.7-5.7-3 1.8 0 3.7 1 5.7 3Z" />
+  </IconWrap>
+)
+
+export const LipstickIcon = () => (
+  <IconWrap>
+    <path d="M9 21v-7h6v7a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1Z" />
+    <path d="M9 14 10 4h4l1 10Z" />
+    <path d="M10.3 4c.3-1.3 1-2.2 1.7-2.2s1.4.9 1.7 2.2" />
+  </IconWrap>
+)
+
+export const GiftIcon = () => (
+  <IconWrap>
+    <rect x="3" y="9" width="18" height="12" rx="1.5" />
+    <path d="M3 13h18M12 9v12" />
+    <path d="M12 9C9.5 9 8 7.5 8 6a2.5 2.5 0 0 1 4-2 2.5 2.5 0 0 1 4 2c0 1.5-1.5 3-4 3Z" />
+  </IconWrap>
+)
+
+export const BrushIcon = () => (
+  <IconWrap>
+    <path d="M18.5 3.5 20.5 5.5 11.5 14.5l-2-2Z" />
+    <path d="M9.5 12.5c-1.6 0-3.1.6-4.1 1.8C4.2 15.7 3.8 17.8 4 20c1.8.4 4-.1 5.3-1.4 1.1-1.1 1.7-2.5 1.7-4" />
+  </IconWrap>
+)

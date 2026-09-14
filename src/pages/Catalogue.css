@@ -32,15 +32,6 @@
   color: inherit;
 }
 
-.catalogue .eyebrow {
-  font-family: var(--body-font);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-
 /* ============================= top bar ============================= */
 
 .cat-topbar {
@@ -64,9 +55,55 @@
 
 .cat-topbar-row2 {
   border-top: 1px solid var(--hairline);
+  padding: 10px 0;
+}
+
+.cat-topbar-row2-center {
   display: flex;
   justify-content: center;
   padding: 10px var(--edge);
+}
+
+.disc-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 0 var(--edge);
+  scrollbar-width: none;
+}
+
+.disc-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.disc-tab {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+  font-family: var(--body-font);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--hairline);
+  background: transparent;
+  color: var(--stone);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.disc-tab svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.disc-tab.active {
+  background: linear-gradient(135deg, var(--gold-bright), var(--bronze));
+  border-color: transparent;
+  color: var(--maroon);
 }
 
 .cat-brand {
@@ -164,24 +201,22 @@
 .cat-header {
   max-width: 720px;
   margin: 0 auto;
-  padding: 44px var(--edge) 8px;
+  padding: 20px var(--edge) 4px;
   text-align: center;
 }
 
 .cat-header h1 {
   font-family: var(--display);
   font-weight: 400;
-  font-size: clamp(1.9rem, 4vw, 2.6rem);
-  margin: 10px 0 12px;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
   color: var(--ivory);
 }
 
 .cat-subhead {
-  font-size: 0.92rem;
+  margin-top: 4px;
+  font-size: 0.82rem;
   color: var(--stone);
-  line-height: 1.6;
-  max-width: 48ch;
-  margin: 0 auto;
+  line-height: 1.5;
 }
 
 /* ============================= tier legend ============================= */
@@ -285,7 +320,7 @@
   max-width: 1000px;
   margin: 0 auto;
   width: 100%;
-  padding: 40px var(--edge) 64px;
+  padding: 22px var(--edge) 64px;
   display: flex;
   flex-direction: column;
   gap: 48px;
@@ -299,10 +334,10 @@
 
 .discipline-head {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
   border-bottom: 1px solid var(--hairline);
-  padding-bottom: 14px;
+  padding-bottom: 16px;
 }
 
 .discipline-head-icon {
@@ -315,6 +350,7 @@
   justify-content: center;
   background: linear-gradient(135deg, var(--gold-bright), var(--bronze));
   color: var(--maroon);
+  margin-top: 2px;
 }
 
 .discipline-head-icon svg {
@@ -327,6 +363,101 @@
   font-weight: 400;
   font-size: 1.4rem;
   color: var(--ivory);
+}
+
+.discipline-blurb {
+  margin-top: 4px;
+  font-size: 0.84rem;
+  color: var(--stone);
+}
+
+.salon-group {
+  margin-top: 22px;
+}
+
+.salon-group-title {
+  font-family: var(--body-font);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+
+.salon-service-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 720px) {
+  .salon-service-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.salon-service {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+
+.salon-service-name {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.02rem;
+  color: var(--ivory);
+}
+
+.salon-service-note {
+  margin-top: 6px;
+  font-size: 0.82rem;
+  color: var(--stone);
+  line-height: 1.5;
+}
+
+.salon-service-price {
+  margin-top: 12px;
+  font-family: var(--body-font);
+  font-weight: 700;
+  font-size: 0.86rem;
+  color: var(--gold-bright);
+}
+
+.salon-variant-row {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.salon-variant {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--hairline);
+}
+
+.salon-variant:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.salon-variant-label {
+  font-size: 0.8rem;
+  color: var(--stone);
+}
+
+.salon-variant-price {
+  font-family: var(--body-font);
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--gold-bright);
+  white-space: nowrap;
 }
 
 .service-list {
@@ -411,4 +542,9 @@
 
 .cat-footer p + p {
   margin-top: 4px;
+}
+
+.cat-footer a {
+  color: var(--gold-bright);
+  border-bottom: 1px solid rgba(240, 195, 130, 0.4);
 }

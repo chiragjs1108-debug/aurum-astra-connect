@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { SparkIcon, ChevronIcon, ChatIcon, IconWrap } from '../components/icons.jsx'
+import { SparkIcon, ChevronIcon, ChatIcon, GiftIcon, IconWrap } from '../components/icons.jsx'
 import './SpaRituals.css'
 
 const WHATSAPP_NUMBER = '919148627266'
@@ -79,13 +79,6 @@ const WaterIcon = () => (
   <IconWrap>
     <path d="M12 3s6 7.4 6 12a6 6 0 0 1-12 0c0-4.6 6-12 6-12Z" />
     <path d="M9.5 15a2.5 2.5 0 0 0 2.5 2.5" />
-  </IconWrap>
-)
-const GiftIcon = () => (
-  <IconWrap>
-    <rect x="3" y="9" width="18" height="12" rx="1.5" />
-    <path d="M3 13h18M12 9v12" />
-    <path d="M12 9C9.5 9 8 7.5 8 6a2.5 2.5 0 0 1 4-2 2.5 2.5 0 0 1 4 2c0 1.5-1.5 3-4 3Z" />
   </IconWrap>
 )
 
