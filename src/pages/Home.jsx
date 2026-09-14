@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import {
   GlobeIcon,
   InstagramIcon,
@@ -26,10 +27,10 @@ function buildWhatsAppLink(message) {
 const TOUCHPOINTS = [
   {
     title: 'The Digital Boutique',
-    subtitle: 'Explore services, stories & more',
-    href: 'https://www.aurumastra.com',
+    subtitle: 'Browse our full salon & spa menu',
+    href: '/catalogue',
     icon: GlobeIcon,
-    external: true,
+    external: false,
   },
   {
     title: 'Behind The Scenes',
@@ -368,26 +369,48 @@ function Home() {
           <h2>Reach Us Instantly</h2>
         </Reveal>
         <Reveal as="nav" className="touchpoints" aria-label="Aurum Astra quick links">
-          {TOUCHPOINTS.map(({ title, subtitle, href, icon: Icon, external }, index) => (
-            <a
-              key={title}
-              className="touchpoint"
-              href={href}
-              style={{ '--delay': `${index * 70}ms` }}
-              onPointerDown={handleTouchpointPress}
-              {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-            >
-              <span className="touchpoint-icon">
-                <Icon />
-                <SparkIcon className="touchpoint-spark" />
-              </span>
-              <span className="touchpoint-text">
-                <span className="touchpoint-title">{title}</span>
-                <span className="touchpoint-subtitle">{subtitle}</span>
-              </span>
-              <ChevronIcon className="touchpoint-chevron" />
-            </a>
-          ))}
+          {TOUCHPOINTS.map(({ title, subtitle, href, icon: Icon, external }, index) => {
+            const content = (
+              <>
+                <span className="touchpoint-icon">
+                  <Icon />
+                  <SparkIcon className="touchpoint-spark" />
+                </span>
+                <span className="touchpoint-text">
+                  <span className="touchpoint-title">{title}</span>
+                  <span className="touchpoint-subtitle">{subtitle}</span>
+                </span>
+                <ChevronIcon className="touchpoint-chevron" />
+              </>
+            )
+
+            if (!external && href.startsWith('/')) {
+              return (
+                <Link
+                  key={title}
+                  className="touchpoint"
+                  to={href}
+                  style={{ '--delay': `${index * 70}ms` }}
+                  onPointerDown={handleTouchpointPress}
+                >
+                  {content}
+                </Link>
+              )
+            }
+
+            return (
+              <a
+                key={title}
+                className="touchpoint"
+                href={href}
+                style={{ '--delay': `${index * 70}ms` }}
+                onPointerDown={handleTouchpointPress}
+                {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              >
+                {content}
+              </a>
+            )
+          })}
         </Reveal>
       </section>
 
