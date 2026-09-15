@@ -105,6 +105,13 @@ export const LipstickIcon = () => (
   </IconWrap>
 )
 
+export const RazorIcon = () => (
+  <IconWrap>
+    <path d="M4 15 16 3l3 3-9 12H6a2 2 0 0 1-2-2v-1Z" />
+    <path d="M12.5 6.5 15 9" />
+  </IconWrap>
+)
+
 export const GiftIcon = () => (
   <IconWrap>
     <rect x="3" y="9" width="18" height="12" rx="1.5" />

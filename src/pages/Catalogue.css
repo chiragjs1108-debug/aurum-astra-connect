@@ -64,6 +64,66 @@
   padding: 10px var(--edge);
 }
 
+.cat-topbar-row2-salon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px var(--edge);
+}
+
+.cat-topbar-row2-salon .disc-tabs-wrap {
+  flex: 1;
+  min-width: 0;
+}
+
+.cat-topbar-row2-salon .disc-tabs {
+  padding: 0;
+}
+
+/* mobile-only: the gender switch lives in the fixed bottom bar instead, so the
+   discipline tabs get the row's full width and more chips are visible at once */
+@media (max-width: 719.98px) {
+  .cat-topbar-row2-salon .gender-toggle-compact {
+    display: none;
+  }
+}
+
+.disc-tabs-wrap {
+  position: relative;
+  min-width: 0;
+}
+
+.disc-tabs-wrap::before,
+.disc-tabs-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 28px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 1;
+}
+
+.disc-tabs-wrap::before {
+  left: 0;
+  background: linear-gradient(to right, var(--void), transparent);
+}
+
+.disc-tabs-wrap::after {
+  right: 0;
+  background: linear-gradient(to left, var(--void), transparent);
+}
+
+.disc-tabs-wrap.fade-left::before {
+  opacity: 1;
+}
+
+.disc-tabs-wrap.fade-right::after {
+  opacity: 1;
+}
+
 .disc-tabs {
   display: flex;
   gap: 8px;
@@ -161,6 +221,21 @@
 
 .gender-btn.active .crown-icon {
   background: var(--maroon);
+}
+
+.gender-toggle-compact {
+  flex-shrink: 0;
+}
+
+.gender-toggle-compact .gender-btn {
+  padding: 6px 10px;
+  font-size: 0.72rem;
+  gap: 4px;
+}
+
+.gender-toggle-compact .crown-icon {
+  width: 12px;
+  height: 12px;
 }
 
 /* mask-based crown icons — recolors the flat PNG silhouettes via currentColor/background */
@@ -426,6 +501,12 @@
   color: var(--gold-bright);
 }
 
+.salon-service-duration {
+  margin-top: 8px;
+  font-size: 0.72rem;
+  color: var(--stone-dim);
+}
+
 .salon-variant-row {
   margin-top: 12px;
   display: flex;
@@ -527,6 +608,38 @@
   color: var(--ivory);
   border-top: 1px dashed var(--hairline);
   padding-top: 10px;
+}
+
+/* ============================= mobile bottom bar (gender switch) ============================= */
+
+.cat-bottom-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 25;
+  display: flex;
+  justify-content: center;
+  padding: 10px var(--edge);
+  background: rgba(23, 7, 8, 0.92);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--hairline);
+}
+
+@media (min-width: 720px) {
+  .cat-bottom-bar {
+    display: none;
+  }
+}
+
+@media (max-width: 719.98px) {
+  .catalogue.has-bottom-bar .cat-main {
+    padding-bottom: calc(64px + 22px);
+  }
+
+  .catalogue.has-bottom-bar .cat-footer {
+    padding-bottom: calc(64px + 28px);
+  }
 }
 
 /* ============================= footer ============================= */
