@@ -124,6 +124,31 @@
   opacity: 1;
 }
 
+.disc-tabs-hint {
+  position: absolute;
+  right: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: var(--gold-bright);
+  pointer-events: none;
+  z-index: 2;
+  animation: disc-tabs-hint-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes disc-tabs-hint-pulse {
+  0%,
+  100% {
+    transform: translateY(-50%) translateX(0);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translateY(-50%) translateX(3px);
+    opacity: 1;
+  }
+}
+
 .disc-tabs {
   display: flex;
   gap: 8px;
@@ -499,12 +524,6 @@
   font-weight: 700;
   font-size: 0.86rem;
   color: var(--gold-bright);
-}
-
-.salon-service-duration {
-  margin-top: 8px;
-  font-size: 0.72rem;
-  color: var(--stone-dim);
 }
 
 .salon-variant-row {

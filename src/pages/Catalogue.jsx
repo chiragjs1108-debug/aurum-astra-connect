@@ -9,6 +9,7 @@ import {
   BrushIcon,
   LipstickIcon,
   RazorIcon,
+  ChevronIcon,
 } from '../components/icons.jsx'
 import './Catalogue.css'
 
@@ -16,17 +17,17 @@ const CATEGORIES = ['Salon', 'Spa']
 
 /* ---------------------------------- salon data (Women's & Men's — from Onboarding_Salon Services.xlsx) ---------------------------------- */
 
-function svc(name, note, priceOrVariants, duration, opts = {}) {
+function svc(name, note, priceOrVariants, opts = {}) {
   if (Array.isArray(priceOrVariants)) {
-    return { name, note, variants: priceOrVariants, tiered: !!opts.tiered, duration }
+    return { name, note, variants: priceOrVariants, tiered: !!opts.tiered }
   }
-  return { name, note, price: priceOrVariants, duration }
+  return { name, note, price: priceOrVariants }
 }
 
 const KIDS_GROUP = {
   title: 'Also Available',
   services: [
-    svc("Kids' Haircut", 'A patient, gentle first haircut or regular trim for younger guests.', 200, '45 min'),
+    svc("Kids' Haircut", 'A patient, gentle first haircut or regular trim for younger guests.', 200),
   ],
 }
 
@@ -50,9 +51,8 @@ const SALON_DISCIPLINES = [
                 { label: 'Standard', price: 800 },
                 { label: 'Trim', price: 500 },
               ],
-              '45 min',
             ),
-            svc('Gender-Neutral Cut', 'A modern, androgynous cut shaped to suit you, not a category.', 350, '45 min'),
+            svc('Gender-Neutral Cut', 'A modern, androgynous cut shaped to suit you, not a category.', 350),
             svc(
               'Hair Wash',
               'A thorough cleanse and conditioning finish, with a wash chosen for your hair type.',
@@ -62,9 +62,8 @@ const SALON_DISCIPLINES = [
                 { label: 'Colour Protein', price: 350 },
                 { label: 'Oily Hair', price: 400 },
               ],
-              '20 min',
             ),
-            svc('Blow-Dry & Style', 'Rough-dried, smoothed or volumised — your everyday hair, done properly.', 400, '40 min'),
+            svc('Blow-Dry & Style', 'Rough-dried, smoothed or volumised — your everyday hair, done properly.', 400),
             svc(
               'Iron Curls & Waves',
               'Loose waves, tight curls or beachy movement, set with heat for the occasion.',
@@ -72,10 +71,9 @@ const SALON_DISCIPLINES = [
                 { label: 'Loose Waves / Tight Curls / Beach Waves', price: 1000 },
                 { label: 'Perming Curls', price: 1200 },
               ],
-              '40 min',
             ),
-            svc('Hair Straightening (Temporary)', 'A sleek flat-iron finish that lasts until your next wash.', 800, '40 min'),
-            svc('Perming', 'Lasting curl and body, from soft waves to defined spirals.', 6000, '40 min'),
+            svc('Hair Straightening (Temporary)', 'A sleek flat-iron finish that lasts until your next wash.', 800),
+            svc('Perming', 'Lasting curl and body, from soft waves to defined spirals.', 6000),
           ],
         },
         KIDS_GROUP,
@@ -83,10 +81,10 @@ const SALON_DISCIPLINES = [
       men: [
         {
           services: [
-            svc("Men's Haircut", 'Classic to contemporary — clippers, scissors or a skin fade, shaped to you.', 250, '45 min'),
-            svc('Gender-Neutral Cut', 'A modern, androgynous cut shaped to suit you, not a category.', 350, '45 min'),
-            svc('Hair Wash', 'A quick, thorough cleanse before your cut or style.', 100, '20 min'),
-            svc('Perming', 'Lasting curl and body, from soft waves to defined spirals.', 3000, '40 min'),
+            svc("Men's Haircut", 'Classic to contemporary — clippers, scissors or a skin fade, shaped to you.', 250),
+            svc('Gender-Neutral Cut', 'A modern, androgynous cut shaped to suit you, not a category.', 350),
+            svc('Hair Wash', 'A quick, thorough cleanse before your cut or style.', 100),
+            svc('Perming', 'Lasting curl and body, from soft waves to defined spirals.', 3000),
           ],
         },
         KIDS_GROUP,
@@ -113,7 +111,6 @@ const SALON_DISCIPLINES = [
                 { label: 'Signature', price: 3500 },
                 { label: 'Luxe', price: 4000 },
               ],
-              '90 min',
               { tiered: true },
             ),
             svc(
@@ -124,7 +121,6 @@ const SALON_DISCIPLINES = [
                 { label: 'Signature', price: 1200 },
                 { label: 'Luxe (Ammonia-Free)', price: 1550 },
               ],
-              '60 min',
               { tiered: true },
             ),
             svc(
@@ -135,10 +131,9 @@ const SALON_DISCIPLINES = [
                 { label: 'Signature', price: 3500 },
                 { label: 'Luxe', price: 4000 },
               ],
-              '150 min',
               { tiered: true },
             ),
-            svc('Colour Removal', 'Gently strips previous colour to prepare hair for a fresh result.', 2500, '240 min'),
+            svc('Colour Removal', 'Gently strips previous colour to prepare hair for a fresh result.', 2500),
           ],
         },
       ],
@@ -153,11 +148,10 @@ const SALON_DISCIPLINES = [
                 { label: 'Signature', price: 3500 },
                 { label: 'Luxe', price: 4000 },
               ],
-              '90 min',
               { tiered: true },
             ),
-            svc('Grey Coverage', 'Precise grey blending for a natural, low-maintenance finish.', 1000, '60 min'),
-            svc('Colour Removal', 'Gently strips previous colour to prepare hair for a fresh result.', 2500, '240 min'),
+            svc('Grey Coverage', 'Precise grey blending for a natural, low-maintenance finish.', 1000),
+            svc('Colour Removal', 'Gently strips previous colour to prepare hair for a fresh result.', 2500),
           ],
         },
       ],
@@ -183,7 +177,6 @@ const SALON_DISCIPLINES = [
                 { label: 'Medium Hair', price: 6000 },
                 { label: 'Long Hair', price: 7000 },
               ],
-              '180 min',
             ),
             svc(
               'Hair Botox',
@@ -193,7 +186,6 @@ const SALON_DISCIPLINES = [
                 { label: 'Medium Hair', price: 6000 },
                 { label: 'Long Hair', price: 7000 },
               ],
-              '180 min',
             ),
             svc(
               'Permanent Straightening (Rebonding)',
@@ -203,9 +195,8 @@ const SALON_DISCIPLINES = [
                 { label: 'Medium Hair', price: 6500 },
                 { label: 'Long Hair', price: 7500 },
               ],
-              '180 min',
             ),
-            svc('Bond-Building Repair Treatment', 'Rebuilds internal bonds in chemically treated or over-processed hair.', 2500, '60 min'),
+            svc('Bond-Building Repair Treatment', 'Rebuilds internal bonds in chemically treated or over-processed hair.', 2500),
             svc(
               'Protein Treatment',
               'A reconstructive mask for weak, brittle or over-worked hair.',
@@ -214,7 +205,6 @@ const SALON_DISCIPLINES = [
                 { label: 'Medium Hair', price: 5500 },
                 { label: 'Long Hair', price: 7000 },
               ],
-              '60 min',
             ),
             svc(
               'Restorative Hair Spa Rituals',
@@ -224,10 +214,9 @@ const SALON_DISCIPLINES = [
                 { label: 'Signature', price: 1600 },
                 { label: 'Luxe', price: 2000 },
               ],
-              '45 min',
               { tiered: true },
             ),
-            svc('Champi Oil Head Massage', 'Warm oil and traditional pressure points, from scalp to shoulders.', 400, '45 min'),
+            svc('Champi Oil Head Massage', 'Warm oil and traditional pressure points, from scalp to shoulders.', 400),
           ],
         },
       ],
@@ -242,7 +231,6 @@ const SALON_DISCIPLINES = [
                 { label: 'Medium Hair', price: 3500 },
                 { label: 'Long Hair', price: 4500 },
               ],
-              '180 min',
             ),
             svc(
               'Hair Botox',
@@ -252,9 +240,8 @@ const SALON_DISCIPLINES = [
                 { label: 'Medium Hair', price: 6000 },
                 { label: 'Long Hair', price: 7000 },
               ],
-              '180 min',
             ),
-            svc('Bond-Building Repair Treatment', 'Rebuilds internal bonds in chemically treated or over-processed hair.', 2500, '60 min'),
+            svc('Bond-Building Repair Treatment', 'Rebuilds internal bonds in chemically treated or over-processed hair.', 2500),
             svc(
               'Protein Treatment',
               'A reconstructive mask for weak, brittle or over-worked hair.',
@@ -263,7 +250,6 @@ const SALON_DISCIPLINES = [
                 { label: 'Medium Hair', price: 5500 },
                 { label: 'Long Hair', price: 7000 },
               ],
-              '60 min',
             ),
             svc(
               'Restorative Hair Spa Rituals',
@@ -273,11 +259,10 @@ const SALON_DISCIPLINES = [
                 { label: 'Signature', price: 1600 },
                 { label: 'Luxe', price: 2000 },
               ],
-              '45 min',
               { tiered: true },
             ),
-            svc('Anti-Hairfall Treatment', 'A scalp-focused course to strengthen roots and reduce shedding.', 1500, '45 min'),
-            svc('Champi Oil Head Massage', 'Warm oil and traditional pressure points, from scalp to shoulders.', 400, '45 min'),
+            svc('Anti-Hairfall Treatment', 'A scalp-focused course to strengthen roots and reduce shedding.', 1500),
+            svc('Champi Oil Head Massage', 'Warm oil and traditional pressure points, from scalp to shoulders.', 400),
           ],
         },
       ],
@@ -295,7 +280,7 @@ const SALON_DISCIPLINES = [
       women: [
         {
           services: [
-            svc('Face Clean-Up', 'A quick cleanse, exfoliate and extract — ideal between facials.', 600, '60 min'),
+            svc('Face Clean-Up', 'A quick cleanse, exfoliate and extract — ideal between facials.', 600),
             svc(
               'De-Tan Treatment',
               'Lifts sun damage and evens tone, available for face or full body.',
@@ -306,7 +291,6 @@ const SALON_DISCIPLINES = [
                 { label: 'Legs', price: 2500 },
                 { label: 'Full Body', price: 4000 },
               ],
-              '60 min',
             ),
             svc(
               'Bleach',
@@ -316,17 +300,16 @@ const SALON_DISCIPLINES = [
                 { label: 'Neck', price: 400 },
                 { label: 'Hands', price: 1000 },
               ],
-              '60 min',
             ),
-            svc('Eyebrow Threading', 'Precise, clean brow shaping with cotton thread.', 60, '10 min'),
-            svc('Eyebrow Shaping', 'Brows redefined by thread, wax or razor — your preference.', 60, '60 min'),
-            svc('Full Face Threading', 'Complete facial hair removal, gentle and precise.', 250, '10 min'),
+            svc('Eyebrow Threading', 'Precise, clean brow shaping with cotton thread.', 60),
+            svc('Eyebrow Shaping', 'Brows redefined by thread, wax or razor — your preference.', 60),
+            svc('Full Face Threading', 'Complete facial hair removal, gentle and precise.', 250),
           ],
         },
         {
           title: 'Facial Rituals',
           services: [
-            svc('Essential Facial', 'A refreshing fruit or papaya facial for clean, comfortable skin.', 1200, '60 min'),
+            svc('Essential Facial', 'A refreshing fruit or papaya facial for clean, comfortable skin.', 1200),
             svc(
               'Signature Facial',
               'A premium ritual in gold, pearl, diamond or wine for visible glow.',
@@ -334,20 +317,19 @@ const SALON_DISCIPLINES = [
                 { label: 'Gold / Pearl / Diamond', price: 2000 },
                 { label: 'Wine', price: 1800 },
               ],
-              '60 min',
             ),
-            svc('Luxe Facial', 'Our Korean glass-skin ritual for a dewy, poreless finish.', 2500, '60 min'),
-            svc('Brightening & Glow Facial', 'Vitamin C led, for an instant lit-from-within look.', 2500, '60 min'),
-            svc('Anti-Ageing Facial', 'Collagen and peptide rich, firming and smoothing fine lines.', 2500, '60 min'),
-            svc('Acne & Oil-Control Facial', 'Calms breakouts and balances oil on acne-prone skin.', 1800, '60 min'),
-            svc('Korean Glass Skin Facial', 'Layered hydration and rice-water actives for that signature glass finish.', 3000, '60 min'),
+            svc('Luxe Facial', 'Our Korean glass-skin ritual for a dewy, poreless finish.', 2500),
+            svc('Brightening & Glow Facial', 'Vitamin C led, for an instant lit-from-within look.', 2500),
+            svc('Anti-Ageing Facial', 'Collagen and peptide rich, firming and smoothing fine lines.', 2500),
+            svc('Acne & Oil-Control Facial', 'Calms breakouts and balances oil on acne-prone skin.', 1800),
+            svc('Korean Glass Skin Facial', 'Layered hydration and rice-water actives for that signature glass finish.', 3000),
           ],
         },
       ],
       men: [
         {
           services: [
-            svc('Face Clean-Up', 'A quick cleanse, exfoliate and extract — ideal between facials.', 600, '60 min'),
+            svc('Face Clean-Up', 'A quick cleanse, exfoliate and extract — ideal between facials.', 600),
             svc(
               'De-Tan Treatment',
               'Lifts sun damage and evens tone, available for face or full body.',
@@ -358,7 +340,6 @@ const SALON_DISCIPLINES = [
                 { label: 'Legs', price: 2500 },
                 { label: 'Full Body', price: 4000 },
               ],
-              '60 min',
             ),
             svc(
               'Bleach',
@@ -368,17 +349,16 @@ const SALON_DISCIPLINES = [
                 { label: 'Neck', price: 400 },
                 { label: 'Hands', price: 1000 },
               ],
-              '60 min',
             ),
-            svc('Eyebrow Threading', 'Precise, clean brow shaping with cotton thread.', 60, '10 min'),
-            svc('Eyebrow Shaping', 'Brows redefined by thread, wax or razor — your preference.', 60, '60 min'),
-            svc('Full Face Threading', 'Complete facial hair removal, gentle and precise.', 250, '10 min'),
+            svc('Eyebrow Threading', 'Precise, clean brow shaping with cotton thread.', 60),
+            svc('Eyebrow Shaping', 'Brows redefined by thread, wax or razor — your preference.', 60),
+            svc('Full Face Threading', 'Complete facial hair removal, gentle and precise.', 250),
           ],
         },
         {
           title: 'Facial Rituals',
           services: [
-            svc('Essential Facial', 'A refreshing fruit or papaya facial for clean, comfortable skin.', 1200, '60 min'),
+            svc('Essential Facial', 'A refreshing fruit or papaya facial for clean, comfortable skin.', 1200),
             svc(
               'Signature Facial',
               'A premium ritual in gold, pearl, diamond or wine for visible glow.',
@@ -386,14 +366,13 @@ const SALON_DISCIPLINES = [
                 { label: 'Gold / Pearl / Diamond', price: 2000 },
                 { label: 'Wine', price: 1800 },
               ],
-              '60 min',
             ),
-            svc('Luxe Facial', 'Our Korean glass-skin ritual for a dewy, poreless finish.', 2500, '60 min'),
-            svc('Brightening & Glow Facial', 'Vitamin C led, for an instant lit-from-within look.', 2500, '60 min'),
-            svc('Anti-Ageing Facial', 'Collagen and peptide rich, firming and smoothing fine lines.', 2500, '60 min'),
-            svc('Acne & Oil-Control Facial', 'Calms breakouts and balances oil on acne-prone skin.', 1800, '60 min'),
-            svc("Men's Facial", 'A deep-cleansing charcoal facial built for oilier, harder-working skin.', 800, '60 min'),
-            svc('Korean Glass Skin Facial', 'Layered hydration and rice-water actives for that signature glass finish.', 3000, '60 min'),
+            svc('Luxe Facial', 'Our Korean glass-skin ritual for a dewy, poreless finish.', 2500),
+            svc('Brightening & Glow Facial', 'Vitamin C led, for an instant lit-from-within look.', 2500),
+            svc('Anti-Ageing Facial', 'Collagen and peptide rich, firming and smoothing fine lines.', 2500),
+            svc('Acne & Oil-Control Facial', 'Calms breakouts and balances oil on acne-prone skin.', 1800),
+            svc("Men's Facial", 'A deep-cleansing charcoal facial built for oilier, harder-working skin.', 800),
+            svc('Korean Glass Skin Facial', 'Layered hydration and rice-water actives for that signature glass finish.', 3000),
           ],
         },
       ],
@@ -419,7 +398,6 @@ const SALON_DISCIPLINES = [
                 { label: 'Full Arms', price: 400 },
                 { label: 'Full Legs', price: 600 },
               ],
-              '30 min',
             ),
             svc(
               'Rica Wax',
@@ -428,7 +406,6 @@ const SALON_DISCIPLINES = [
                 { label: 'Full Arms', price: 600 },
                 { label: 'Full Legs', price: 900 },
               ],
-              '30 min',
             ),
             svc(
               'Chocolate Wax',
@@ -437,7 +414,6 @@ const SALON_DISCIPLINES = [
                 { label: 'Full Arms', price: 500 },
                 { label: 'Full Legs', price: 600 },
               ],
-              '30 min',
             ),
             svc(
               'Fruit Wax',
@@ -446,7 +422,6 @@ const SALON_DISCIPLINES = [
                 { label: 'Full Arms', price: 500 },
                 { label: 'Full Legs', price: 600 },
               ],
-              '30 min',
             ),
             svc(
               'Sugar Waxing',
@@ -455,19 +430,18 @@ const SALON_DISCIPLINES = [
                 { label: 'Full Arms', price: 400 },
                 { label: 'Full Legs', price: 600 },
               ],
-              '30 min',
             ),
           ],
         },
         {
           title: 'Targeted Areas',
           services: [
-            svc('Underarms', 'Quick, hygienic underarm waxing.', 200, '15 min'),
-            svc('Bikini Line', 'Discreet, careful waxing by a trained therapist.', 2000, '30 min'),
-            svc('Brazilian Wax', 'Full intimate waxing in a private room, with total discretion.', 2000, '120 min'),
-            svc('Midriff & Stomach', 'Smooth, even hair removal across the midriff.', 500, '30 min'),
-            svc('Full Body Waxing', 'Head-to-toe waxing in a single unhurried appointment.', 2500, '120 min'),
-            svc('Upper Lip Threading', 'Quick, precise upper-lip tidy-up.', 60, '10 min'),
+            svc('Underarms', 'Quick, hygienic underarm waxing.', 200),
+            svc('Bikini Line', 'Discreet, careful waxing by a trained therapist.', 2000),
+            svc('Brazilian Wax', 'Full intimate waxing in a private room, with total discretion.', 2000),
+            svc('Midriff & Stomach', 'Smooth, even hair removal across the midriff.', 500),
+            svc('Full Body Waxing', 'Head-to-toe waxing in a single unhurried appointment.', 2500),
+            svc('Upper Lip Threading', 'Quick, precise upper-lip tidy-up.', 60),
           ],
         },
       ],
@@ -482,7 +456,6 @@ const SALON_DISCIPLINES = [
                 { label: 'Full Arms', price: 400 },
                 { label: 'Full Legs', price: 600 },
               ],
-              '30 min',
             ),
             svc(
               'Rica Wax',
@@ -491,7 +464,6 @@ const SALON_DISCIPLINES = [
                 { label: 'Full Arms', price: 600 },
                 { label: 'Full Legs', price: 900 },
               ],
-              '30 min',
             ),
             svc(
               'Chocolate Wax',
@@ -500,7 +472,6 @@ const SALON_DISCIPLINES = [
                 { label: 'Full Arms', price: 500 },
                 { label: 'Full Legs', price: 600 },
               ],
-              '30 min',
             ),
             svc(
               'Fruit Wax',
@@ -509,7 +480,6 @@ const SALON_DISCIPLINES = [
                 { label: 'Full Arms', price: 500 },
                 { label: 'Full Legs', price: 600 },
               ],
-              '30 min',
             ),
             svc(
               'Sugar Waxing',
@@ -518,19 +488,18 @@ const SALON_DISCIPLINES = [
                 { label: 'Full Arms', price: 400 },
                 { label: 'Full Legs', price: 600 },
               ],
-              '30 min',
             ),
           ],
         },
         {
           title: 'Targeted Areas',
           services: [
-            svc('Underarms', 'Quick, hygienic underarm waxing.', 250, '15 min'),
-            svc('Chest & Back Waxing', 'Smooth, even hair removal across chest and back.', 1000, '30 min'),
-            svc('Arms Waxing', 'Full or half-arm waxing for a clean, smooth finish.', 600, '30 min'),
-            svc('Legs Waxing', 'Full or half-leg waxing for a clean, smooth finish.', 900, '30 min'),
-            svc('Upper Lip Threading', 'Quick, precise upper-lip tidy-up.', 60, '10 min'),
-            svc('Full Body Hair Removal Cream', 'A quick depilatory-cream option for full-body hair removal.', 1500, '30 min'),
+            svc('Underarms', 'Quick, hygienic underarm waxing.', 250),
+            svc('Chest & Back Waxing', 'Smooth, even hair removal across chest and back.', 1000),
+            svc('Arms Waxing', 'Full or half-arm waxing for a clean, smooth finish.', 600),
+            svc('Legs Waxing', 'Full or half-leg waxing for a clean, smooth finish.', 900),
+            svc('Upper Lip Threading', 'Quick, precise upper-lip tidy-up.', 60),
+            svc('Full Body Hair Removal Cream', 'A quick depilatory-cream option for full-body hair removal.', 1500),
           ],
         },
       ],
@@ -548,25 +517,25 @@ const SALON_DISCIPLINES = [
       women: [
         {
           services: [
-            svc('Classic Manicure', 'Soak, shape, cuticle work, massage and polish.', 600, '40 min'),
-            svc('Spa Manicure', 'Everything in the classic, plus scrub, mask and a longer massage.', 800, '40 min'),
-            svc('Gel Manicure', 'High-shine gel colour that stays chip-free for weeks.', 800, '40 min'),
-            svc('Classic Pedicure', 'Soak, scrub, nail and cuticle care, massage and polish.', 800, '45 min'),
-            svc('Spa Pedicure', 'Our longer foot ritual with scrub, mask and crack-heal care.', 1000, '45 min'),
-            svc('Gel Nail Extensions', 'Builder-gel extensions in your chosen length and shape.', 1500, '90 min'),
+            svc('Classic Manicure', 'Soak, shape, cuticle work, massage and polish.', 600),
+            svc('Spa Manicure', 'Everything in the classic, plus scrub, mask and a longer massage.', 800),
+            svc('Gel Manicure', 'High-shine gel colour that stays chip-free for weeks.', 800),
+            svc('Classic Pedicure', 'Soak, scrub, nail and cuticle care, massage and polish.', 800),
+            svc('Spa Pedicure', 'Our longer foot ritual with scrub, mask and crack-heal care.', 1000),
+            svc('Gel Nail Extensions', 'Builder-gel extensions in your chosen length and shape.', 1500),
           ],
         },
       ],
       men: [
         {
           services: [
-            svc('Classic Manicure', 'Soak, shape, cuticle work, massage and polish.', 600, '40 min'),
-            svc('Spa Manicure', 'Everything in the classic, plus scrub, mask and a longer massage.', 800, '40 min'),
-            svc('Gel Manicure', 'High-shine gel colour that stays chip-free for weeks.', 800, '40 min'),
-            svc("Men's Manicure", 'A no-shine, grooming-focused manicure finish.', 600, '40 min'),
-            svc('Classic Pedicure', 'Soak, scrub, nail and cuticle care, massage and polish.', 800, '45 min'),
-            svc('Spa Pedicure', 'Our longer foot ritual with scrub, mask and crack-heal care.', 1000, '45 min'),
-            svc('Gel Nail Extensions', 'Builder-gel extensions in your chosen length and shape.', 1500, '90 min'),
+            svc('Classic Manicure', 'Soak, shape, cuticle work, massage and polish.', 600),
+            svc('Spa Manicure', 'Everything in the classic, plus scrub, mask and a longer massage.', 800),
+            svc('Gel Manicure', 'High-shine gel colour that stays chip-free for weeks.', 800),
+            svc("Men's Manicure", 'A no-shine, grooming-focused manicure finish.', 600),
+            svc('Classic Pedicure', 'Soak, scrub, nail and cuticle care, massage and polish.', 800),
+            svc('Spa Pedicure', 'Our longer foot ritual with scrub, mask and crack-heal care.', 1000),
+            svc('Gel Nail Extensions', 'Builder-gel extensions in your chosen length and shape.', 1500),
           ],
         },
       ],
@@ -584,12 +553,12 @@ const SALON_DISCIPLINES = [
       women: [
         {
           services: [
-            svc('Day Makeup', 'Soft, natural makeup for daytime events and functions.', 'On Request', '90 min'),
-            svc('Party Makeup', 'Classic glam, HD or airbrush finish for evenings and celebrations.', 'On Request', '90 min'),
-            svc('Bridal Hairstyling & Updo', 'Buns, braids or editorial styling to complete the bridal look.', 'On Request', '60 min'),
-            svc('Pre-Bridal Package', 'A multi-session plan across skin, hair and nails ahead of the big day.', 'On Request', '180 min'),
-            svc('Premium Pre-Bridal Package', 'An elevated pre-bridal plan with facials, body polish and hair spa.', 'On Request', '180 min'),
-            svc('Full Wedding Package', 'Coverage across engagement, wedding and reception — start to finish.', 'On Request', '180 min'),
+            svc('Day Makeup', 'Soft, natural makeup for daytime events and functions.', 'On Request'),
+            svc('Party Makeup', 'Classic glam, HD or airbrush finish for evenings and celebrations.', 'On Request'),
+            svc('Bridal Hairstyling & Updo', 'Buns, braids or editorial styling to complete the bridal look.', 'On Request'),
+            svc('Pre-Bridal Package', 'A multi-session plan across skin, hair and nails ahead of the big day.', 'On Request'),
+            svc('Premium Pre-Bridal Package', 'An elevated pre-bridal plan with facials, body polish and hair spa.', 'On Request'),
+            svc('Full Wedding Package', 'Coverage across engagement, wedding and reception — start to finish.', 'On Request'),
           ],
         },
       ],
@@ -607,24 +576,24 @@ const SALON_DISCIPLINES = [
       men: [
         {
           services: [
-            svc('Beard Trim & Shape', 'A clean trim and shape to keep your beard sharp.', 150, '20 min'),
-            svc('Beard Styling', 'Custom design and line-up work for a defined, sharp edge.', 200, '30 min'),
-            svc('Clean Shave', 'A traditional hot towel shave for a smooth, close finish.', 120, '30 min'),
-            svc('Beard Colour', 'Covers grey or deepens tone for a fuller, even beard.', 400, '90 min'),
-            svc("Men's De-Tan & Bleach", 'Lifts tan and evens tone for a fresher, brighter look.', 600, '60 min'),
+            svc('Beard Trim & Shape', 'A clean trim and shape to keep your beard sharp.', 150),
+            svc('Beard Styling', 'Custom design and line-up work for a defined, sharp edge.', 200),
+            svc('Clean Shave', 'A traditional hot towel shave for a smooth, close finish.', 120),
+            svc('Beard Colour', 'Covers grey or deepens tone for a fuller, even beard.', 400),
+            svc("Men's De-Tan & Bleach", 'Lifts tan and evens tone for a fresher, brighter look.', 600),
           ],
         },
         {
           title: 'Packages',
           services: [
-            svc('Groom-To-Be Package', 'Cut, beard, facial and mani-pedi bundled for the big day.', 'On Request', '150 min'),
-            svc('Executive Grooming Package', 'A recurring grooming plan for regular upkeep.', 'On Request', '30 min'),
+            svc('Groom-To-Be Package', 'Cut, beard, facial and mani-pedi bundled for the big day.', 'On Request'),
+            svc('Executive Grooming Package', 'A recurring grooming plan for regular upkeep.', 'On Request'),
           ],
         },
         {
           title: 'Event Makeup',
           services: [
-            svc("Men's Event Makeup", 'Camera- and stage-ready coverage for events and shoots.', 'On Request', '90 min'),
+            svc("Men's Event Makeup", 'Camera- and stage-ready coverage for events and shoots.', 'On Request'),
           ],
         },
       ],
@@ -773,7 +742,6 @@ function SalonService({ service }) {
       ) : (
         <div className="salon-service-price">{formatPrice(service.price)}</div>
       )}
-      {service.duration && <p className="salon-service-duration">{service.duration}</p>}
     </div>
   )
 }
@@ -807,6 +775,7 @@ function SalonDisciplineSection({ discipline, gender }) {
 
 function DisciplineTabs({ disciplines, activeKey, onSelect }) {
   const scrollRef = useRef(null)
+  const hasNudgedRef = useRef(false)
   const [scrollState, setScrollState] = useState({ left: false, right: false })
 
   useEffect(() => {
@@ -826,6 +795,26 @@ function DisciplineTabs({ disciplines, activeKey, onSelect }) {
     update()
     el.addEventListener('scroll', update, { passive: true })
     window.addEventListener('resize', update)
+
+    if (!hasNudgedRef.current && el.scrollWidth > el.clientWidth) {
+      hasNudgedRef.current = true
+      const nudge = requestAnimationFrame(() => {
+        el.style.scrollBehavior = 'smooth'
+        el.scrollLeft = 56
+        setTimeout(() => {
+          el.scrollLeft = 0
+          setTimeout(() => {
+            el.style.scrollBehavior = ''
+          }, 400)
+        }, 450)
+      })
+      return () => {
+        cancelAnimationFrame(nudge)
+        el.removeEventListener('scroll', update)
+        window.removeEventListener('resize', update)
+      }
+    }
+
     return () => {
       el.removeEventListener('scroll', update)
       window.removeEventListener('resize', update)
@@ -847,6 +836,11 @@ function DisciplineTabs({ disciplines, activeKey, onSelect }) {
           </button>
         ))}
       </nav>
+      {scrollState.right && (
+        <span className="disc-tabs-hint" aria-hidden="true">
+          <ChevronIcon />
+        </span>
+      )}
     </div>
   )
 }
