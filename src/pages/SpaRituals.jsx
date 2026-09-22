@@ -1,5 +1,6 @@
-import { useMemo, useState } from 'react'
-import { SparkIcon, ChevronIcon, ChatIcon, GiftIcon, IconWrap } from '../components/icons.jsx'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
+import { SparkIcon, ChevronIcon, GiftIcon, IconWrap } from '../components/icons.jsx'
 import './SpaRituals.css'
 
 const WHATSAPP_NUMBER = '919148627266'
@@ -198,10 +199,105 @@ function TherapyCard({ therapy }) {
   )
 }
 
+function ModeToggle({ mode, onChange, compact }) {
+  return (
+    <div className={`sr-mode-toggle${compact ? ' sr-mode-toggle-compact' : ''}`} role="group" aria-label="Browse the menu by">
+      {MODES.map((m) => (
+        <button
+          key={m.id}
+          type="button"
+          className={mode === m.id ? 'sr-mode-btn active' : 'sr-mode-btn'}
+          onClick={() => onChange(m.id)}
+        >
+          {m.label}
+        </button>
+      ))}
+    </div>
+  )
+}
+
+function BrowseTabs({ tabs, activeId, onSelect, label }) {
+  const scrollRef = useRef(null)
+  const hasNudgedRef = useRef(false)
+  const [scrollState, setScrollState] = useState({ left: false, right: false })
+
+  useEffect(() => {
+    const el = scrollRef.current
+    if (!el) return
+
+    el.scrollLeft = 0
+
+    function update() {
+      const { scrollLeft, scrollWidth, clientWidth } = el
+      setScrollState({
+        left: scrollLeft > 4,
+        right: scrollLeft + clientWidth < scrollWidth - 4,
+      })
+    }
+
+    update()
+    el.addEventListener('scroll', update, { passive: true })
+    window.addEventListener('resize', update)
+
+    if (!hasNudgedRef.current && el.scrollWidth > el.clientWidth) {
+      hasNudgedRef.current = true
+      const nudge = requestAnimationFrame(() => {
+        el.style.scrollBehavior = 'smooth'
+        el.scrollLeft = 56
+        setTimeout(() => {
+          el.scrollLeft = 0
+          setTimeout(() => {
+            el.style.scrollBehavior = ''
+          }, 400)
+        }, 450)
+      })
+      return () => {
+        cancelAnimationFrame(nudge)
+        el.removeEventListener('scroll', update)
+        window.removeEventListener('resize', update)
+      }
+    }
+
+    return () => {
+      el.removeEventListener('scroll', update)
+      window.removeEventListener('resize', update)
+    }
+  }, [tabs])
+
+  return (
+    <div className={`browse-tabs-wrap${scrollState.left ? ' fade-left' : ''}${scrollState.right ? ' fade-right' : ''}`}>
+      <nav className="sr-tabs" aria-label={label} ref={scrollRef}>
+        {tabs.map((t) => (
+          <button
+            key={t.id}
+            type="button"
+            className={activeId === t.id ? 'sr-tab active' : 'sr-tab'}
+            onClick={() => onSelect(t.id)}
+          >
+            <t.icon />
+            {t.title}
+          </button>
+        ))}
+      </nav>
+      {scrollState.right && (
+        <span className="sr-tabs-hint" aria-hidden="true">
+          <ChevronIcon />
+        </span>
+      )}
+    </div>
+  )
+}
+
 function SpaRituals() {
-  const [mode, setMode] = useState('reason')
+  const [searchParams] = useSearchParams()
+  const initialCategoryId = useMemo(() => {
+    const requested = searchParams.get('category')
+    return CATEGORIES.some((c) => c.id === requested) ? requested : null
+  }, [searchParams])
+
+  const [mode, setMode] = useState(initialCategoryId ? 'category' : 'reason')
   const [reasonId, setReasonId] = useState(REASONS[0].id)
-  const [categoryId, setCategoryId] = useState(CATEGORIES[0].id)
+  const [categoryId, setCategoryId] = useState(initialCategoryId ?? CATEGORIES[0].id)
 
   const tabs = mode === 'reason' ? REASONS : CATEGORIES
   const activeId = mode === 'reason' ? reasonId : categoryId
@@ -221,48 +317,28 @@ function SpaRituals() {
             <SparkIcon className="sr-brand-spark" />
             <span>Aurum Astra</span>
           </div>
-          <a
-            className="sr-topbar-call"
-            href={buildWhatsAppLink('Hi Aurum Astra, I’d like to reserve a spa visit.')}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Reserve on WhatsApp"
-          >
-            <ChatIcon />
-          </a>
-        </div>
-
-        <div className="sr-mode-row">
-          <div className="sr-mode-toggle" role="group" aria-label="Browse the menu by">
-            {MODES.map((m) => (
-              <button
-                key={m.id}
-                type="button"
-                className={mode === m.id ? 'sr-mode-btn active' : 'sr-mode-btn'}
-                onClick={() => setMode(m.id)}
-              >
-                {m.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="sr-topbar-row2">
-          <nav className="sr-tabs" aria-label={mode === 'reason' ? 'Browse by reason' : 'Browse by massage type'}>
-            {tabs.map((t) => (
-              <button
-                key={t.id}
-                type="button"
-                className={activeId === t.id ? 'sr-tab active' : 'sr-tab'}
-                onClick={() => setActiveId(t.id)}
-              >
-                <t.icon />
-                {t.title}
-              </button>
-            ))}
+          <nav className="sr-page-tabs" aria-label="Service category">
+            <Link to="/salon" className="sr-page-tab">
+              Salon
+            </Link>
+            <span className="sr-page-tab active">Spa</span>
           </nav>
         </div>
+
+        <div className="sr-topbar-row2 sr-topbar-row2-mode">
+          <ModeToggle mode={mode} onChange={setMode} compact />
+          <BrowseTabs
+            tabs={tabs}
+            activeId={activeId}
+            onSelect={setActiveId}
+            label={mode === 'reason' ? 'Browse by reason' : 'Browse by massage type'}
+          />
+        </div>
       </header>
+
+      <div className="sr-bottom-bar">
+        <ModeToggle mode={mode} onChange={setMode} />
+      </div>
 
       <section className="sr-header">
         <p className="eyebrow">Hennur, Bengaluru</p>

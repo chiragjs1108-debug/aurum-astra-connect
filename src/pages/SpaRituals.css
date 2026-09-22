@@ -80,28 +80,55 @@
   flex-shrink: 0;
 }
 
-.sr-topbar-call {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
+.sr-page-tabs {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.sr-page-tab {
+  font-family: var(--body-font);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 8px 26px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: var(--stone);
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.sr-page-tab.active {
   background: linear-gradient(135deg, var(--gold-bright), var(--bronze));
   color: var(--maroon);
-  flex-shrink: 0;
 }
 
-.sr-topbar-call svg {
-  width: 16px;
-  height: 16px;
-}
-
-.sr-mode-row {
-  border-top: 1px solid var(--hairline);
+.sr-topbar-row2-mode {
   display: flex;
-  justify-content: center;
-  padding: 9px var(--edge);
+  align-items: center;
+  gap: 10px;
+  padding: 10px var(--edge);
+}
+
+.sr-topbar-row2-mode .browse-tabs-wrap {
+  flex: 1;
+  min-width: 0;
+}
+
+.sr-topbar-row2-mode .sr-tabs {
+  padding: 0;
+}
+
+/* mobile-only: the mode switch lives in the fixed bottom bar instead, so the
+   reason/category tabs get the row's full width and more chips are visible at once */
+@media (max-width: 719.98px) {
+  .sr-topbar-row2-mode .sr-mode-toggle-compact {
+    display: none;
+  }
 }
 
 .sr-mode-toggle {
@@ -131,9 +158,79 @@
   color: var(--void);
 }
 
+.sr-mode-toggle-compact {
+  flex-shrink: 0;
+}
+
+.sr-mode-toggle-compact .sr-mode-btn {
+  padding: 6px 11px;
+  font-size: 0.7rem;
+}
+
 .sr-topbar-row2 {
   border-top: 1px solid var(--hairline);
   padding: 10px 0;
+}
+
+.browse-tabs-wrap {
+  position: relative;
+  min-width: 0;
+}
+
+.browse-tabs-wrap::before,
+.browse-tabs-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 28px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 1;
+}
+
+.browse-tabs-wrap::before {
+  left: 0;
+  background: linear-gradient(to right, var(--void), transparent);
+}
+
+.browse-tabs-wrap::after {
+  right: 0;
+  background: linear-gradient(to left, var(--void), transparent);
+}
+
+.browse-tabs-wrap.fade-left::before {
+  opacity: 1;
+}
+
+.browse-tabs-wrap.fade-right::after {
+  opacity: 1;
+}
+
+.sr-tabs-hint {
+  position: absolute;
+  right: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: var(--gold-bright);
+  pointer-events: none;
+  z-index: 2;
+  animation: sr-tabs-hint-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes sr-tabs-hint-pulse {
+  0%,
+  100% {
+    transform: translateY(-50%) translateX(0);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translateY(-50%) translateX(3px);
+    opacity: 1;
+  }
 }
 
 .sr-tabs {
@@ -178,34 +275,66 @@
   color: var(--maroon);
 }
 
+/* ============================= mobile bottom bar (mode switch) ============================= */
+
+.sr-bottom-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 25;
+  display: flex;
+  justify-content: center;
+  padding: 10px var(--edge);
+  background: rgba(23, 7, 8, 0.92);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--hairline);
+}
+
+@media (min-width: 720px) {
+  .sr-bottom-bar {
+    display: none;
+  }
+}
+
+@media (max-width: 719.98px) {
+  .sr-main {
+    padding-bottom: calc(64px + 22px);
+  }
+
+  .sr-footer {
+    padding-bottom: calc(64px + 28px);
+  }
+}
+
 /* ============================= header ============================= */
 
 .sr-header {
   max-width: 720px;
   margin: 0 auto;
-  padding: 40px var(--edge) 8px;
+  padding: 20px var(--edge) 4px;
   text-align: center;
 }
 
 .sr-header h1 {
   font-family: var(--display);
   font-weight: 400;
-  font-size: clamp(1.9rem, 4vw, 2.6rem);
-  margin: 10px 0 12px;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  margin: 6px 0 4px;
   color: var(--ivory);
 }
 
 .sr-subhead {
-  font-size: 0.92rem;
+  font-size: 0.82rem;
   color: var(--stone);
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 /* ============================= tier legend ============================= */
 
 .spa-rituals .tier-legend {
   max-width: 1000px;
-  margin: 32px auto 0;
+  margin: 18px auto 0;
   padding: 0 var(--edge);
   display: grid;
   grid-template-columns: 1fr;
@@ -275,7 +404,7 @@
   max-width: 1000px;
   margin: 0 auto;
   width: 100%;
-  padding: 36px var(--edge) 64px;
+  padding: 22px var(--edge) 64px;
 }
 
 .reason-head {

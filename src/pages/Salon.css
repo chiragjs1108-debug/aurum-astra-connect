@@ -1,0 +1,705 @@
+/* ============================= tokens ============================= */
+
+.catalogue {
+  --display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --body-font: 'Manrope', 'Segoe UI', system-ui, sans-serif;
+
+  --void: #170708;
+  --void-deep: #0c0303;
+  --surface: #230b0c;
+  --surface-2: #2e1113;
+  --gold: var(--color-secondary);
+  --gold-bright: var(--color-accent);
+  --bronze: var(--color-gold);
+  --maroon: var(--color-primary);
+  --ivory: #f4ede1;
+  --stone: #b9a99a;
+  --stone-dim: #6e5c52;
+  --hairline: rgba(240, 195, 130, 0.18);
+
+  --edge: clamp(20px, 5vw, 56px);
+
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  background: var(--void);
+  color: var(--ivory);
+  font-family: var(--body-font);
+  line-height: 1.55;
+}
+
+.catalogue a {
+  color: inherit;
+}
+
+/* ============================= top bar ============================= */
+
+.cat-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(23, 7, 8, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.cat-topbar-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 14px var(--edge);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.cat-topbar-row2 {
+  border-top: 1px solid var(--hairline);
+  padding: 10px 0;
+}
+
+.cat-topbar-row2-center {
+  display: flex;
+  justify-content: center;
+  padding: 10px var(--edge);
+}
+
+.cat-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--display);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  color: var(--ivory);
+  white-space: nowrap;
+}
+
+.cat-brand-spark {
+  width: 16px;
+  height: 16px;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.gender-toggle {
+  display: flex;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.gender-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: transparent;
+  color: var(--stone);
+  font-family: var(--body-font);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.gender-btn .crown-icon {
+  background: var(--stone);
+  transition: background-color 0.25s ease;
+}
+
+.gender-btn.active {
+  background: linear-gradient(135deg, var(--gold-bright), var(--bronze));
+  color: var(--maroon);
+}
+
+.gender-btn.active .crown-icon {
+  background: var(--maroon);
+}
+
+/* mask-based crown icons — recolors the flat PNG silhouettes via currentColor/background */
+.crown-icon {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.crown-women {
+  -webkit-mask-image: url('/women crown.png');
+  mask-image: url('/women crown.png');
+}
+
+.crown-men {
+  -webkit-mask-image: url('/men crown.png');
+  mask-image: url('/men crown.png');
+}
+
+.crown-luxe {
+  -webkit-mask-image: url('/gents crown.png');
+  mask-image: url('/gents crown.png');
+  width: 13px;
+  height: 13px;
+  margin-right: 5px;
+  background: currentColor;
+}
+
+/* ============================= header ============================= */
+
+.cat-header {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 20px var(--edge) 4px;
+  text-align: center;
+}
+
+.cat-header h1 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  color: var(--ivory);
+}
+
+.cat-subhead {
+  margin-top: 4px;
+  font-size: 0.82rem;
+  color: var(--stone);
+  line-height: 1.5;
+}
+
+/* ============================= discipline carousel ============================= */
+
+.disc-carousel-sticky {
+  position: sticky;
+  z-index: 15;
+  background: rgba(23, 7, 8, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--hairline);
+  padding: 12px 0;
+}
+
+.disc-carousel-wrap {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.disc-carousel-wrap::before,
+.disc-carousel-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 36px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 1;
+}
+
+.disc-carousel-wrap::before {
+  left: 0;
+  background: linear-gradient(to right, var(--void), transparent);
+}
+
+.disc-carousel-wrap::after {
+  right: 0;
+  background: linear-gradient(to left, var(--void), transparent);
+}
+
+.disc-carousel-wrap.fade-left::before {
+  opacity: 1;
+}
+
+.disc-carousel-wrap.fade-right::after {
+  opacity: 1;
+}
+
+.disc-carousel {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 4px var(--edge) 6px;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+
+.disc-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.disc-card {
+  position: relative;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  width: 116px;
+  aspect-ratio: 0.82;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  background: var(--surface);
+  cursor: pointer;
+  padding: 0;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.disc-card.active {
+  border-color: var(--gold-bright);
+  box-shadow: 0 0 0 1px var(--gold-bright);
+}
+
+.disc-card-media {
+  position: absolute;
+  inset: 0;
+}
+
+.disc-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.disc-card-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--gold-bright), var(--bronze));
+  color: var(--maroon);
+}
+
+.disc-card-fallback svg {
+  width: 30%;
+  height: 30%;
+}
+
+.disc-card-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(23, 7, 8, 0.92) 0%, rgba(23, 7, 8, 0.35) 45%, transparent 75%);
+}
+
+.disc-card-name {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  font-family: var(--display);
+  font-size: 0.76rem;
+  line-height: 1.2;
+  color: var(--ivory);
+  text-align: left;
+}
+
+.disc-carousel-hint {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: var(--gold-bright);
+  pointer-events: none;
+  z-index: 2;
+  animation: disc-carousel-hint-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes disc-carousel-hint-pulse {
+  0%,
+  100% {
+    transform: translateY(-50%) translateX(0);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translateY(-50%) translateX(3px);
+    opacity: 1;
+  }
+}
+
+/* ============================= tier legend ============================= */
+
+.catalogue .tier-legend {
+  max-width: 1000px;
+  margin: 32px auto 0;
+  padding: 0 var(--edge);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+@media (min-width: 720px) {
+  .catalogue .tier-legend {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.catalogue .tier-legend-item {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+
+.catalogue .tier-legend-item p {
+  margin-top: 8px;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--stone);
+}
+
+.tier-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--body-font);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: 999px;
+}
+
+.tier-essential {
+  background: rgba(185, 169, 154, 0.14);
+  color: var(--stone);
+  border: 1px solid rgba(185, 169, 154, 0.3);
+}
+
+.tier-signature {
+  background: rgba(240, 195, 130, 0.14);
+  color: var(--gold-bright);
+  border: 1px solid rgba(240, 195, 130, 0.4);
+}
+
+.tier-luxe {
+  background: linear-gradient(135deg, var(--gold-bright), var(--bronze));
+  color: var(--maroon);
+  border: 1px solid transparent;
+}
+
+.tier-luxe .crown-icon {
+  background: var(--maroon);
+}
+
+/* ============================= category tabs ============================= */
+
+.cat-tabs {
+  display: flex;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.cat-tab {
+  font-family: var(--body-font);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 8px 26px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: var(--stone);
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.cat-tab.active {
+  background: linear-gradient(135deg, var(--gold-bright), var(--bronze));
+  color: var(--maroon);
+}
+
+/* ============================= main / disciplines ============================= */
+
+.cat-main {
+  flex: 1;
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 22px var(--edge) 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.discipline-section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.discipline-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 16px;
+}
+
+.discipline-head-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--gold-bright), var(--bronze));
+  color: var(--maroon);
+  margin-top: 2px;
+}
+
+.discipline-head-icon svg {
+  width: 19px;
+  height: 19px;
+}
+
+.discipline-head h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.4rem;
+  color: var(--ivory);
+}
+
+.discipline-blurb {
+  margin-top: 4px;
+  font-size: 0.84rem;
+  color: var(--stone);
+}
+
+.salon-group {
+  margin-top: 22px;
+}
+
+.salon-group-title {
+  font-family: var(--body-font);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+
+.salon-service-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 720px) {
+  .salon-service-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.salon-service {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+
+.salon-service-name {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.02rem;
+  color: var(--ivory);
+}
+
+.salon-service-note {
+  margin-top: 6px;
+  font-size: 0.82rem;
+  color: var(--stone);
+  line-height: 1.5;
+}
+
+.salon-service-price {
+  margin-top: 12px;
+  font-family: var(--body-font);
+  font-weight: 700;
+  font-size: 0.86rem;
+  color: var(--gold-bright);
+}
+
+.salon-service-book {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: 14px;
+  font-family: var(--body-font);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--gold-bright);
+  border-bottom: 1px solid rgba(240, 195, 130, 0.4);
+  padding-bottom: 1px;
+}
+
+.salon-service-book-chevron {
+  width: 13px;
+  height: 13px;
+}
+
+.salon-variant-row {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.salon-variant {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--hairline);
+}
+
+.salon-variant:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.salon-variant-label {
+  font-size: 0.8rem;
+  color: var(--stone);
+}
+
+.salon-variant-price {
+  font-family: var(--body-font);
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--gold-bright);
+  white-space: nowrap;
+}
+
+.service-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.service-block {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: 14px;
+  padding: 22px 22px 24px;
+}
+
+.service-head h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.15rem;
+  color: var(--ivory);
+}
+
+.service-summary {
+  margin-top: 6px;
+  font-size: 0.86rem;
+  color: var(--stone);
+  line-height: 1.55;
+}
+
+.tier-grid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 720px) {
+  .tier-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.tier-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tier-note {
+  font-size: 0.8rem;
+  color: var(--stone);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.tier-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--body-font);
+  font-weight: 700;
+  font-size: 0.86rem;
+  color: var(--ivory);
+  border-top: 1px dashed var(--hairline);
+  padding-top: 10px;
+}
+
+/* ============================= booking FAB ============================= */
+
+.salon-fab {
+  position: fixed;
+  right: var(--edge);
+  bottom: 20px;
+  z-index: 26;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--gold-bright), var(--bronze));
+  color: var(--maroon);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease;
+}
+
+.salon-fab:hover,
+.salon-fab:focus-visible {
+  transform: scale(1.06);
+}
+
+.salon-fab svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* ============================= footer ============================= */
+
+.cat-footer {
+  text-align: center;
+  padding: 28px var(--edge) 36px;
+  border-top: 1px solid var(--hairline);
+  background: var(--void-deep);
+  font-size: 0.76rem;
+  color: var(--stone-dim);
+}
+
+.cat-footer p + p {
+  margin-top: 4px;
+}
+
+.cat-footer a {
+  color: var(--gold-bright);
+  border-bottom: 1px solid rgba(240, 195, 130, 0.4);
+}

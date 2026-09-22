@@ -15,8 +15,8 @@ import {
 } from '../components/icons.jsx'
 import './Home.css'
 
-const WHATSAPP_NUMBER = '919999999999'
-const PHONE_HREF = 'tel:+919999999999'
+const WHATSAPP_NUMBER = '919148627266'
+const PHONE_HREF = 'tel:+919148627266'
 
 function buildWhatsAppLink(message) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
