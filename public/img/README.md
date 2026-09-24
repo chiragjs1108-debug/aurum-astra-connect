@@ -13,9 +13,9 @@ the page's CONFIG block) and `onerror` keeps the layout intact.
 ### Therapy card photos
 
 Used as the banner image at the top of the matching card in the "Choose your
-therapy" section (`.c-photo`). Cards without a matching photo below show the
-icon-only layout, unchanged. All converted to WebP and renamed with the
-service name + "hennur" for local-SEO filename/alt-text consistency.
+therapy" section (`.c-photo`). All 11 cards now have a photo. All converted
+to WebP and renamed with the service name + "hennur" for local-SEO
+filename/alt-text consistency.
 
 - `signature-body-massage-in-hennur.webp` — Signature Body Massage card
 - `couple-massage-in-hennur.webp` — Couple's Massage card
@@ -27,26 +27,32 @@ service name + "hennur" for local-SEO filename/alt-text consistency.
 - `aromatherapy-massage-in-hennur.webp` — Aromatherapy Massage card
 - `thai-massage-in-hennur.webp` — Thai Massage card
 - `jacuzzi-hydro-jet-bath-in-hennur.webp` — Jacuzzi & Hydro Jet Bath card
+- `sports-massage-in-hennur.webp` — Sports Massage card
 
-Still without a photo: **Sports Massage** — add e.g.
-`sports-massage-in-hennur.webp` and reference it in that card's
-`<article class="card" id="t-sports">` to add one later.
+### Gallery / "Inside Aurum Astra" photos
 
-Three extra uploads didn't get used since each duplicates a card already
+Used in the `figure[data-slot]` gallery grid and the full-width photo band,
+plus the structured-data `image` array. Also converted to WebP and renamed.
+
+- `spa-entrance-hennur.webp` — slot 2, "Find us" section
+- `spa-corridor-terrace-hennur.webp` — full-width photo band
+- `spa-therapy-room-hennur.webp` — slot 4, large gallery photo
+- `private-jacuzzi-hennur.webp` — slot 5
+- `couples-massage-suite-hennur.webp` — slots 6 and 9 (reused in both)
+
+Still without a photo: `terrace.webp` (slot 7) and `shower.webp` (slot 8) —
+name them to match and drop them in `/img` to fill those last two slots.
+
+Three extra uploads didn't get used since each duplicates a photo already
 covered above — kept in this folder in case you want to swap one in instead:
 `Ayurvedic Massage in Hennur .webp`, `Balinese Massage in Hennur Bande.webp`,
-`Best Thai Massage In Hennur.png` (also still needs PNG&rarr;WebP conversion
-if it's ever used).
+`Best Thai Massage In Hennur.png` (still needs PNG&rarr;WebP conversion if
+it's ever used).
 
 ## Still to come
 
-- `band.webp` — wide, atmospheric — terrace garden lounge at dusk
-- `room.webp` — 1200×1500, portrait 4:5 — private therapy room, wider angle, lights dimmed
-- `jacuzzi.webp` — 1200×900, landscape 4:3 — jacuzzi with warm light and rising steam
-- `couple-suite.webp` — 1200×900, landscape 4:3 — couple's suite, both beds prepared, warm low light
 - `terrace.webp` — 1200×900, landscape 4:3 — terrace garden lounge at dusk
 - `shower.webp` — 1200×900, landscape 4:3 — in-room shower, robe and towels laid out, warm light
-- `entrance.webp` — 1600×1000, landscape 16:10 — AM Plaza entrance from Hennur–Bagalur Main Road, signage visible
 - `og.jpg` — 1200×630 — social-share preview image (WhatsApp/Facebook link previews)
 - `logo.png` — brand logo, used in structured data
 - `favicon.png` — page favicon
