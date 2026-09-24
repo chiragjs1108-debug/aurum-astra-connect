@@ -8,10 +8,10 @@ the page's CONFIG block) and `onerror` keeps the layout intact.
 
 - `hero-bg.webp` — hero background (landscape, 2400px+ wide recommended)
 - `hero-bg.jpg` — hero background fallback for browsers without WebP support
+- `oil.webp` — close-up: warm oil poured into a bowl, soft glow, rolled linen
 
 ## Still to come
 
-- `oil.webp` — 1600×1000, landscape 16:10 — close-up: warm oil poured into a bowl, soft glow, rolled linen
 - `band.webp` — wide, atmospheric — terrace garden lounge at dusk
 - `room.webp` — 1200×1500, portrait 4:5 — private therapy room, wider angle, lights dimmed
 - `jacuzzi.webp` — 1200×900, landscape 4:3 — jacuzzi with warm light and rising steam
