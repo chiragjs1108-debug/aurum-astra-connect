@@ -40,19 +40,21 @@ plus the structured-data `image` array. Also converted to WebP and renamed.
 - `private-jacuzzi-hennur.webp` — slot 5
 - `couples-massage-suite-hennur.webp` — slots 6 and 9 (reused in both)
 
-Still without a photo: `terrace.webp` (slot 7) and `shower.webp` (slot 8) —
-name them to match and drop them in `/img` to fill those last two slots.
+Still without a photo: `terrace.webp` (slot 7) — name a file to match and
+drop it in `/img` to fill that last slot.
 
-Three extra uploads didn't get used since each duplicates a photo already
-covered above — kept in this folder in case you want to swap one in instead:
-`Ayurvedic Massage in Hennur .webp`, `Balinese Massage in Hennur Bande.webp`,
-`Best Thai Massage In Hennur.png` (still needs PNG&rarr;WebP conversion if
-it's ever used).
+The gallery's "Photo 8" (shower) slot was removed from the page entirely by
+request, so `spa-shower-hennur.webp` isn't referenced anywhere — kept in this
+folder in case you want to add a slot back for it later.
+
+Four extra uploads didn't get used — kept in this folder in case you want to
+use one instead: `Ayurvedic Massage in Hennur .webp`, `Balinese Massage in
+Hennur Bande.webp`, `Best Thai Massage In Hennur.png` (still needs
+PNG&rarr;WebP conversion if it's ever used), `spa-shower-hennur.webp`.
 
 ## Still to come
 
 - `terrace.webp` — 1200×900, landscape 4:3 — terrace garden lounge at dusk
-- `shower.webp` — 1200×900, landscape 4:3 — in-room shower, robe and towels laid out, warm light
 - `og.jpg` — 1200×630 — social-share preview image (WhatsApp/Facebook link previews)
 - `logo.png` — brand logo, used in structured data
 - `favicon.png` — page favicon
