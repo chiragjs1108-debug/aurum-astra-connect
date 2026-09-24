@@ -11,6 +11,7 @@ the page's CONFIG block) and `onerror` keeps the layout intact.
 - `oil.webp` — close-up: warm oil poured into a bowl, soft glow, rolled linen
 - `favicon.png` — 512×512, transparent background, gold "A" mark — page favicon
 - `logo.png` — 1804×391, transparent background, gold "AURUM ASTRA" wordmark — used in structured data
+- `og.jpg` — 1200×630, massage scene — WhatsApp/Facebook link preview image
 
 ### Therapy card photos
 
@@ -54,4 +55,4 @@ PNG&rarr;WebP conversion if it's ever used).
 
 ## Still to come
 
-- `og.jpg` — 1200×630 — social-share preview image (WhatsApp/Facebook link previews)
+Nothing — every image referenced by `spa-in-hennur.html` is now in place.
