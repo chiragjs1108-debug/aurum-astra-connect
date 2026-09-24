@@ -9,6 +9,7 @@ the page's CONFIG block) and `onerror` keeps the layout intact.
 - `hero-bg.webp` — hero background (landscape, 2400px+ wide recommended)
 - `hero-bg.jpg` — hero background fallback for browsers without WebP support
 - `oil.webp` — close-up: warm oil poured into a bowl, soft glow, rolled linen
+- `favicon.png` — 512×512, transparent background, gold "A" mark — page favicon
 
 ### Therapy card photos
 
@@ -53,5 +54,6 @@ PNG&rarr;WebP conversion if it's ever used).
 ## Still to come
 
 - `og.jpg` — 1200×630 — social-share preview image (WhatsApp/Facebook link previews)
-- `logo.png` — brand logo, used in structured data
-- `favicon.png` — page favicon
+- `logo.png` — brand logo, used in structured data (wordmark provided, but only
+  as an inline-pasted image with no accessible file path yet — save it into
+  `public/img/` or re-share as a file attachment to unblock this)
