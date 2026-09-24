@@ -1,8 +1,24 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+
+  # spa-in-hennur landing page: canonical URL has no .html and no trailing slash.
+  # %{THE_REQUEST} is the original request line, so this condition only matches
+  # a real browser hit on the .html URL, not the internal rewrite below.
+  RewriteCond %{THE_REQUEST} \s/+spa-in-hennur\.html[\s?] [NC]
+  RewriteRule ^spa-in-hennur\.html$ /spa-in-hennur [R=301,L]
+
+  RewriteRule ^spa-in-hennur/?$ /spa-in-hennur.html [L]
+
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
+  # a missing file under /img/ (e.g. a photo not uploaded yet) should 404,
+  # not silently serve the React app as if it were the image
+  RewriteCond %{REQUEST_URI} !^/img/
   RewriteRule . /index.html [L]
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
 </IfModule>
