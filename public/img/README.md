@@ -32,29 +32,26 @@ filename/alt-text consistency.
 ### Gallery / "Inside Aurum Astra" photos
 
 Used in the `figure[data-slot]` gallery grid and the full-width photo band,
-plus the structured-data `image` array. Also converted to WebP and renamed.
+plus the structured-data `image` array. All 5 slots are now filled — no
+placeholders left in this section. All converted to WebP and renamed.
 
 - `spa-entrance-hennur.webp` — slot 2, "Find us" section
 - `spa-corridor-terrace-hennur.webp` — full-width photo band
 - `spa-therapy-room-hennur.webp` — slot 4, large gallery photo
 - `private-jacuzzi-hennur.webp` — slot 5
 - `couples-massage-suite-hennur.webp` — slots 6 and 9 (reused in both)
+- `spa-shower-hennur.webp` — slot 7 (originally the terrace slot; repurposed
+  since a terrace photo was never uploaded)
+- `spa-waiting-lounge-hennur.webp` — slot 8 (re-added to the page after being
+  removed for the shower photo — now shows the waiting lounge instead)
 
-Still without a photo: `terrace.webp` (slot 7) — name a file to match and
-drop it in `/img` to fill that last slot.
-
-The gallery's "Photo 8" (shower) slot was removed from the page entirely by
-request, so `spa-shower-hennur.webp` isn't referenced anywhere — kept in this
-folder in case you want to add a slot back for it later.
-
-Four extra uploads didn't get used — kept in this folder in case you want to
+Three extra uploads didn't get used — kept in this folder in case you want to
 use one instead: `Ayurvedic Massage in Hennur .webp`, `Balinese Massage in
 Hennur Bande.webp`, `Best Thai Massage In Hennur.png` (still needs
-PNG&rarr;WebP conversion if it's ever used), `spa-shower-hennur.webp`.
+PNG&rarr;WebP conversion if it's ever used).
 
 ## Still to come
 
-- `terrace.webp` — 1200×900, landscape 4:3 — terrace garden lounge at dusk
 - `og.jpg` — 1200×630 — social-share preview image (WhatsApp/Facebook link previews)
 - `logo.png` — brand logo, used in structured data
 - `favicon.png` — page favicon
