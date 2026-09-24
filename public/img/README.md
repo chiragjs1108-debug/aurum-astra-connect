@@ -10,6 +10,27 @@ the page's CONFIG block) and `onerror` keeps the layout intact.
 - `hero-bg.jpg` — hero background fallback for browsers without WebP support
 - `oil.webp` — close-up: warm oil poured into a bowl, soft glow, rolled linen
 
+### Therapy card photos
+
+Used as the banner image at the top of the matching card in the "Choose your
+therapy" section (`.c-photo`). Cards without a matching photo below show the
+icon-only layout, unchanged.
+
+- `signature-massage.webp` — Signature Body Massage card
+- `couple-massage.webp` — Couple's Massage card
+- `swedish-massage.webp` — Swedish Massage card
+- `ayurvedic-abhyanga.webp` — Ayurvedic Abhyanga card
+- `balinese-massage.webp` — Balinese Massage card
+- `chocolate-wine-therapy.webp` — Chocolate & Wine Therapy card
+
+Still without a photo: Deep Tissue, Aromatherapy, Thai, Sports, Jacuzzi &
+Hydro Jet Bath — add e.g. `deep-tissue-massage.webp` and reference it in the
+matching `<article class="card">` to add one later.
+
+Two extra uploads didn't get used since each duplicates a card already
+covered above — kept in this folder in case you want to swap one in instead:
+`Ayurvedic Massage in Hennur .webp`, `Balinese Massage in Hennur Bande.webp`.
+
 ## Still to come
 
 - `band.webp` — wide, atmospheric — terrace garden lounge at dusk

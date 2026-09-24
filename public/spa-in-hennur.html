@@ -1251,7 +1251,11 @@ section{padding:96px 0}
 /* therapy cards */
 .card{position:relative;overflow:hidden;background:linear-gradient(170deg,#461416 0%,#2e0d0e 100%);border-radius:14px;padding:24px 22px 20px;gap:0;transition:transform .2s ease,box-shadow .2s ease}
 .card::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,transparent,var(--champ),transparent);opacity:.7}
+.c-photo{margin:-24px -22px 16px;aspect-ratio:16/10;overflow:hidden}
+.c-photo img{width:100%;height:100%;object-fit:cover;display:block}
 @media(hover:hover){.card:hover{transform:translateY(-4px);box-shadow:0 24px 44px -26px rgba(0,0,0,.9)}}
+@media(hover:hover){.card:hover .c-photo img{transform:scale(1.05)}}
+.c-photo img{transition:transform .3s ease}
 .c-head{display:flex;align-items:center;gap:14px;margin-bottom:14px}
 .c-ic{width:48px;height:48px;flex:none;display:grid;place-items:center;border-radius:50%;background:radial-gradient(circle at 30% 25%,#f5d399,#b88645);color:#1c0708;box-shadow:0 8px 18px -10px rgba(240,195,130,.8)}
 .c-ic .ic{width:24px;height:24px}
@@ -1653,6 +1657,7 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
     <p class="swipe-hint" aria-hidden="true">Swipe to see more therapies</p>
     <div class="cards" id="cards" role="tabpanel" aria-label="Therapies">
       <article class="card" id="t-signature" data-cat="relax">
+        <div class="c-photo"><img src="img/signature-massage.webp" alt="Signature Body Massage at Aurum Astra spa in Hennur" loading="lazy" decoding="async" onerror="this.closest('.c-photo').remove()"></div>
         <div class="c-head"><span class="c-ic"><svg class="ic" aria-hidden="true"><use href="#i-star"/></svg></span><div><h3>Signature Body Massage</h3><p class="tag">Our most-booked hour</p></div></div>
         <p class="d">Long, warm strokes from shoulders to feet with our own custom oil blend, at the pressure you choose.</p>
         <ul class="c-meta"><li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>45–120 min</li><li><svg class="ic" aria-hidden="true"><use href="#i-drop"/></svg>Warm oil</li></ul>
@@ -1661,6 +1666,7 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
         <div class="cta"><a class="btn btn-call btn-sm" href="tel:+919148627266" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span class="l-long">Call for price</span><span class="l-short">Call</span></a><a class="btn btn-wa btn-sm wa-link" data-msg="Hi, I&#x27;d love to book a Signature Body Massage. What times are free?" href="https://wa.me/919148627266" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp</span></a></div>
       </article>
       <article class="card" id="t-couple" data-cat="two">
+        <div class="c-photo"><img src="img/couple-massage.webp" alt="Couple's Massage suite at Aurum Astra spa in Hennur" loading="lazy" decoding="async" onerror="this.closest('.c-photo').remove()"></div>
         <div class="c-head"><span class="c-ic"><svg class="ic" aria-hidden="true"><use href="#i-two"/></svg></span><div><h3>Couple&#x27;s Massage</h3><p class="tag">Two therapists, one private suite</p></div></div>
         <p class="d">Side by side the whole way through. Our favourite for anniversaries and birthdays. Book a day or two ahead.</p>
         <ul class="c-meta"><li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>90 min, for two</li><li><svg class="ic" aria-hidden="true"><use href="#i-drop"/></svg>Warm oil</li></ul>
@@ -1677,6 +1683,7 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
         <div class="cta"><a class="btn btn-call btn-sm" href="tel:+919148627266" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span class="l-long">Call for price</span><span class="l-short">Call</span></a><a class="btn btn-wa btn-sm wa-link" data-msg="Hi, I&#x27;d love to book a Deep Tissue Massage. What times are free?" href="https://wa.me/919148627266" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp</span></a></div>
       </article>
       <article class="card" id="t-swedish" data-cat="relax">
+        <div class="c-photo"><img src="img/swedish-massage.webp" alt="Swedish Massage at Aurum Astra spa in Hennur" loading="lazy" decoding="async" onerror="this.closest('.c-photo').remove()"></div>
         <div class="c-head"><span class="c-ic"><svg class="ic" aria-hidden="true"><use href="#i-wave"/></svg></span><div><h3>Swedish Massage</h3><p class="tag">The classic relaxation massage</p></div></div>
         <p class="d">Light to medium flowing strokes that switch a racing mind off. The gentlest fix for a bad week of sleep.</p>
         <ul class="c-meta"><li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>45–120 min</li><li><svg class="ic" aria-hidden="true"><use href="#i-drop"/></svg>Oil</li></ul>
@@ -1693,6 +1700,7 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
         <div class="cta"><a class="btn btn-call btn-sm" href="tel:+919148627266" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span class="l-long">Call for price</span><span class="l-short">Call</span></a><a class="btn btn-wa btn-sm wa-link" data-msg="Hi, I&#x27;d love to book an Aromatherapy Massage. What times are free?" href="https://wa.me/919148627266" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp</span></a></div>
       </article>
       <article class="card" id="t-ayurvedic" data-cat="traditional">
+        <div class="c-photo"><img src="img/ayurvedic-abhyanga.webp" alt="Ayurvedic Abhyanga massage at Aurum Astra spa in Hennur" loading="lazy" decoding="async" onerror="this.closest('.c-photo').remove()"></div>
         <div class="c-head"><span class="c-ic"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg></span><div><h3>Ayurvedic Abhyanga</h3><p class="tag">Traditional warm-oil massage</p></div></div>
         <p class="d">Warm herbal oils in a dosha-based rhythm. Grounding, deeply warming, and the answer to a stiff, restless week.</p>
         <ul class="c-meta"><li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>45–90 min</li><li><svg class="ic" aria-hidden="true"><use href="#i-drop"/></svg>Herbal oil</li></ul>
@@ -1701,6 +1709,7 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
         <div class="cta"><a class="btn btn-call btn-sm" href="tel:+919148627266" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span class="l-long">Call for price</span><span class="l-short">Call</span></a><a class="btn btn-wa btn-sm wa-link" data-msg="Hi, I&#x27;d love to book an Ayurvedic Abhyanga massage. What times are free?" href="https://wa.me/919148627266" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp</span></a></div>
       </article>
       <article class="card" id="t-balinese" data-cat="traditional relax">
+        <div class="c-photo"><img src="img/balinese-massage.webp" alt="Balinese Massage at Aurum Astra spa in Hennur" loading="lazy" decoding="async" onerror="this.closest('.c-photo').remove()"></div>
         <div class="c-head"><span class="c-ic"><svg class="ic" aria-hidden="true"><use href="#i-lotus"/></svg></span><div><h3>Balinese Massage</h3><p class="tag">Acupressure with warm oil</p></div></div>
         <p class="d">Pressure-point work and long strokes in the Balinese tradition. Deeply relaxing, firm enough to reach the tension.</p>
         <ul class="c-meta"><li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>45–120 min</li><li><svg class="ic" aria-hidden="true"><use href="#i-drop"/></svg>Warm oil</li></ul>
@@ -1733,6 +1742,7 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
         <div class="cta"><a class="btn btn-call btn-sm" href="tel:+919148627266" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span class="l-long">Call for price</span><span class="l-short">Call</span></a><a class="btn btn-wa btn-sm wa-link" data-msg="Hi, I&#x27;d love to book the Jacuzzi &amp; Hydro Jet Bath. What times are free?" href="https://wa.me/919148627266" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp</span></a></div>
       </article>
       <article class="card" id="t-chocolate" data-cat="indulge">
+        <div class="c-photo"><img src="img/chocolate-wine-therapy.webp" alt="Chocolate & Wine Therapy body wrap at Aurum Astra spa in Hennur" loading="lazy" decoding="async" onerror="this.closest('.c-photo').remove()"></div>
         <div class="c-head"><span class="c-ic"><svg class="ic" aria-hidden="true"><use href="#i-gift"/></svg></span><div><h3>Chocolate &amp; Wine Therapy</h3><p class="tag">Body wrap and polish</p></div></div>
         <p class="d">A rich body wrap with an antioxidant polish. Skin comes out soft, bright and smelling faintly of dessert.</p>
         <ul class="c-meta"><li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>60 min</li><li><svg class="ic" aria-hidden="true"><use href="#i-drop"/></svg>Body wrap</li></ul>
