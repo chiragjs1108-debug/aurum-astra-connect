@@ -14,22 +14,29 @@ the page's CONFIG block) and `onerror` keeps the layout intact.
 
 Used as the banner image at the top of the matching card in the "Choose your
 therapy" section (`.c-photo`). Cards without a matching photo below show the
-icon-only layout, unchanged.
+icon-only layout, unchanged. All converted to WebP and renamed with the
+service name + "hennur" for local-SEO filename/alt-text consistency.
 
-- `signature-massage.webp` — Signature Body Massage card
-- `couple-massage.webp` — Couple's Massage card
-- `swedish-massage.webp` — Swedish Massage card
-- `ayurvedic-abhyanga.webp` — Ayurvedic Abhyanga card
-- `balinese-massage.webp` — Balinese Massage card
-- `chocolate-wine-therapy.webp` — Chocolate & Wine Therapy card
+- `signature-body-massage-in-hennur.webp` — Signature Body Massage card
+- `couple-massage-in-hennur.webp` — Couple's Massage card
+- `swedish-massage-in-hennur.webp` — Swedish Massage card
+- `ayurvedic-abhyanga-massage-in-hennur.webp` — Ayurvedic Abhyanga card
+- `balinese-massage-in-hennur.webp` — Balinese Massage card
+- `chocolate-wine-therapy-in-hennur.webp` — Chocolate & Wine Therapy card
+- `deep-tissue-massage-in-hennur.webp` — Deep Tissue Massage card
+- `aromatherapy-massage-in-hennur.webp` — Aromatherapy Massage card
+- `thai-massage-in-hennur.webp` — Thai Massage card
+- `jacuzzi-hydro-jet-bath-in-hennur.webp` — Jacuzzi & Hydro Jet Bath card
 
-Still without a photo: Deep Tissue, Aromatherapy, Thai, Sports, Jacuzzi &
-Hydro Jet Bath — add e.g. `deep-tissue-massage.webp` and reference it in the
-matching `<article class="card">` to add one later.
+Still without a photo: **Sports Massage** — add e.g.
+`sports-massage-in-hennur.webp` and reference it in that card's
+`<article class="card" id="t-sports">` to add one later.
 
-Two extra uploads didn't get used since each duplicates a card already
+Three extra uploads didn't get used since each duplicates a card already
 covered above — kept in this folder in case you want to swap one in instead:
-`Ayurvedic Massage in Hennur .webp`, `Balinese Massage in Hennur Bande.webp`.
+`Ayurvedic Massage in Hennur .webp`, `Balinese Massage in Hennur Bande.webp`,
+`Best Thai Massage In Hennur.png` (also still needs PNG&rarr;WebP conversion
+if it's ever used).
 
 ## Still to come
 
