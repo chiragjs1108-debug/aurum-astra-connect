@@ -1,0 +1,16 @@
+# Aurum Astra
+
+> Aurum Astra is a unisex salon and luxury spa in Hennur, Bengaluru, offering hair, skin, grooming, and massage therapy services for women and men.
+
+Aurum Astra is located at AM Plaza, Hennur–Bagalur Main Road, Bengaluru, and is open 10:00 AM to 10:00 PM daily. Reservations by phone or WhatsApp at +91 91486 27266.
+
+## Menu
+
+- [Explore The Menu](https://connect.aurumastra.in/catalogue): Category overview of every Salon and Spa service offered, for Women, Men, and Kids.
+- [Salon Services & Pricing](https://connect.aurumastra.in/salon): Full priced menu for haircuts, hair colour, hair treatments, hair spa, skin rituals, hair removal, hands & feet, makeup, bridal packages, and men's beard & grooming.
+- [Spa Rituals & Massage](https://connect.aurumastra.in/spa): Full priced menu for massage and spa therapies, browsable by reason (desk & screen, pain & performance, deep rest, together, occasions) or by massage type (classic, Asian & traditional, targeted & express, couple's, wraps & hydrotherapy).
+- [Spa in Hennur](https://connect.aurumastra.in/spa-in-hennur): Dedicated landing page for spa and massage services serving the Hennur, Kalyan Nagar, Kothanur, and HRBR Layout area of Bengaluru.
+
+## Optional
+
+- [Homepage](https://connect.aurumastra.in/): Brand overview and quick links to the menu and reservations.
