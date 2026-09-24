@@ -2,13 +2,13 @@
   RewriteEngine On
   RewriteBase /
 
-  # spa-in-hennur landing page: canonical URL has no .html and no trailing slash.
+  # Standalone static pages: canonical URL has no .html and no trailing slash.
   # %{THE_REQUEST} is the original request line, so this condition only matches
   # a real browser hit on the .html URL, not the internal rewrite below.
-  RewriteCond %{THE_REQUEST} \s/+spa-in-hennur\.html[\s?] [NC]
-  RewriteRule ^spa-in-hennur\.html$ /spa-in-hennur [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/+(spa-in-hennur|terms-and-conditions|privacy-policy|refund-policy|contact-us)\.html[\s?] [NC]
+  RewriteRule ^(spa-in-hennur|terms-and-conditions|privacy-policy|refund-policy|contact-us)\.html$ /$1 [R=301,L]
 
-  RewriteRule ^spa-in-hennur/?$ /spa-in-hennur.html [L]
+  RewriteRule ^(spa-in-hennur|terms-and-conditions|privacy-policy|refund-policy|contact-us)/?$ /$1.html [L]
 
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f

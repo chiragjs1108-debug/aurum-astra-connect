@@ -198,6 +198,11 @@ function Catalogue() {
           Reservations: <a href="tel:+919148627266">+91 91486 27266</a>
         </p>
         <p>10:00 AM &ndash; 09:00 PM, daily.</p>
+        <nav className="hub-footer-links" aria-label="Policies">
+          <a href="/terms-and-conditions">Terms &amp; Conditions</a>
+          <a href="/privacy-policy">Privacy Policy</a>
+          <a href="/refund-policy">Refund Policy</a>
+        </nav>
         <p>&copy; {new Date().getFullYear()} Aurum Astra.</p>
       </footer>
     </div>

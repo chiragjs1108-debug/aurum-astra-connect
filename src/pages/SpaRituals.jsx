@@ -380,6 +380,11 @@ function SpaRituals() {
           10:00 AM &ndash; 09:00 PM, daily &middot; <a href={PHONE_HREF}>{PHONE_DISPLAY}</a>
         </p>
         <p>Memberships, gifting, and corporate wellness available &mdash; ask at reception, call, or WhatsApp.</p>
+        <nav className="sr-footer-links" aria-label="Policies">
+          <a href="/terms-and-conditions">Terms &amp; Conditions</a>
+          <a href="/privacy-policy">Privacy Policy</a>
+          <a href="/refund-policy">Refund Policy</a>
+        </nav>
         <p>Prices include taxes and may change. &copy; {new Date().getFullYear()} Aurum Astra.</p>
       </footer>
     </div>

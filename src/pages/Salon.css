@@ -703,3 +703,15 @@
   color: var(--gold-bright);
   border-bottom: 1px solid rgba(240, 195, 130, 0.4);
 }
+
+.cat-footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 6px 14px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
+
+.cat-footer-links a {
+  border-bottom: none;
+}

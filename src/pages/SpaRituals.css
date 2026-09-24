@@ -577,3 +577,15 @@
 .sr-footer p + p {
   margin-top: 4px;
 }
+
+.sr-footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 6px 14px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
+
+.sr-footer-links a {
+  color: var(--gold-bright);
+}

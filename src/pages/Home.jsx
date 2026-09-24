@@ -559,6 +559,11 @@ function Home() {
           <span>&middot;</span>
           <span>&copy; {new Date().getFullYear()}</span>
         </div>
+        <nav className="footer-policy-links" aria-label="Policies">
+          <a href="/terms-and-conditions">Terms &amp; Conditions</a>
+          <a href="/privacy-policy">Privacy Policy</a>
+          <a href="/refund-policy">Refund Policy</a>
+        </nav>
       </footer>
     </div>
   )

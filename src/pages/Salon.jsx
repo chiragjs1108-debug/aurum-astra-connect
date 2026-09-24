@@ -950,6 +950,11 @@ function Salon() {
           Reservations: <a href={PHONE_HREF}>+91 91486 27266</a>
         </p>
         <p>All Salon prices are starting rates, inclusive of tax &mdash; confirmed post-consultation.</p>
+        <nav className="cat-footer-links" aria-label="Policies">
+          <a href="/terms-and-conditions">Terms &amp; Conditions</a>
+          <a href="/privacy-policy">Privacy Policy</a>
+          <a href="/refund-policy">Refund Policy</a>
+        </nav>
         <p>&copy; {new Date().getFullYear()} Aurum Astra.</p>
       </footer>
 

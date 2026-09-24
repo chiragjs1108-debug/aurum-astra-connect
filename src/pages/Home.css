@@ -1142,3 +1142,24 @@
 .footer-meta a:hover {
   color: var(--gold-bright);
 }
+
+.footer-policy-links {
+  display: flex;
+  justify-content: center;
+  gap: 8px 16px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(240, 195, 130, 0.12);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+}
+
+.home .footer-policy-links a {
+  color: var(--stone-dim);
+  transition: color 0.3s ease;
+}
+
+.footer-policy-links a:hover {
+  color: var(--gold-bright);
+}
