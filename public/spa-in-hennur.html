@@ -830,7 +830,8 @@
 <style>
 :root{--night:#1c0708;--wine:#3f1113;--wine2:#2b0c0d;--gold:#ba8c50;--gold-d:#ac7f3f;--gold-text:#86602a;--champ:#f0c382;--ivory:#f6ede2;--paper:#f8f1e7;--ink:#2a1213;
 --mut:rgba(246,237,226,.74);--imut:rgba(42,18,19,.72);--line:rgba(186,140,80,.38);--iline:rgba(172,127,63,.35);
---serif:'Bodoni Moda','Bodoni 72',Didot,Georgia,serif;--sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+--serif:'Bodoni Moda','Bodoni 72',Didot,Georgia,serif;--sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+--btn-radius:4px;--btn-h:52px;--btn-h-sm:44px;--btn-track:.12em;--gold-solid:#d7a862;--gold-solid-hover:#e6bd7c;--section-y:96px;--section-y-m:64px;--card-radius:10px}
 *,*::before,*::after{box-sizing:border-box}
 [hidden]{display:none!important}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -847,24 +848,33 @@ h2{font:500 clamp(2rem,4.4vw,3.1rem)/1.1 var(--serif);margin:0 0 14px;max-width:
 .paper .intro{color:var(--imut)}
 .center{text-align:center}.center h2,.center .intro{margin-left:auto;margin-right:auto}
 
-/* nav */
-.nav{position:sticky;top:0;z-index:30;background:rgba(28,7,8,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.nav .wrap{display:flex;align-items:center;gap:24px;height:66px}
+/* nav — Section 1: top navigation */
+.nav{position:sticky;top:0;z-index:30;background:rgba(28,7,8,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:24px;height:56px}
+@media(min-width:768px){.nav .wrap{height:68px}}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto}
 .brand svg{width:32px;height:32px}
 .brand b{font:500 1.15rem/1 var(--serif);letter-spacing:.07em}
-.links{display:none;gap:22px;font-size:.92rem}
-.links a{text-decoration:none;color:var(--mut)}.links a:hover{color:var(--champ)}
+.links{display:none;gap:22px;font-size:13px}
+.links a{text-decoration:none;color:var(--mut);padding-bottom:3px;border-bottom:1px solid transparent}
+.links a:hover{color:var(--ivory);border-bottom-color:var(--champ)}
 @media(min-width:900px){.links{display:flex}}
-.nav-call{text-decoration:none;border:1px solid var(--line);border-radius:4px;padding:8px 14px;font-weight:500;font-size:.92rem;white-space:nowrap}
-.nav-call:hover{border-color:var(--champ)}
+.nav-call{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;color:var(--mut);font-size:13px;white-space:nowrap}
+.nav-call:hover{color:var(--ivory)}
+.nav-call .ic{width:16px;height:16px}
+.nav .nav-book{display:none}
+@media(min-width:768px){.nav .nav-book{display:inline-flex}}
+@media(max-width:767px){
+  .nav-call{width:44px;height:44px;padding:0;border:1px solid rgba(245,211,153,.55);border-radius:var(--btn-radius);color:var(--champ)}
+  .nav-call:hover{border-color:var(--champ);background:rgba(245,211,153,.06)}
+  .nav-call span{display:none}
+  .nav-call .ic{width:18px;height:18px}
+}
 
 /* buttons */
 .btns{display:flex;flex-wrap:wrap;gap:12px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;border-radius:4px;padding:14px 22px;font-weight:600;border:1px solid transparent;cursor:pointer}
 .btn svg{width:18px;height:18px}
-.btn-gold{background:linear-gradient(180deg,var(--champ),var(--gold));color:var(--night)}
-.btn-gold:hover{filter:brightness(1.06)}
 .btn-line{border-color:var(--line);color:var(--ivory)}
 .btn-line:hover{border-color:var(--champ)}
 .paper .btn-line{color:var(--ink);border-color:var(--gold-d)}
@@ -882,10 +892,14 @@ h2{font:500 clamp(2rem,4.4vw,3.1rem)/1.1 var(--serif);margin:0 0 14px;max-width:
 .hero .line{font:400 clamp(2.6rem,6.6vw,5rem)/1.04 var(--serif);margin:0 0 24px;max-width:15ch;text-wrap:balance}
 .hero .line em{display:block;font-style:italic;color:var(--champ)}
 .hero p.sens{font-size:1.1rem;color:var(--mut);max-width:54ch;margin:0 0 30px}
-.trust{list-style:none;display:flex;flex-wrap:wrap;gap:10px 26px;margin:36px 0 0;padding:22px 0 0;border-top:1px solid var(--line);font-size:.93rem}
-.trust li{display:flex;align-items:center;gap:8px}
-.trust li::before{content:"";width:7px;height:7px;background:var(--gold);transform:rotate(45deg)}
+.trust{list-style:none;margin:0;padding:0}
+.trust li{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.trust li::before{display:none}
 .trust li[hidden]{display:none}
+.trust-ic{display:flex;align-items:center;justify-content:center;flex:none;border-radius:50%;border:1px solid var(--champ)}
+.trust-ic .ic{color:var(--champ)}
+.trust strong{display:block;font:500 1.25rem/1.3 var(--serif);color:var(--ivory)}
+.trust-sub{display:block;font:400 .84rem/1.4 var(--sans);color:var(--mut)}
 
 /* signature */
 .sig{display:grid;gap:40px}
@@ -895,9 +909,9 @@ h2{font:500 clamp(2rem,4.4vw,3.1rem)/1.1 var(--serif);margin:0 0 14px;max-width:
 .checks li{padding:14px 18px 14px 46px;border-bottom:1px solid var(--iline);position:relative}
 .checks li:last-child{border-bottom:0}
 .checks li::before{content:"";position:absolute;left:19px;top:21px;width:12px;height:6px;border-left:2px solid var(--gold-d);border-bottom:2px solid var(--gold-d);transform:rotate(-45deg)}
-.bonus{margin:26px 0 22px;padding:18px 20px;border-left:3px solid var(--gold-d);background:rgba(172,127,63,.1);border-radius:0 4px 4px 0}
-.bonus b{display:block;margin-bottom:2px}
-.small{font-size:.88rem;color:var(--imut);margin:14px 0 0}
+.bonus{position:relative;margin:26px 0 22px;padding:24px 28px;border-left:3px solid var(--gold);background:var(--ivory);border-radius:0 4px 4px 0}
+.bonus b{display:block;margin-bottom:4px;font:500 22px/1.3 var(--serif);color:var(--ink)}
+.bonus-badge{position:absolute;top:0;right:0;background:var(--night);color:var(--champ);font:600 11px/1 var(--sans);text-transform:uppercase;letter-spacing:.08em;padding:6px 10px;border-radius:0 4px 0 8px}
 
 /* therapy cards */
 .cards{display:grid;gap:18px}
@@ -907,11 +921,8 @@ h2{font:500 clamp(2rem,4.4vw,3.1rem)/1.1 var(--serif);margin:0 0 14px;max-width:
 .card h3{font:500 1.42rem/1.2 var(--serif);margin:0 0 4px}
 .card .tag{font-size:.82rem;color:var(--champ);margin:0 0 12px}
 .card p.d{margin:0 0 18px;color:var(--mut);font-size:.96rem;flex:1}
-.card .from{margin:0 0 12px;font:500 1.15rem/1 var(--serif);color:var(--champ)}
-.card .cta{display:flex;justify-content:space-between;align-items:center;gap:10px;padding-top:14px;border-top:1px solid var(--line)}
-.card .cta a{font-weight:600;font-size:.93rem;text-decoration:none;color:var(--champ)}
-.card .cta a.wa{color:var(--mut);font-weight:500}
-.card .cta a:hover{text-decoration:underline}
+.card .from{margin:0 0 4px;font:600 15px/1 var(--sans);color:var(--champ)}
+.card .cta{padding-top:14px;border-top:1px solid var(--line)}
 
 .card.match{border-color:var(--champ);box-shadow:0 0 0 1px var(--champ),0 24px 50px -28px rgba(240,195,130,.35)}
 .match-badge{align-self:flex-start;margin:0 0 14px;background:var(--champ);color:var(--night);font-size:.78rem;font-weight:600;padding:4px 10px;border-radius:3px}
@@ -948,24 +959,29 @@ h2{font:500 clamp(2rem,4.4vw,3.1rem)/1.1 var(--serif);margin:0 0 14px;max-width:
 .stars{color:var(--champ);letter-spacing:3px;margin:6px 0 30px}
 .revs{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 20px;padding:4px 20px 8px;margin:0 -20px;text-align:left;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
 .revs::-webkit-scrollbar{display:none}
-.revs .rev{flex:0 0 86%;scroll-snap-align:start;margin:0;display:flex;flex-direction:column;justify-content:space-between}
+.revs .rev{flex:0 0 86%;scroll-snap-align:start;margin:0;display:flex;flex-direction:column;justify-content:flex-start}
 @media(min-width:640px){.revs .rev{flex-basis:calc(50% - 7px)}}
-@media(min-width:960px){.revs .rev{flex-basis:calc((100% - 28px)/3)}}
+@media(min-width:960px){.revs{justify-content:center}.revs .rev{flex:0 1 calc((100% - 28px)/3);max-width:420px}}
 .revs:focus-visible{outline:2px solid var(--champ);outline-offset:4px}
 .rev-nav{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:18px}
 .rev-nav[hidden]{display:none}
-.rev-dots{display:flex;gap:8px}
-.rev-dots{gap:4px}
+.rev-dots{display:flex;gap:4px}
 .rev-dots button{position:relative;width:24px;height:24px;padding:0;border:0;background:none;cursor:pointer}
 .rev-dots button::after{content:"";position:absolute;left:50%;top:50%;width:8px;height:8px;border-radius:4px;transform:translate(-50%,-50%);background:var(--line);transition:width .2s}
 .rev-dots button[aria-current="true"]::after{width:22px;background:var(--champ)}
+.rev-counter{display:none;font-size:.86rem;color:var(--mut)}
+@media(max-width:639px){.rev-dots{display:none}.rev-counter{display:inline-block}}
 
 .rev-arrow{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ivory);cursor:pointer;font-size:1.1rem;line-height:1}
 .rev-arrow:hover{border-color:var(--champ);color:var(--champ)}
 .rev-arrow:disabled{opacity:.35;cursor:default}
 @media(max-width:639px){.rev-arrow{display:none}}
-.rev{border:1px solid var(--line);border-radius:6px;padding:24px}
-.rev q{display:block;font:italic 400 1.12rem/1.5 var(--serif);quotes:"“" "”"}
+.rev{background:var(--wine2);border:1px solid var(--line);border-radius:var(--card-radius);padding:32px}
+.rev .stars{margin:0 0 12px;font-size:.85rem;letter-spacing:2px}
+.rev-lead{display:block;margin:0 0 10px;font:italic 500 20px/1.4 var(--serif);color:var(--ivory)}
+.rev-body{display:block;margin:0;font:400 15px/1.6 var(--sans);font-style:normal;color:var(--mut)}
+.rev-more{display:inline-block;margin:10px 0 0;background:none;border:0;padding:0;color:var(--gold-text);font:inherit;font-size:.85rem;font-weight:600;text-decoration:underline;cursor:pointer}
+@media(min-width:640px){.rev-more{display:none!important}}
 .rev cite{display:block;margin-top:14px;font-style:normal;font-size:.86rem;color:var(--mut)}
 .newbox{max-width:640px;margin:0 auto;border:1px solid var(--line);border-radius:6px;padding:30px}
 .newbox p{color:var(--mut);margin:0 0 20px}
@@ -1014,10 +1030,9 @@ footer{padding:40px 0 48px;border-top:1px solid var(--line);color:var(--mut);fon
 footer p{margin:0 0 8px}
 footer a{color:var(--champ)}
 
-.bar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px 12px;padding-bottom:max(10px,env(safe-area-inset-bottom));background:rgba(28,7,8,.95);border-top:1px solid var(--line)}
-.bar .btn{padding:13px 8px;font-size:.95rem}
-@media(min-width:760px){.bar{display:none}}
-@media(max-width:759px){body{padding-bottom:76px}}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;align-items:stretch;gap:8px;padding:10px 16px;padding-bottom:calc(10px + env(safe-area-inset-bottom));background:rgba(28,7,8,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+@media(min-width:768px){.bar{display:none}}
+@media(max-width:767px){body{padding-bottom:88px}}
 
 /* photos */
 .ph{position:relative;margin:0;overflow:hidden;border-radius:6px;border:1px solid var(--line);aspect-ratio:4/3;
@@ -1039,8 +1054,6 @@ footer a{color:var(--champ)}
 .status{display:flex;align-items:center;gap:8px;margin:18px 0 0;font-size:.92rem;color:var(--mut)}
 .status::before{content:"";width:8px;height:8px;border-radius:50%;background:#7fbf7f}
 .status.closed::before{background:#d08b6a}
-.bar.closed{grid-template-columns:1fr}
-.bar.closed .wa-link{display:none}
 
 /* first-screen proof */
 .proof{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:0 0 18px}
@@ -1057,8 +1070,8 @@ footer a{color:var(--champ)}
   .hero .btns .btn{flex:1 1 auto}
 }
 /* sticky bar appears only after hero buttons scroll away */
-.bar{transform:translateY(110%);transition:transform .25s ease}
-.bar.show{transform:none}
+.bar{transform:translateY(100%);transition:transform .2s ease}
+.bar.show{transform:translateY(0)}
 
 
 /* durations */
@@ -1088,8 +1101,6 @@ footer a{color:var(--champ)}
 @media(max-width:640px){
   .picker{padding:18px 16px}
   .pk-title{font-size:1.2rem}
-  .pk-opts{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-  .pk-opts button{padding:8px 10px;font-size:.84rem;border-radius:8px;text-align:left;line-height:1.3}
   .pk-result .btns .btn{flex:1 1 100%}
 }
 
@@ -1102,14 +1113,11 @@ footer a{color:var(--champ)}
 .card[hidden]{display:none!important}
 .card.flash{animation:flash 1.6s ease}
 @keyframes flash{0%,100%{box-shadow:0 0 0 0 rgba(240,195,130,0)}30%{box-shadow:0 0 0 3px var(--champ)}}
-.swipe-hint{display:none}
-
 /* therapy cards swipe on mobile */
 @media(max-width:759px){
   .cards{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -20px;padding:4px 20px 10px;scroll-padding:0 20px;scrollbar-width:none;overscroll-behavior-x:contain}
   .cards::-webkit-scrollbar{display:none}
   .cards .card{flex:0 0 84%;scroll-snap-align:start}
-  .swipe-hint{display:block;font-size:.8rem;color:var(--mut);margin:-6px 0 10px}
 }
 
 /* QR for desktop visitors */
@@ -1158,10 +1166,6 @@ section{padding:96px 0}
 .tabs button:hover{color:var(--ivory);border-color:transparent}
 .tabs button[aria-selected="true"]{background:none;color:var(--ivory);border-bottom-color:var(--champ)}
 
-/* reviews: open quotes, no boxes */
-.rev{border:0;border-radius:8px;background:rgba(28,7,8,.35);padding:26px 24px}
-.rev q::before{content:"“";display:block;font:400 3rem/0.6 var(--serif);color:var(--champ);margin:10px 0 8px}
-.rev q{quotes:none}
 .rev-arrow{border:0;background:rgba(246,237,226,.08)}
 
 /* keyword links: plain text */
@@ -1211,37 +1215,42 @@ section{padding:96px 0}
 
 /* ===== Visual system pass ===== */
 .ic{width:18px;height:18px;flex:none;display:inline-block;vertical-align:middle}
+svg.ic{fill:none;stroke:currentColor;stroke-width:1.5}
 
-/* buttons: one system, three roles */
-.btn{min-height:52px;padding:0 24px;border-radius:999px;font:600 1rem/1 var(--sans);gap:10px;letter-spacing:.01em;transition:transform .15s ease,box-shadow .15s ease,background-color .15s ease}
+/* buttons: one system, three roles (Section 0 foundation) */
+.btn{height:var(--btn-h);padding:0 28px;border-radius:var(--btn-radius);font:600 13px/1 var(--sans);text-transform:uppercase;letter-spacing:var(--btn-track);gap:10px;transition:background-color .15s ease,border-color .15s ease,color .15s ease}
 .btn:active{transform:translateY(1px)}
-.btn .ic{width:19px;height:19px}
-.btn-call,.btn-gold{background:linear-gradient(180deg,#f5d399 0%,#d7a862 100%);color:#1c0708;border:0;box-shadow:0 10px 24px -12px rgba(240,195,130,.75),inset 0 1px 0 rgba(255,255,255,.45)}
-.btn-call:hover,.btn-gold:hover{filter:none;box-shadow:0 14px 28px -12px rgba(240,195,130,.9),inset 0 1px 0 rgba(255,255,255,.45)}
-.btn-wa{background:#25D366;color:#05331a;border:0;box-shadow:0 10px 24px -12px rgba(37,211,102,.7)}
-.btn-wa:hover{background:#2fe174}
-.btn-line{border:1.5px solid rgba(240,195,130,.5);background:rgba(246,237,226,.04)}
-.btn-line:hover{border-color:var(--champ);background:rgba(246,237,226,.08)}
-.btn-sm{min-height:42px;padding:0 14px;font-size:.88rem;gap:7px}
+.btn .ic{width:16px;height:16px}
+.btn-wa,.btn-call,.btn-line{background:transparent;border:1px solid rgba(245,211,153,.55);color:var(--champ)}
+.btn-wa:hover,.btn-call:hover,.btn-line:hover{border-color:var(--champ);background:rgba(245,211,153,.06)}
+.paper .btn-wa,.paper .btn-call,.paper .btn-line{border-color:var(--gold-d);color:var(--ink)}
+.paper .btn-wa:hover,.paper .btn-call:hover,.paper .btn-line:hover{border-color:var(--gold-text);background:rgba(42,18,19,.04)}
+.btn-wa{background:var(--gold-solid);color:var(--night);border:0}
+.btn-wa:hover{background:var(--gold-solid-hover)}
+.paper .btn-wa{background:var(--night);color:var(--champ)}
+.paper .btn-wa:hover{background:var(--wine)}
+.btn.btn-primary{background:var(--gold-solid);color:var(--night);border:0}
+.btn.btn-primary:hover{background:var(--gold-solid-hover)}
+.paper .btn.btn-primary{background:var(--night);color:var(--champ)}
+.paper .btn.btn-primary:hover{background:var(--wine)}
+.btn.btn-secondary{background:transparent;border:1px solid rgba(245,211,153,.55);color:var(--champ)}
+.btn.btn-secondary:hover{border-color:var(--champ);background:rgba(245,211,153,.06)}
+.paper .btn.btn-secondary{border-color:var(--gold-d);color:var(--ink)}
+.paper .btn.btn-secondary:hover{border-color:var(--gold-text);background:rgba(42,18,19,.04)}
+.btn-text,.btn.btn-text{display:inline-flex;align-items:center;min-height:44px;height:auto;padding:0;background:transparent;border:0;color:var(--champ)}
+.btn-text:hover{text-decoration:underline}
+.paper .btn-text{color:var(--gold-text)}
+.btn-sm{height:var(--btn-h-sm);padding:0 18px;font-size:12px}
 .btn-sm .ic{width:16px;height:16px}
 .hero .btns{gap:8px}
 .hero .btns .btn{padding:0 18px}
 @media(max-width:640px){.hero .btns{display:grid;grid-template-columns:1fr;gap:10px}.hero .btns .btn{min-width:0;width:100%}}
-.nav-call{display:inline-flex;align-items:center;gap:8px;border-radius:999px;border-color:rgba(240,195,130,.5);padding:8px 16px}
-.nav-call .ic{width:16px;height:16px;color:var(--champ)}
-.bar .btn{min-height:48px;border-radius:999px}
-
-/* hero trust row with icons */
-.trust li::before{display:none}
-.trust li{gap:9px}
-.trust .ic{width:20px;height:20px;color:var(--champ)}
 
 /* signature perks */
 .perks{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.perks li{display:flex;align-items:center;gap:12px;padding:12px;border-radius:10px;background:#fffaf3;box-shadow:0 1px 0 rgba(172,127,63,.18),0 8px 20px -16px rgba(42,18,19,.35);font-size:.92rem;line-height:1.35}
-.perk-ic{width:40px;height:40px;flex:none;display:grid;place-items:center;border-radius:50%;background:linear-gradient(160deg,#4a1618,#2b0c0d);color:var(--champ)}
-.perk-ic .ic{width:20px;height:20px}
-@media(max-width:420px){.perks li{flex-direction:column;align-items:flex-start;gap:8px;font-size:.88rem}}
+.perks li{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:8px;background:#fffaf3;border:1px solid var(--iline);font-size:14px;line-height:1.35;color:var(--ink)}
+.perk-ic{width:36px;height:36px;flex:none;display:grid;place-items:center;border-radius:50%;background:var(--wine);color:var(--champ)}
+.perk-ic .ic{width:18px;height:18px}
 
 /* ornament */
 .orn{display:block;width:22px;height:22px;color:var(--champ);margin-bottom:14px}
@@ -1273,11 +1282,6 @@ section{padding:96px 0}
 .bars i.on{background:linear-gradient(90deg,#d7a862,#f5d399)}
 .press-v{color:var(--ivory);font-weight:600}
 .press-na .press-v{font-weight:500;color:var(--mut)}
-.card .cta{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-top:0;border-top:0;margin-top:auto}
-.card .cta a{color:inherit}
-.card .cta .btn-call{color:#1c0708}
-.card .cta .btn-wa{color:#05331a}
-.card .cta a:hover{text-decoration:none}
 .match-badge{position:absolute;top:14px;right:14px;margin:0}
 .card.match .c-head{padding-right:120px}
 @media(max-width:420px){.card.match .c-head{padding-right:0;margin-top:26px}}
@@ -1285,32 +1289,45 @@ section{padding:96px 0}
 /* timeline */
 .timeline{list-style:none;margin:0;padding:0;position:relative;display:grid;gap:26px}
 .timeline li{position:relative;padding-left:70px}
-.timeline::before{content:"";position:absolute;left:25px;top:10px;bottom:10px;width:2px;background:linear-gradient(180deg,var(--gold-d),rgba(172,127,63,.15))}
+.timeline::before{display:none}
+.timeline li:not(:last-child)::before{content:"";position:absolute;left:26px;top:26px;bottom:-52px;width:2px;background:linear-gradient(180deg,var(--gold-d),rgba(172,127,63,.15))}
 .tl-ic{position:absolute;left:0;top:0;width:52px;height:52px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(160deg,#4a1618,#2b0c0d);color:var(--champ);box-shadow:0 0 0 6px var(--paper),0 10px 20px -12px rgba(42,18,19,.6)}
 .tl-ic .ic{width:24px;height:24px}
-.timeline .when{display:inline-block;font:600 .75rem/1 var(--sans);letter-spacing:.02em;color:#fff;background:var(--gold-text);padding:5px 9px;border-radius:999px;margin:4px 0 8px}
+.timeline .when{display:inline-block;font:600 11px/1 var(--sans);text-transform:uppercase;letter-spacing:.1em;color:var(--champ);background:var(--wine);padding:5px 9px;border-radius:var(--btn-radius);margin:4px 0 8px}
 .timeline h3{font:500 1.3rem/1.25 var(--serif);margin:0 0 4px}
 .timeline p{margin:0;color:var(--imut);font-size:.95rem;max-width:34ch}
 @media(min-width:900px){
   .timeline{grid-template-columns:repeat(4,1fr);gap:28px}
-  .timeline::before{left:26px;right:26px;top:25px;bottom:auto;width:auto;height:2px;background:linear-gradient(90deg,var(--gold-d),rgba(172,127,63,.2))}
+  .timeline li:not(:last-child)::before{display:none}
+  .timeline::before{display:block;left:26px;right:26px;top:25px;bottom:auto;width:auto;height:2px;background:linear-gradient(90deg,var(--gold-d),rgba(172,127,63,.2))}
   .timeline li{padding-left:0;padding-top:72px}
 }
 
 /* why: stats + icon rows */
-.stats{list-style:none;margin:0 0 44px;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-@media(min-width:760px){.stats{grid-template-columns:repeat(4,1fr)}}
-.stats li{background:rgba(28,7,8,.4);border-radius:12px;padding:18px 16px}
+.stats{list-style:none;margin:0 0 44px;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:0}
+.stats li{text-align:center;padding:16px}
+@media(max-width:759px){
+  .stats li:nth-child(odd){border-right:1px solid var(--line)}
+  .stats li:nth-child(-n+2){border-bottom:1px solid var(--line)}
+}
 .stats b{display:block;font:500 clamp(1.9rem,4vw,2.6rem)/1 var(--serif);color:var(--champ)}
+@media(min-width:760px){
+  .stats{grid-template-columns:repeat(4,1fr)}
+  .stats li{border-right:1px solid var(--line)}
+  .stats li:last-child{border-right:0}
+  .stats b{font-size:48px}
+}
 .stats b small{font-size:.55em;margin-left:3px;vertical-align:.35em}
-.stats span{display:block;margin-top:6px;font-size:.86rem;color:var(--mut)}
-.why-list{list-style:none;margin:0;padding:0;display:grid;gap:22px}
+.stats span{display:block;margin-top:6px;font-size:13px;color:var(--mut)}
+.why-list{list-style:none;margin:0;padding:0;display:grid;gap:20px}
 @media(min-width:760px){.why-list{grid-template-columns:1fr 1fr;gap:28px 40px}}
 .why-list li{display:flex;gap:16px;align-items:flex-start}
-.w-ic{width:48px;height:48px;flex:none;display:grid;place-items:center;border-radius:50%;background:rgba(240,195,130,.12);color:var(--champ)}
-.w-ic .ic{width:23px;height:23px}
-.why-list h3{font:500 1.22rem/1.25 var(--serif);margin:4px 0 4px}
-.why-list p{margin:0;color:var(--mut);font-size:.95rem}
+.w-ic{width:40px;height:40px;flex:none;display:grid;place-items:center;border-radius:50%;background:rgba(240,195,130,.12);border:1px solid var(--champ);color:var(--champ)}
+.w-ic .ic{width:19px;height:19px}
+@media(min-width:760px){.w-ic{width:44px;height:44px}.w-ic .ic{width:20px;height:20px}}
+.why-list h3{font:500 1.1rem/1.25 var(--serif);margin:4px 0 4px}
+@media(min-width:760px){.why-list h3{font-size:20px}}
+.why-list p{margin:0;color:var(--mut);font-size:14px}
 
 /* couples icon list */
 .icon-list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
@@ -1331,27 +1348,16 @@ section{padding:96px 0}
 .pk-result .btn-wa{color:#05331a;border:0}
 
 /* fixes after review */
-.card .cta{display:flex;gap:8px}
-.card .cta .btn{flex:1 1 0;min-width:0;white-space:nowrap}
-.l-long{display:none}
-@media(min-width:760px) and (max-width:979px){.l-long{display:inline}.l-short{display:none}}
 .match-badge{position:static;display:inline-block;margin:0 0 12px}
 .card.match .c-head{padding-right:0}
 @media(max-width:420px){.card.match .c-head{margin-top:0}}
 .btn{white-space:nowrap}
 .sig .btns{gap:10px}
 .sig .btns .btn{padding:0 20px}
-@media(max-width:480px){
-  .nav-call span{display:none}
-  .nav-call{width:44px;height:44px;padding:0;justify-content:center}
-  .nav-call .ic{width:19px;height:19px}
-}
 @media(min-width:900px){.timeline::before{right:calc(25% - 2px)}}
 
 /* section rhythm after reorder */
-#reviews .rev{background:rgba(63,17,19,.6)}
 #reviews .rev-arrow{background:rgba(246,237,226,.08)}
-#visit .btn-line{background:rgba(28,7,8,.25)}
 
 /* ===== Warm, intimate atmosphere ===== */
 .hero{position:relative;isolation:isolate;overflow:hidden}
@@ -1381,7 +1387,6 @@ h2{font-size:clamp(1.75rem,min(4.2vw,5.4vh),3rem)}
 .proof{margin-bottom:clamp(10px,1.8vh,18px)}
 .hero p.sens{font-size:clamp(.95rem,2.1vh,1.1rem);margin-bottom:clamp(12px,2.4vh,30px)}
 .hero .status{margin-top:clamp(8px,1.4vh,18px)}
-.trust{margin-top:clamp(12px,2.6vh,36px);padding-top:clamp(10px,2vh,22px)}
 @media(min-width:960px){
   .hero .ph{aspect-ratio:auto;height:min(calc(100svh - 150px),640px);max-height:none}
 }
@@ -1394,11 +1399,9 @@ h2{font-size:clamp(1.75rem,min(4.2vw,5.4vh),3rem)}
 .cards .card{flex:0 0 84%;scroll-snap-align:start}
 @media(min-width:640px){.cards .card{flex-basis:calc((100% - 18px)/2)}}
 @media(min-width:980px){.cards .card{flex-basis:calc((100% - 36px)/3)}}
-#card-nav{margin-top:10px}
 @media(min-width:900px){
   .picker{padding:18px 22px;margin-bottom:clamp(16px,2.6vh,30px)}
   .pk-title{font-size:1.2rem;margin-bottom:10px}
-  .pk-label{display:none}
   .pk-q{margin-bottom:0}
   .pk-opts button{padding:7px 14px;font-size:.86rem;min-height:36px}
   .tabs{margin-bottom:12px}
@@ -1408,21 +1411,13 @@ h2{font-size:clamp(1.75rem,min(4.2vw,5.4vh),3rem)}
   .press{margin-bottom:14px}
 }
 
-/* signature */
-.sig-side .ph{aspect-ratio:auto;height:clamp(150px,26vh,300px)}
-.sig-side{gap:14px}
-.perks li{padding:9px 12px}
-.perk-ic{width:36px;height:36px}
-
 /* reviews: compact rating line */
 .rating-line{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap}
 .rating-line .stars{color:var(--champ);letter-spacing:2px;margin:0}
-#reviews .rev{padding:22px 22px}
 
 /* why */
 .stats{margin-bottom:clamp(18px,3.6vh,44px)}
-.stats li{padding:clamp(10px,1.8vh,18px) 16px}
-.why-list{gap:clamp(12px,2.2vh,28px) 40px}
+@media(min-width:760px){.why-list{gap:clamp(20px,2.2vh,28px) 40px}}
 
 /* photos sized by screen height */
 .feat .ph,#couples .ph{aspect-ratio:auto;height:clamp(150px,26vh,300px)}
@@ -1448,13 +1443,10 @@ section{padding:clamp(40px,7vh,96px) 0}
   .pk-result .pk-dur{grid-column:1;margin:0}
   .pk-result .btns{grid-column:2;grid-row:1/span 4;flex-wrap:nowrap}
   .pk-result .pk-alt{grid-column:1/-1;margin-top:6px}
-  #card-nav{margin-top:4px}
-  #card-nav .rev-dots{display:none}
   .rev-arrow{width:36px;height:36px}
 }
 @media(min-width:900px) and (max-height:820px){
   .card p.d{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  .rev q{font-size:1rem}
   .find .ph{height:clamp(130px,20vh,240px);margin-bottom:14px}
   .find address{font-size:1.25rem;margin-bottom:10px}
   .find dl{gap:8px}
@@ -1476,8 +1468,6 @@ section{padding:clamp(40px,7vh,96px) 0}
   .hero-grid>.trust{grid-column:1/-1;grid-row:2;order:0}
   .hero .line{max-width:none;font-size:clamp(2rem,min(3.7vw,7vh),3.8rem);line-height:1.08}
   .hero .line .l1,.hero .line em{display:block;white-space:nowrap}
-  .trust{display:flex!important;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;margin:0;padding-top:clamp(12px,2vh,20px)}
-  .trust li{font-size:.92rem;white-space:nowrap}
   .hero .ph{height:min(calc(100svh - 250px),560px);align-self:center}
 }
 
@@ -1489,7 +1479,7 @@ section{padding:clamp(40px,7vh,96px) 0}
   background:
    linear-gradient(90deg,var(--night) 0%,rgba(28,7,8,.97) 30%,rgba(28,7,8,.82) 44%,rgba(28,7,8,.35) 64%,rgba(28,7,8,.05) 82%,rgba(28,7,8,0) 100%),
    linear-gradient(180deg,rgba(28,7,8,.55) 0%,rgba(28,7,8,0) 18%,rgba(28,7,8,0) 62%,rgba(28,7,8,.92) 100%)}
-.hero.has-bg::before,.hero.has-bg::after{opacity:.55}
+.hero.has-bg::before,.hero.has-bg::after{opacity:.55!important}
 @media(min-width:960px){
   .hero-grid{grid-template-columns:minmax(0,1fr)!important}
   .hero-grid>div:first-child{grid-column:1;grid-row:1;max-width:680px}
@@ -1500,7 +1490,151 @@ section{padding:clamp(40px,7vh,96px) 0}
   .hero-bg img{object-position:78% 50%}
   .hero-bg::after{background:linear-gradient(180deg,rgba(28,7,8,.6) 0%,rgba(28,7,8,.78) 40%,rgba(28,7,8,.95) 100%)}
 }
-@media(prefers-reduced-motion:reduce){.card,.btn{transition:none}html{scroll-behavior:auto}.card.flash{animation:none}}
+
+/* ===== Section 2: hero ===== */
+@media(max-width:767px){
+  .hero{min-height:auto;padding:32px 0 40px}
+  .hero-grid{gap:16px}
+  .hero-grid>div:first-child{display:contents}
+  .hero h1{order:1;margin:0}
+  .hero .line{order:2;margin:0;font-size:34px;line-height:1.08;max-width:none;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+  .hero .proof{order:3;margin:0}
+  .hero .trust{order:4}
+  .hero .btns{order:5;margin:0;display:grid;grid-template-columns:1fr;gap:10px}
+  .hero .btns .btn{width:100%}
+  .hero .status{order:6;margin:0}
+  .hero p.sens{display:none}
+  .hero-bg img{object-position:78% 15%}
+  .hero-bg::after{background:linear-gradient(180deg,rgba(28,7,8,.25) 0%,rgba(28,7,8,.85) 45%,rgba(28,7,8,.97) 100%)}
+}
+@media(min-width:1024px){
+  .hero{min-height:min(88vh,820px)}
+  .hero-grid>div:first-child{max-width:580px}
+  .hero-bg::after{background:linear-gradient(90deg,rgba(28,7,8,.92) 0%,rgba(28,7,8,.65) 45%,rgba(28,7,8,.15) 75%)}
+  .hero h1{margin-bottom:16px}
+  .hero .line{font-size:clamp(56px,4.5vw,60px);line-height:1.05;margin-bottom:24px}
+  .hero .proof{margin-bottom:20px}
+  .hero p.sens{margin-bottom:32px}
+  .hero .btns{gap:12px}
+  .hero .btns .btn{min-width:200px}
+  .hero .status{margin-top:14px}
+}
+
+/* ===== Section 3: USP band ===== */
+@media(max-width:767px){
+  .trust{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:10px}
+  .trust li{background:rgba(246,237,226,.06);border:1px solid var(--line);border-radius:8px;padding:14px 12px;gap:8px}
+  .trust-ic{width:36px;height:36px}
+  .trust-ic .ic{width:18px;height:18px}
+  .trust strong{font-size:16px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .trust-sub{font-size:12.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+}
+@media(min-width:768px) and (max-width:1023px){
+  .trust{display:grid;grid-template-columns:1fr 1fr;background:var(--wine2);border:1px solid var(--line);border-radius:var(--card-radius);padding:24px 28px;row-gap:24px}
+  .trust li{padding:0 20px 20px}
+  .trust li:nth-child(odd){border-right:1px solid var(--line)}
+  .trust li:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .trust-ic{width:44px;height:44px}
+  .trust-ic .ic{width:20px;height:20px}
+  .trust strong{font-size:18px}
+  .trust-sub{font-size:13px}
+}
+@media(min-width:1024px){
+  .hero{margin-bottom:-48px;z-index:1}
+  .trust{position:absolute;left:0;right:0;bottom:0;z-index:2;width:min(1100px,calc(100% - 40px));margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);background:var(--wine2);border:1px solid var(--line);border-radius:var(--card-radius);padding:28px 32px}
+  .trust li{padding:0 24px}
+  .trust li:not(:first-child){border-left:1px solid var(--line)}
+  .trust-ic{width:48px;height:48px}
+  .trust-ic .ic{width:22px;height:22px}
+  .trust strong{font-size:20px}
+  .trust-sub{font-size:13.5px}
+}
+
+/* ===== Section 4: mobile sticky booking bar ===== */
+.bar .btn-wa{flex:1;height:56px;padding:6px 16px;gap:10px}
+.bar-wa-text{display:flex;flex-direction:column;align-items:flex-start;gap:1px;text-align:left}
+.bar-wa-text b{font:600 13px/1.2 var(--sans);text-transform:uppercase;letter-spacing:var(--btn-track)}
+.bar-wa-text small{font:400 11px/1.2 var(--sans);text-transform:none;letter-spacing:normal;opacity:.8}
+.bar .btn-call{flex:none;width:52px;height:52px;padding:0}
+
+/* ===== Section 5: Signature Session ===== */
+@media(max-width:767px){
+  #signature .sig>div:first-child{display:contents}
+  #signature .sig-side{display:contents}
+  #signature .ribbon{order:1}
+  #signature h2{order:2;font-size:30px}
+  #signature .sig-side .ph{order:3;aspect-ratio:4/3;height:auto;border-radius:var(--card-radius);margin:0 0 20px}
+  #signature .intro{order:4;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  #signature .bonus{order:5}
+  #signature .perks{order:6;display:block;margin:20px 0 0}
+  #signature .perks li{padding:12px 0;border-radius:0;background:none;border:0;border-bottom:1px solid var(--iline)}
+  #signature .perks li:last-child{border-bottom:0}
+  #signature .perk-ic{width:32px;height:32px}
+  #signature .perk-ic .ic{width:16px;height:16px}
+  #signature .btns{order:7;display:grid;grid-template-columns:1fr;gap:10px;margin-top:22px}
+  #signature .btns .btn{width:100%}
+}
+@media(min-width:1024px){
+  #signature .sig{grid-template-columns:55fr 45fr}
+  #signature .sig-side .ph{aspect-ratio:16/10;height:auto;border-radius:var(--card-radius)}
+}
+
+/* ===== Section 6: therapy picker & cards ===== */
+.pk-opts button{border-radius:var(--btn-radius);height:40px;min-height:40px;padding:0 14px;font-size:13px;color:var(--ivory);border:1px solid var(--line);background:transparent}
+.pk-opts button:hover{background:rgba(245,211,153,.06);border-color:var(--champ)}
+.pk-opts button[aria-checked="true"]{background:var(--gold-solid);border-color:var(--gold-solid);color:var(--night)}
+.cards-mobile-nav{display:none}
+.cards-seeall{display:none;margin:28px auto 0}
+@media(max-width:767px){
+  .picker{padding:14px 16px}
+  .pk-title{margin-bottom:8px;font-size:1rem;line-height:1.3}
+  .pk-sub{font-size:.8rem}
+  .pk-opts{display:flex;flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x mandatory;gap:8px;scrollbar-width:none;padding-right:28px;-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent 100%);mask-image:linear-gradient(90deg,#000 85%,transparent 100%)}
+  .pk-opts::-webkit-scrollbar{display:none}
+  .pk-opts button{flex:none;scroll-snap-align:start;height:40px;min-height:40px;padding:0 14px;white-space:nowrap;font-size:13px}
+  .cards{gap:12px;padding:4px 16px 10px;margin:0 -16px;scroll-padding:0 16px}
+  .c-photo{aspect-ratio:16/10}
+  .card p.d{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .cards-mobile-nav{display:flex;align-items:center;justify-content:space-between;margin-top:12px;font-size:13px;color:var(--mut)}
+  .cards-mobile-nav button{background:none;border:0;padding:0;color:var(--gold-text);font:inherit;font-weight:600;text-decoration:underline;cursor:pointer}
+  .cards.list-view{display:block!important}
+  .cards.list-view .card{width:100%;margin:0 0 16px}
+  .cards.list-view .c-photo{aspect-ratio:auto;height:180px}
+}
+@media(min-width:768px) and (max-width:1023px){
+  .cards{display:grid!important;grid-template-columns:repeat(2,1fr);gap:20px;overflow-x:visible;padding:0;margin:0;scroll-snap-type:none}
+  .cards-seeall{display:flex}
+}
+@media(min-width:1024px){
+  .cards{display:grid!important;grid-template-columns:repeat(3,1fr);gap:24px;overflow-x:visible;padding:0;margin:0;scroll-snap-type:none}
+  .cards-seeall{display:flex}
+}
+
+/* ===== Section 7: how your hour unfolds ===== */
+@media(max-width:767px){#hour{padding:var(--section-y-m) 0}}
+@media(min-width:1024px){#hour{padding:var(--section-y) 0}}
+
+/* ===== Section 9: reviews ===== */
+@media(max-width:639px){
+  .rev-body{display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
+  .rev-body.expanded{display:block;-webkit-line-clamp:unset;overflow:visible}
+}
+
+/* ===== Section 10: visit / find us ===== */
+@media(hover:hover) and (pointer:fine) and (min-width:900px){
+  .qr{width:120px;height:120px}
+}
+@media(max-width:767px){
+  .find .btn-text{width:auto;align-self:center}
+}
+@media(min-width:1024px){
+  .find{grid-template-columns:55fr 45fr}
+  .find .ph{aspect-ratio:16/9;height:auto}
+  .find address{font-size:22px}
+  .find .btns{background:var(--wine2);border:1px solid var(--line);border-radius:var(--card-radius);padding:32px}
+}
+
+@media(prefers-reduced-motion:reduce){.card,.btn,.bar{transition:none}html{scroll-behavior:auto}.card.flash{animation:none}}
 </style>
 <script>
 /* Photos: on the live site a missing photo quietly disappears.
@@ -1568,6 +1702,7 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
       <a href="#signature">Signature session</a><a href="#massages">Massages</a><a href="#hour">Your hour</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a>
     </nav>
     <a class="nav-call" href="tel:+919353639507" data-track="call" aria-label="Call Aurum Astra on +91 93536 39507"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span>93536 39507</span></a>
+    <a class="btn btn-primary btn-sm nav-book wa-link" data-msg="Hi Aurum Astra, I'd love to book some time at the spa. What slots do you have?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp"><span>Book now</span></a>
   </div>
 </header>
 
@@ -1584,22 +1719,21 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
     <div class="proof">
       <span class="rating"><span aria-hidden="true">★★★★★</span> 4.9 on Google</span>
       <span class="offer-chip" id="hero-offer">10% off your first visit</span>
-      <span class="from-chip">Therapies from ₹1,800</span>
     </div>
-    <p class="sens">Warmed oil, slow unhurried strokes, and a quiet room that is yours alone, with its own hot shower. Open till 10 PM, every day.</p>
+    <p class="sens">Warmed oil, a private room with its own hot shower, open till 10 PM every day.</p>
     <div class="btns">
-      <a class="btn btn-call" href="tel:+919353639507" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span>Call now for price</span></a>
-      <a class="btn btn-wa wa-link" data-msg="Hi Aurum Astra, I'd love some time to unwind. Could you share your prices and today's slots?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>Reserve on WhatsApp</span></a>
+      <a class="btn btn-wa wa-link" data-msg="Hi Aurum Astra, I'd love some time to unwind. Could you share your prices and today's slots?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>Book on WhatsApp</span></a>
+      <a class="btn btn-call" href="tel:+919353639507" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span>Call us</span></a>
     </div>
-    <p class="status" id="status">Open every day, 10 AM – 10 PM</p>
+    <p class="status" id="status">Open now, until 10 PM · Therapies from ₹1,800</p>
     <div class="qr-box"><div class="qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" class="qr-svg" role="img" aria-label="QR code to WhatsApp Aurum Astra"><path fill="#f8f1e7" d="M0 0h29v29h-29z"/><path class="qrline" stroke="#1c0708" d="M2 2.5h7m1 0h6m2 0h1m1 0h7m-25 1h1m5 0h1m1 0h1m2 0h1m1 0h2m1 0h1m1 0h1m5 0h1m-25 1h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h4m1 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m2 0h1m1 0h5m2 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m1 0h2m1 0h2m5 0h1m1 0h3m1 0h1m-25 1h1m5 0h1m2 0h1m2 0h1m1 0h1m3 0h1m5 0h1m-25 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-16 1h3m1 0h2m-15 1h1m2 0h6m3 0h1m2 0h1m1 0h1m2 0h1m1 0h3m-22 1h1m1 0h1m2 0h1m2 0h1m1 0h1m1 0h2m2 0h5m-23 1h3m1 0h2m5 0h1m1 0h6m1 0h1m2 0h1m-25 1h1m3 0h1m5 0h3m3 0h1m1 0h2m1 0h4m-25 1h1m3 0h1m1 0h1m1 0h2m2 0h1m1 0h1m2 0h2m5 0h1m-25 1h1m7 0h2m2 0h2m1 0h1m4 0h1m2 0h1m-24 1h3m1 0h1m1 0h4m2 0h1m1 0h2m1 0h1m2 0h5m-25 1h1m1 0h2m4 0h4m2 0h2m3 0h1m1 0h2m1 0h1m-25 1h1m2 0h2m1 0h1m1 0h1m1 0h2m1 0h2m1 0h5m1 0h2m-16 1h3m1 0h1m1 0h1m1 0h1m3 0h1m1 0h2m-24 1h7m1 0h1m2 0h2m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m-25 1h1m5 0h1m1 0h2m1 0h1m1 0h2m1 0h1m3 0h1m-21 1h1m1 0h3m1 0h1m1 0h1m1 0h1m4 0h6m-21 1h1m1 0h3m1 0h1m1 0h1m2 0h2m2 0h4m4 0h2m-25 1h1m1 0h3m1 0h1m2 0h1m1 0h3m3 0h1m2 0h5m-25 1h1m5 0h1m2 0h2m1 0h1m1 0h1m4 0h2m1 0h3m-25 1h7m1 0h1m1 0h2m2 0h1m1 0h1m1 0h1m2 0h1m2 0h1"/></svg>
 </div><p><b>On a computer?</b>Scan with your phone camera to WhatsApp us, or call +91 93536 39507.</p></div>
    </div>
        <ul class="trust">
-     <li><svg class="ic" aria-hidden="true"><use href="#i-female"/></svg>Trained female therapists</li>
-     <li><svg class="ic" aria-hidden="true"><use href="#i-shower"/></svg>Private rooms with shower</li>
-     <li><svg class="ic" aria-hidden="true"><use href="#i-bubbles"/></svg>Jacuzzi and couple's suite</li>
-     <li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>Open 10 AM – 10 PM daily</li>
+     <li><span class="trust-ic"><svg class="ic" aria-hidden="true"><use href="#i-female"/></svg></span><strong>Female therapists</strong><span class="trust-sub">Trained and certified, for every guest</span></li>
+     <li><span class="trust-ic"><svg class="ic" aria-hidden="true"><use href="#i-shower"/></svg></span><strong>Your own room &amp; shower</strong><span class="trust-sub">Private, with lockers and robes</span></li>
+     <li><span class="trust-ic"><svg class="ic" aria-hidden="true"><use href="#i-bubbles"/></svg></span><strong>Jacuzzi &amp; couple's suite</strong><span class="trust-sub">Rare in Hennur</span></li>
+     <li><span class="trust-ic"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg></span><strong>Open till 10 PM</strong><span class="trust-sub">Every day, including holidays</span></li>
    </ul>
   </div>
 </section>
@@ -1611,22 +1745,17 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
       <span class="ribbon" id="offer-ribbon">Launch offer for first-time guests</span>
       <h2>The Aurum Astra Signature Session</h2>
       <p class="intro">Our house ritual and most-booked hour. Warmed oil, long strokes from shoulders to feet, a hot shower in your own room, then the terrace lounge for as long as you like.</p>
-      <div class="bonus"><b id="offer-title">Your first visit, 10% off</b><span id="offer-text">Just opened in Hennur. Mention this page when you call or message and we'll take 10% off your first therapy.</span></div>
+      <div class="bonus"><span class="bonus-badge">10% OFF</span><b id="offer-title">Your first visit, 10% off</b><span id="offer-text">Just opened in Hennur. Mention this page when you book.</span></div>
       <div class="btns">
-        <a class="btn btn-call" href="tel:+919353639507" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span>Call now for price</span></a>
-        <a class="btn btn-wa wa-link" data-msg="Hi Aurum Astra, I'd love to book the Signature Session with the first-visit offer. What times are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>Ask on WhatsApp</span></a>
+        <a class="btn btn-wa wa-link" data-msg="Hi Aurum Astra, I'd love to book the Signature Session with the first-visit offer. What times are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>Book the Signature Session</span></a>
+        <a class="btn btn-call" href="tel:+919353639507" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span>Call us</span></a>
       </div>
-      <p class="small">Mention this page when you call and we'll apply the offer to your booking.</p>
     </div>
     <div class="sig-side"><figure class="ph " data-slot="1" data-file="oil.webp" data-size="1600 × 1000 px, landscape 16:10" data-desc="Close-up: warm oil being poured into a bowl, soft glow, rolled linen"><img src="img/oil.webp" alt="Warm massage oil and rolled towels for the Signature Session at Aurum Astra spa" loading="lazy" decoding="async" onerror="imgMissing(this)"></figure>
     <ul class="perks">
-      <li><span class="perk-ic"><svg class="ic" aria-hidden="true"><use href="#i-female"/></svg></span><span>Trained female therapists</span></li>
       <li><span class="perk-ic"><svg class="ic" aria-hidden="true"><use href="#i-gauge"/></svg></span><span>Pressure agreed before we begin</span></li>
       <li><span class="perk-ic"><svg class="ic" aria-hidden="true"><use href="#i-drop"/></svg></span><span>Custom oil blend, always warmed</span></li>
       <li><span class="perk-ic"><svg class="ic" aria-hidden="true"><use href="#i-star"/></svg></span><span>Full body, shoulders to feet</span></li>
-      <li><span class="perk-ic"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg></span><span>Private room with lockers</span></li>
-      <li><span class="perk-ic"><svg class="ic" aria-hidden="true"><use href="#i-shower"/></svg></span><span>Hot shower in every room</span></li>
-      <li><span class="perk-ic"><svg class="ic" aria-hidden="true"><use href="#i-robe"/></svg></span><span>Robes, fresh linen, disposables</span></li>
       <li><span class="perk-ic"><svg class="ic" aria-hidden="true"><use href="#i-lounge"/></svg></span><span>Terrace garden lounge after</span></li>
     </ul>
     </div>
@@ -1641,8 +1770,8 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
 
     <div class="picker" id="picker" aria-labelledby="pk-title">
       <p class="pk-title" id="pk-title">How would you like to feel tonight? <span class="pk-sub">Pick one and we'll show your best match first.</span></p>
-      <div class="pk-q" style="margin-bottom:0"><span class="pk-label" id="q1l">Choose one and we'll suggest your therapy</span>
-        <div class="pk-opts" role="radiogroup" aria-labelledby="q1l" data-q="need">
+      <div class="pk-q" style="margin-bottom:0">
+        <div class="pk-opts" role="radiogroup" aria-labelledby="pk-title" data-q="need">
           <button type="button" role="radio" aria-checked="true" data-v="all">All</button>
           <button type="button" role="radio" aria-checked="false" data-v="relax">Calm and switched off</button>
           <button type="button" role="radio" aria-checked="false" data-v="knots">Free of knots</button>
@@ -1655,7 +1784,6 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
       <div class="pk-result" id="pk-result" aria-live="polite" hidden></div>
     </div>
 
-    <p class="swipe-hint" aria-hidden="true">Swipe to see more therapies</p>
     <div class="cards" id="cards" role="tabpanel" aria-label="Therapies">
       <article class="card" id="t-signature" data-cat="relax">
         <div class="c-photo"><img src="img/signature-body-massage-in-hennur.webp" alt="Signature Body Massage at Aurum Astra spa in Hennur" loading="lazy" decoding="async" onerror="this.closest('.c-photo').remove()"></div>
@@ -1664,7 +1792,7 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
         <ul class="c-meta"><li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>45–120 min</li><li><svg class="ic" aria-hidden="true"><use href="#i-drop"/></svg>Warm oil</li></ul>
         <div class="press" aria-label="Pressure: Medium"><span class="press-l">Pressure</span><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="press-v">Medium</span></div>
         <p class="from" data-from="2500" hidden></p>
-        <div class="cta"><a class="btn btn-call btn-sm" href="tel:+919353639507" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span class="l-long">Call for price</span><span class="l-short">Call</span></a><a class="btn btn-wa btn-sm wa-link" data-msg="Hi, I&#x27;d love to book a Signature Body Massage. What times are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp</span></a></div>
+        <div class="cta"><a class="btn wa-link btn-wa btn-text" data-msg="Hi, I&#x27;d love to book a Signature Body Massage. What times are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp">Book this &rarr;</a></div>
       </article>
       <article class="card" id="t-couple" data-cat="two">
         <div class="c-photo"><img src="img/couple-massage-in-hennur.webp" alt="Couple's Massage suite at Aurum Astra spa in Hennur" loading="lazy" decoding="async" onerror="this.closest('.c-photo').remove()"></div>
@@ -1673,7 +1801,7 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
         <ul class="c-meta"><li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>90 min, for two</li><li><svg class="ic" aria-hidden="true"><use href="#i-drop"/></svg>Warm oil</li></ul>
         <div class="press" aria-label="Pressure: Medium"><span class="press-l">Pressure</span><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="press-v">Medium</span></div>
         <p class="from" data-from="6000" hidden></p>
-        <div class="cta"><a class="btn btn-call btn-sm" href="tel:+919353639507" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span class="l-long">Call for price</span><span class="l-short">Call</span></a><a class="btn btn-wa btn-sm wa-link" data-msg="Hi, I&#x27;d love to book a Couple&#x27;s Massage. What times are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp</span></a></div>
+        <div class="cta"><a class="btn wa-link btn-wa btn-text" data-msg="Hi, I&#x27;d love to book a Couple&#x27;s Massage. What times are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp">Book this &rarr;</a></div>
       </article>
       <article class="card" id="t-deep" data-cat="relief">
         <div class="c-photo"><img src="img/deep-tissue-massage-in-hennur.webp" alt="Deep Tissue Massage at Aurum Astra spa in Hennur" loading="lazy" decoding="async" onerror="this.closest('.c-photo').remove()"></div>
@@ -1682,7 +1810,7 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
         <ul class="c-meta"><li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>45–120 min</li><li><svg class="ic" aria-hidden="true"><use href="#i-drop"/></svg>Oil</li></ul>
         <div class="press" aria-label="Pressure: Firm"><span class="press-l">Pressure</span><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="press-v">Firm</span></div>
         <p class="from" data-from="2500" hidden></p>
-        <div class="cta"><a class="btn btn-call btn-sm" href="tel:+919353639507" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span class="l-long">Call for price</span><span class="l-short">Call</span></a><a class="btn btn-wa btn-sm wa-link" data-msg="Hi, I&#x27;d love to book a Deep Tissue Massage. What times are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp</span></a></div>
+        <div class="cta"><a class="btn wa-link btn-wa btn-text" data-msg="Hi, I&#x27;d love to book a Deep Tissue Massage. What times are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp">Book this &rarr;</a></div>
       </article>
       <article class="card" id="t-swedish" data-cat="relax">
         <div class="c-photo"><img src="img/swedish-massage-in-hennur.webp" alt="Swedish Massage at Aurum Astra spa in Hennur" loading="lazy" decoding="async" onerror="this.closest('.c-photo').remove()"></div>
@@ -1691,7 +1819,7 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
         <ul class="c-meta"><li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>45–120 min</li><li><svg class="ic" aria-hidden="true"><use href="#i-drop"/></svg>Oil</li></ul>
         <div class="press" aria-label="Pressure: Light"><span class="press-l">Pressure</span><span class="bars"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="press-v">Light</span></div>
         <p class="from" data-from="1800" hidden></p>
-        <div class="cta"><a class="btn btn-call btn-sm" href="tel:+919353639507" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span class="l-long">Call for price</span><span class="l-short">Call</span></a><a class="btn btn-wa btn-sm wa-link" data-msg="Hi, I&#x27;d love to book a Swedish Massage. What times are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp</span></a></div>
+        <div class="cta"><a class="btn wa-link btn-wa btn-text" data-msg="Hi, I&#x27;d love to book a Swedish Massage. What times are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp">Book this &rarr;</a></div>
       </article>
       <article class="card" id="t-aroma" data-cat="relax">
         <div class="c-photo"><img src="img/aromatherapy-massage-in-hennur.webp" alt="Aromatherapy Massage at Aurum Astra spa in Hennur" loading="lazy" decoding="async" onerror="this.closest('.c-photo').remove()"></div>
@@ -1700,7 +1828,7 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
         <ul class="c-meta"><li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>45–120 min</li><li><svg class="ic" aria-hidden="true"><use href="#i-drop"/></svg>Essential oils</li></ul>
         <div class="press" aria-label="Pressure: Light"><span class="press-l">Pressure</span><span class="bars"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="press-v">Light</span></div>
         <p class="from" data-from="1800" hidden></p>
-        <div class="cta"><a class="btn btn-call btn-sm" href="tel:+919353639507" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span class="l-long">Call for price</span><span class="l-short">Call</span></a><a class="btn btn-wa btn-sm wa-link" data-msg="Hi, I&#x27;d love to book an Aromatherapy Massage. What times are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp</span></a></div>
+        <div class="cta"><a class="btn wa-link btn-wa btn-text" data-msg="Hi, I&#x27;d love to book an Aromatherapy Massage. What times are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp">Book this &rarr;</a></div>
       </article>
       <article class="card" id="t-ayurvedic" data-cat="traditional">
         <div class="c-photo"><img src="img/ayurvedic-abhyanga-massage-in-hennur.webp" alt="Ayurvedic Abhyanga massage at Aurum Astra spa in Hennur" loading="lazy" decoding="async" onerror="this.closest('.c-photo').remove()"></div>
@@ -1709,7 +1837,7 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
         <ul class="c-meta"><li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>45–90 min</li><li><svg class="ic" aria-hidden="true"><use href="#i-drop"/></svg>Herbal oil</li></ul>
         <div class="press" aria-label="Pressure: Medium"><span class="press-l">Pressure</span><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="press-v">Medium</span></div>
         <p class="from" data-from="2500" hidden></p>
-        <div class="cta"><a class="btn btn-call btn-sm" href="tel:+919353639507" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span class="l-long">Call for price</span><span class="l-short">Call</span></a><a class="btn btn-wa btn-sm wa-link" data-msg="Hi, I&#x27;d love to book an Ayurvedic Abhyanga massage. What times are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp</span></a></div>
+        <div class="cta"><a class="btn wa-link btn-wa btn-text" data-msg="Hi, I&#x27;d love to book an Ayurvedic Abhyanga massage. What times are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp">Book this &rarr;</a></div>
       </article>
       <article class="card" id="t-balinese" data-cat="traditional relax">
         <div class="c-photo"><img src="img/balinese-massage-in-hennur.webp" alt="Balinese Massage at Aurum Astra spa in Hennur" loading="lazy" decoding="async" onerror="this.closest('.c-photo').remove()"></div>
@@ -1718,7 +1846,7 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
         <ul class="c-meta"><li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>45–120 min</li><li><svg class="ic" aria-hidden="true"><use href="#i-drop"/></svg>Warm oil</li></ul>
         <div class="press" aria-label="Pressure: Medium–firm"><span class="press-l">Pressure</span><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span><span class="press-v">Medium–firm</span></div>
         <p class="from" data-from="2500" hidden></p>
-        <div class="cta"><a class="btn btn-call btn-sm" href="tel:+919353639507" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span class="l-long">Call for price</span><span class="l-short">Call</span></a><a class="btn btn-wa btn-sm wa-link" data-msg="Hi, I&#x27;d love to book a Balinese Massage. What times are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp</span></a></div>
+        <div class="cta"><a class="btn wa-link btn-wa btn-text" data-msg="Hi, I&#x27;d love to book a Balinese Massage. What times are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp">Book this &rarr;</a></div>
       </article>
       <article class="card" id="t-thai" data-cat="relief traditional">
         <div class="c-photo"><img src="img/thai-massage-in-hennur.webp" alt="Thai Massage at Aurum Astra spa in Hennur" loading="lazy" decoding="async" onerror="this.closest('.c-photo').remove()"></div>
@@ -1727,7 +1855,7 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
         <ul class="c-meta"><li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>45–120 min</li><li><svg class="ic" aria-hidden="true"><use href="#i-drop"/></svg>No oil</li></ul>
         <div class="press" aria-label="Pressure: Medium–firm"><span class="press-l">Pressure</span><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span><span class="press-v">Medium–firm</span></div>
         <p class="from" data-from="2500" hidden></p>
-        <div class="cta"><a class="btn btn-call btn-sm" href="tel:+919353639507" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span class="l-long">Call for price</span><span class="l-short">Call</span></a><a class="btn btn-wa btn-sm wa-link" data-msg="Hi, I&#x27;d love to book a Thai Massage. What times are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp</span></a></div>
+        <div class="cta"><a class="btn wa-link btn-wa btn-text" data-msg="Hi, I&#x27;d love to book a Thai Massage. What times are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp">Book this &rarr;</a></div>
       </article>
       <article class="card" id="t-sports" data-cat="relief">
         <div class="c-photo"><img src="img/sports-massage-in-hennur.webp" alt="Sports Massage at Aurum Astra spa in Hennur" loading="lazy" decoding="async" onerror="this.closest('.c-photo').remove()"></div>
@@ -1736,7 +1864,7 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
         <ul class="c-meta"><li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>45–120 min</li><li><svg class="ic" aria-hidden="true"><use href="#i-drop"/></svg>Oil</li></ul>
         <div class="press" aria-label="Pressure: Firm"><span class="press-l">Pressure</span><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="press-v">Firm</span></div>
         <p class="from" data-from="2500" hidden></p>
-        <div class="cta"><a class="btn btn-call btn-sm" href="tel:+919353639507" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span class="l-long">Call for price</span><span class="l-short">Call</span></a><a class="btn btn-wa btn-sm wa-link" data-msg="Hi, I&#x27;d love to book a Sports Massage. What times are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp</span></a></div>
+        <div class="cta"><a class="btn wa-link btn-wa btn-text" data-msg="Hi, I&#x27;d love to book a Sports Massage. What times are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp">Book this &rarr;</a></div>
       </article>
       <article class="card" id="t-jacuzzi" data-cat="indulge two">
         <div class="c-photo"><img src="img/jacuzzi-hydro-jet-bath-in-hennur.webp" alt="Jacuzzi and Hydro Jet Bath at Aurum Astra spa in Hennur" loading="lazy" decoding="async" onerror="this.closest('.c-photo').remove()"></div>
@@ -1745,7 +1873,7 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
         <ul class="c-meta"><li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>60 or 90 min</li><li><svg class="ic" aria-hidden="true"><use href="#i-drop"/></svg>Water jets</li></ul>
         <div class="press press-na"><span class="press-l">Feel</span><span class="press-v">Pure relaxation, no massage pressure</span></div>
         <p class="from" data-from="7000" hidden></p>
-        <div class="cta"><a class="btn btn-call btn-sm" href="tel:+919353639507" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span class="l-long">Call for price</span><span class="l-short">Call</span></a><a class="btn btn-wa btn-sm wa-link" data-msg="Hi, I&#x27;d love to book the Jacuzzi &amp; Hydro Jet Bath. What times are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp</span></a></div>
+        <div class="cta"><a class="btn wa-link btn-wa btn-text" data-msg="Hi, I&#x27;d love to book the Jacuzzi &amp; Hydro Jet Bath. What times are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp">Book this &rarr;</a></div>
       </article>
       <article class="card" id="t-chocolate" data-cat="indulge">
         <div class="c-photo"><img src="img/chocolate-wine-therapy-in-hennur.webp" alt="Chocolate & Wine Therapy body wrap at Aurum Astra spa in Hennur" loading="lazy" decoding="async" onerror="this.closest('.c-photo').remove()"></div>
@@ -1754,14 +1882,14 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
         <ul class="c-meta"><li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>60 min</li><li><svg class="ic" aria-hidden="true"><use href="#i-drop"/></svg>Body wrap</li></ul>
         <div class="press press-na"><span class="press-l">Feel</span><span class="press-v">Pure relaxation, no massage pressure</span></div>
         <p class="from" data-from="4000" hidden></p>
-        <div class="cta"><a class="btn btn-call btn-sm" href="tel:+919353639507" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span class="l-long">Call for price</span><span class="l-short">Call</span></a><a class="btn btn-wa btn-sm wa-link" data-msg="Hi, I&#x27;d love to book the Chocolate &amp; Wine Therapy. What times are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp</span></a></div>
+        <div class="cta"><a class="btn wa-link btn-wa btn-text" data-msg="Hi, I&#x27;d love to book the Chocolate &amp; Wine Therapy. What times are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp">Book this &rarr;</a></div>
       </article>
     </div>
-    <div class="rev-nav" id="card-nav" hidden>
-      <button type="button" class="rev-arrow" id="card-prev" aria-label="Previous therapies">‹</button>
-      <div class="rev-dots" id="card-dots"></div>
-      <button type="button" class="rev-arrow" id="card-next" aria-label="More therapies">›</button>
+    <div class="cards-mobile-nav" id="cards-mobile-nav">
+      <span id="card-counter">1 / 11</span>
+      <button type="button" id="card-viewall">View all therapies ↓</button>
     </div>
+    <button type="button" class="btn btn-secondary cards-seeall" id="cards-seeall">See all 11 therapies</button>
   </div>
 </section>
 
@@ -1787,8 +1915,8 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
     <ul class="stats">
       <li><b>4.9<small>★</small></b><span>Google rating</span></li>
       <li><b>11</b><span>spa therapies</span></li>
-      <li><b>2</b><span>floors, 2,400 sq ft</span></li>
-      <li><b>7 days</b><span>open 10 AM – 10 PM</span></li>
+      <li><b>100%</b><span>female therapists</span></li>
+      <li><b>10 PM</b><span>open late, daily</span></li>
     </ul>
     <ul class="why-list">
       <li id="ladies"><span class="w-ic"><svg class="ic" aria-hidden="true"><use href="#i-female"/></svg></span><div><h3>Trained female therapists</h3><p>Every therapy, every guest. Men are welcome too.</p></div></li>
@@ -1806,11 +1934,37 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
     <span class="orn" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-star"/></svg></span><h2>Rated 4.9 by our first guests</h2>
     <p class="intro rating-line"><span class="stars" aria-label="4.9 out of 5 stars">★★★★★</span> 4.9 on Google, since we opened in September 2026.</p>
     <div class="revs" id="revs" role="region" aria-roledescription="carousel" aria-label="Guest reviews, swipe to read more" tabindex="0">
-      <figure class="rev"><q>Visited this spa for a haircut and massage and I must say I’m thoroughly impressed. The entire premises are super clean and hygienic. The staff members are very professional, well behaved and attentive to customer needs. Had a wonderful relaxing time, thank you.</q><cite>Google review, haircut and massage</cite></figure>
+      <figure class="rev">
+        <div class="stars" aria-hidden="true">★★★★★</div>
+        <p class="rev-lead">Amazing experience 😊 the staff is professional and friendly 👍</p>
+        <cite>Mery, Google review</cite>
+      </figure>
+      <figure class="rev">
+        <div class="stars" aria-hidden="true">★★★★★</div>
+        <p class="rev-lead">Really good experience here.</p>
+        <p class="rev-body">The staff were friendly and understood exactly what I wanted. The place was clean. Will definitely come back again.</p>
+        <button type="button" class="rev-more" hidden>Read more</button>
+        <cite>Akhil, Google review</cite>
+      </figure>
+      <figure class="rev">
+        <div class="stars" aria-hidden="true">★★★★★</div>
+        <p class="rev-lead">Had a really good experience at Aurum Astra Unisex Salon &amp; Spa in Hennur, Bangalore.</p>
+        <p class="rev-body">I was happy with the quality of service and the attention to detail. The overall experience was comfortable and worth the visit. Would recommend Aurum Astra to anyone looking for a good unisex salon and spa in Hennur, Bangalore. Will definitely visit again!</p>
+        <button type="button" class="rev-more" hidden>Read more</button>
+        <cite>Raghunathan, Google review</cite>
+      </figure>
+      <figure class="rev">
+        <div class="stars" aria-hidden="true">★★★★★</div>
+        <p class="rev-lead">The space was clean and relaxing, and the service felt thoughtful from start to finish.</p>
+        <p class="rev-body">I left feeling completely refreshed.</p>
+        <button type="button" class="rev-more" hidden>Read more</button>
+        <cite>Aashique, Google review</cite>
+      </figure>
     </div>
     <div class="rev-nav" id="rev-nav" hidden>
       <button type="button" class="rev-arrow" id="rev-prev" aria-label="Previous review">‹</button>
       <div class="rev-dots" id="rev-dots"></div>
+      <span class="rev-counter" id="rev-counter">1 / 4</span>
       <button type="button" class="rev-arrow" id="rev-next" aria-label="Next review">›</button>
     </div>
   </div>
@@ -1822,7 +1976,7 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
     <div>
       <figure class="ph " data-slot="2" data-file="entrance.webp" data-size="1600 × 1000 px, landscape 16:10" data-desc="Find us: AM Plaza from Hennur–Bagalur Main Road, signage visible"><img src="img/spa-entrance-hennur.webp" alt="Entrance of AM Plaza on Hennur–Bagalur Main Road, home of Aurum Astra spa" loading="lazy" decoding="async" onerror="imgMissing(this)"></figure>
       <h2>Find us on Hennur–Bagalur Main Road</h2>
-      <p class="intro">3rd floor of AM Plaza, with parking and a lift straight up. The salon is on the 4th.</p>
+      <p class="intro">Third floor of AM Plaza, with parking and a lift straight up.</p>
       <address>3rd Floor, AM Plaza, Hennur–Bagalur Main Road, Hennur Bande, Bengaluru, Karnataka 560043</address>
       <dl>
         <div><dt><span class="d-ic"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg></span>Open</dt><dd>Every day, 10:00 AM – 10:00 PM, including Sundays and holidays</dd></div>
@@ -1832,9 +1986,9 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
     <div class="btns">
       <div class="qr-box qr-visit"><div class="qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" class="qr-svg" role="img" aria-label="Second QR code to WhatsApp Aurum Astra"><path fill="#f8f1e7" d="M0 0h29v29h-29z"/><path class="qrline" stroke="#1c0708" d="M2 2.5h7m1 0h6m2 0h1m1 0h7m-25 1h1m5 0h1m1 0h1m2 0h1m1 0h2m1 0h1m1 0h1m5 0h1m-25 1h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h4m1 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m2 0h1m1 0h5m2 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m1 0h2m1 0h2m5 0h1m1 0h3m1 0h1m-25 1h1m5 0h1m2 0h1m2 0h1m1 0h1m3 0h1m5 0h1m-25 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-16 1h3m1 0h2m-15 1h1m2 0h6m3 0h1m2 0h1m1 0h1m2 0h1m1 0h3m-22 1h1m1 0h1m2 0h1m2 0h1m1 0h1m1 0h2m2 0h5m-23 1h3m1 0h2m5 0h1m1 0h6m1 0h1m2 0h1m-25 1h1m3 0h1m5 0h3m3 0h1m1 0h2m1 0h4m-25 1h1m3 0h1m1 0h1m1 0h2m2 0h1m1 0h1m2 0h2m5 0h1m-25 1h1m7 0h2m2 0h2m1 0h1m4 0h1m2 0h1m-24 1h3m1 0h1m1 0h4m2 0h1m1 0h2m1 0h1m2 0h5m-25 1h1m1 0h2m4 0h4m2 0h2m3 0h1m1 0h2m1 0h1m-25 1h1m2 0h2m1 0h1m1 0h1m1 0h2m1 0h2m1 0h5m1 0h2m-16 1h3m1 0h1m1 0h1m1 0h1m3 0h1m1 0h2m-24 1h7m1 0h1m2 0h2m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m-25 1h1m5 0h1m1 0h2m1 0h1m1 0h2m1 0h1m3 0h1m-21 1h1m1 0h3m1 0h1m1 0h1m1 0h1m4 0h6m-21 1h1m1 0h3m1 0h1m1 0h1m2 0h2m2 0h4m4 0h2m-25 1h1m1 0h3m1 0h1m2 0h1m1 0h3m3 0h1m2 0h5m-25 1h1m5 0h1m2 0h2m1 0h1m1 0h1m4 0h2m1 0h3m-25 1h7m1 0h1m1 0h2m2 0h1m1 0h1m1 0h1m2 0h1m2 0h1"/></svg>
 </div><p><b>Scan to WhatsApp us</b>From your phone camera, with a message ready to send.</p></div>
-      <a class="btn btn-call" href="tel:+919353639507" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span>Call now for price</span></a>
-      <a class="btn btn-line" href="https://maps.app.goo.gl/1UoDa68v2FxfZRhf6" target="_blank" rel="noopener" data-track="directions"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><span>Get directions</span></a>
-      <a class="btn btn-wa wa-link" data-msg="Hi Aurum Astra, I'd love to book some time at the spa. What slots do you have?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp us</span></a>
+      <a class="btn btn-line btn-primary" href="https://maps.app.goo.gl/1UoDa68v2FxfZRhf6" target="_blank" rel="noopener" data-track="directions"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><span>Get directions</span></a>
+      <a class="btn btn-wa wa-link btn-secondary" data-msg="Hi Aurum Astra, I'd love to book some time at the spa. What slots do you have?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>Book on WhatsApp</span></a>
+      <a class="btn btn-call btn-text" href="tel:+919353639507" data-track="call"><span>Call +91 93536 39507</span></a>
     </div>
   </div>
 </section>
@@ -1979,8 +2133,8 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
 </footer>
 
 <nav class="bar" aria-label="Quick contact">
-  <a class="btn btn-call" href="tel:+919353639507" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span>Call now for price</span></a>
-  <a class="btn btn-wa wa-link" data-msg="Hi Aurum Astra, I'd love to book some time at the spa. What slots do you have?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp</span></a>
+  <a class="btn btn-wa wa-link" data-msg="Hi Aurum Astra, I'd love to book some time at the spa. What slots do you have?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span class="bar-wa-text"><b>Book on WhatsApp</b><small>10% off your first visit</small></span></a>
+  <a class="btn btn-call bar-call" href="tel:+919353639507" data-track="call" aria-label="Call Aurum Astra"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg></a>
 </nav>
 
 <script>
@@ -1994,7 +2148,7 @@ const CONFIG = {
     ribbon: 'Launch offer for first-time guests',
     chip: '10% off your first visit',   // short version shown on the first screen ('' hides it)
     title: 'Your first visit, 10% off',
-    text: "Just opened in Hennur. Mention this page when you call or message and we'll take 10% off your first therapy.",
+    text: "Just opened in Hennur. Mention this page when you book.",
     headline: 'Spa offer {near}: 10% off your first visit'   // heading for "offers/deals" keywords
   },
   reviews: [                 // Optional: replaces the 3 reviews written into the page. Copy real Google reviews word for word.
@@ -2124,9 +2278,7 @@ renderHeading();
 
 /* Therapy filter tabs */
 function showCat(cat){
-  document.querySelectorAll('#cards .card').forEach(c => c.hidden = cat !== 'all' && !c.dataset.cat.split(' ').includes(cat));
-  $('#cards').scrollLeft = 0;
-  if (window.cardsCarousel) cardsCarousel.draw();
+  if (window.setCardsCategory) window.setCardsCategory(cat);
 }
 
 /* Show one card: switch to All, bring it into view and highlight it */
@@ -2189,7 +2341,7 @@ function focusCard(id){
       if (first){
         const badge = document.createElement('p'); badge.className = 'match-badge pick-badge'; badge.textContent = 'Our pick for you';
         first.prepend(badge); track.prepend(first); track.scrollLeft = 0;
-        if (window.cardsCarousel) cardsCarousel.draw();
+        showCat(CAT[v]);
         first.classList.remove('flash'); void first.offsetWidth; first.classList.add('flash');
       }
       return;
@@ -2200,14 +2352,14 @@ function focusCard(id){
 
 /* Desktop: show the number on call buttons (most computers can't place calls) */
 if (matchMedia('(hover:hover) and (pointer:fine)').matches){
-  document.querySelectorAll('a[data-track="call"]:not(.nav-call)').forEach(a => { const l = a.querySelector('span'); if (l && !a.closest('.card')) l.textContent = 'Call +91 93536 39507'; });
+  document.querySelectorAll('a[data-track="call"]:not(.nav-call):not(.bar-call)').forEach(a => { const l = a.querySelector('span'); if (l && !a.closest('.card')) l.textContent = 'Call +91 93536 39507'; });
 }
 
 /* Opening-hours switch (Bengaluru time). Outside 10 AM – 10 PM, call buttons become WhatsApp.
    Test with ?hours=closed or ?hours=open */
 (function(){
   const OPEN = 10, CLOSE = 22;
-  const originals = [...document.querySelectorAll('a[data-track="call"]:not(.nav-call)')]
+  const originals = [...document.querySelectorAll('a[data-track="call"]:not(.nav-call):not(.bar-call)')]
     .map(a => ({a, href:a.href, html:a.innerHTML, cls:a.className}));
   const waMsg = "Hi Aurum Astra, I'd love to book some time at the spa. Please message me when you open.";
   function istHour(){
@@ -2219,8 +2371,7 @@ if (matchMedia('(hover:hover) and (pointer:fine)').matches){
     const open = istOpen();
     const st = document.getElementById('status');
     st.classList.toggle('closed', !open);
-    st.textContent = open ? 'Open now, until 10 PM' : 'Closed now. We open at 10 AM, and reply to WhatsApp messages first thing.';
-    document.querySelector('.bar').classList.toggle('closed', !open);
+    st.textContent = open ? 'Open now, until 10 PM · Therapies from ₹1,800' : 'Closed now. We open at 10 AM, and reply to WhatsApp messages first thing.';
     originals.forEach(o => {
       const twin = o.a.parentElement.querySelector('.wa-link');
       if (twin && twin !== o.a) twin.hidden = !open;
@@ -2240,11 +2391,17 @@ if (matchMedia('(hover:hover) and (pointer:fine)').matches){
 /* Hero offer chip follows the offer settings */
 if (CONFIG.offer.chip) $('#hero-offer').textContent = CONFIG.offer.chip; else $('#hero-offer').hidden = true;
 
-/* Sticky mobile bar: only after the hero buttons scroll out of view */
+/* Sticky mobile bar: hidden while the hero, #visit or .closer buttons are in view */
 (function(){
-  const bar = document.querySelector('.bar'), target = document.querySelector('.hero .btns');
-  if (!bar || !target || !('IntersectionObserver' in window)) { bar && bar.classList.add('show'); return; }
-  new IntersectionObserver(([e]) => bar.classList.toggle('show', !e.isIntersecting && e.boundingClientRect.top < 0)).observe(target);
+  const bar = document.querySelector('.bar');
+  const targets = [document.querySelector('.hero .btns'), document.querySelector('#visit .btns'), document.querySelector('.closer .btns')].filter(Boolean);
+  if (!bar || !targets.length || !('IntersectionObserver' in window)) { bar && bar.classList.add('show'); return; }
+  const visible = new Map();
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => visible.set(e.target, e.isIntersecting));
+    bar.classList.toggle('show', ![...visible.values()].some(Boolean));
+  });
+  targets.forEach(t => io.observe(t));
 })();
 
 
@@ -2277,7 +2434,84 @@ function carousel(track, nav, dots, prev, next){
   return { draw, go, items };
 }
 const reviewsCarousel = carousel($('#revs'), $('#rev-nav'), $('#rev-dots'), $('#rev-prev'), $('#rev-next'));
-window.cardsCarousel = carousel($('#cards'), $('#card-nav'), $('#card-dots'), $('#card-prev'), $('#card-next'));
+
+/* Reviews: mobile "1 / N" counter + "Read more" toggle */
+(function(){
+  const track = $('#revs'), counter = $('#rev-counter');
+  if (!track || !counter) return;
+  function updateCounter(){
+    const items = [...track.querySelectorAll('.rev')];
+    if (!items.length) return;
+    const trackRect = track.getBoundingClientRect();
+    let idx = 0;
+    items.forEach((c,i) => { if (c.getBoundingClientRect().left - trackRect.left < trackRect.width/2) idx = i; });
+    counter.textContent = (idx+1) + ' / ' + items.length;
+  }
+  let t; track.addEventListener('scroll', () => { clearTimeout(t); t = setTimeout(updateCounter, 60); }, {passive:true});
+  addEventListener('resize', updateCounter);
+  updateCounter();
+
+  document.querySelectorAll('.rev-more').forEach(btn => {
+    const body = btn.previousElementSibling;
+    if (!body || !body.classList.contains('rev-body')) return;
+    function check(){ btn.hidden = body.scrollHeight <= body.clientHeight + 1; }
+    check(); addEventListener('resize', check);
+    btn.addEventListener('click', () => { body.classList.add('expanded'); btn.hidden = true; });
+  });
+})();
+
+/* Therapy cards: mobile counter + view-all toggle, desktop 6-card grid + see-all toggle */
+(function(){
+  const track = $('#cards');
+  if (!track) return;
+  const counter = $('#card-counter'), viewAllBtn = $('#card-viewall'), seeAllBtn = $('#cards-seeall');
+  let activeCat = 'all', showAllDesktop = false, listView = false;
+
+  function updateCounter(){
+    if (!counter) return;
+    const items = [...track.querySelectorAll('.card')].filter(c => !c.hidden);
+    if (!items.length) return;
+    const trackRect = track.getBoundingClientRect();
+    let idx = 0;
+    items.forEach((c,i) => { if (c.getBoundingClientRect().left - trackRect.left < trackRect.width/2) idx = i; });
+    counter.textContent = (idx+1) + ' / ' + items.length;
+  }
+
+  function updateVisibility(){
+    const all = [...track.querySelectorAll('.card')];
+    const isGrid = matchMedia('(min-width:768px)').matches;
+    let shown = 0;
+    all.forEach(c => {
+      const matches = activeCat === 'all' || c.dataset.cat.split(' ').includes(activeCat);
+      let hide = !matches;
+      if (!hide && isGrid && activeCat === 'all' && !showAllDesktop && shown >= 6) hide = true;
+      if (!hide) shown++;
+      c.hidden = hide;
+    });
+    track.scrollLeft = 0;
+    if (seeAllBtn) seeAllBtn.hidden = activeCat !== 'all';
+    updateCounter();
+  }
+
+  let st; track.addEventListener('scroll', () => { clearTimeout(st); st = setTimeout(updateCounter, 60); }, {passive:true});
+  addEventListener('resize', () => { updateVisibility(); });
+
+  if (seeAllBtn) seeAllBtn.addEventListener('click', () => {
+    showAllDesktop = !showAllDesktop;
+    seeAllBtn.textContent = showAllDesktop ? 'Show fewer' : 'See all 11 therapies';
+    updateVisibility();
+  });
+
+  if (viewAllBtn) viewAllBtn.addEventListener('click', () => {
+    listView = !listView;
+    track.classList.toggle('list-view', listView);
+    viewAllBtn.textContent = listView ? 'Show fewer ↑' : 'View all therapies ↓';
+    if (counter) counter.hidden = listView;
+  });
+
+  window.setCardsCategory = function(cat){ activeCat = cat; updateVisibility(); };
+  updateVisibility();
+})();
 
 /* Google Ads tag + conversions */
 if (CONFIG.adsId){
