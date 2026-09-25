@@ -260,7 +260,7 @@
    "department": {
     "@type": "BeautySalon",
     "name": "Aurum Astra Unisex Salon",
-    "description": "Hair, skin, nails and grooming for women and men, on the 4th floor.",
+    "description": "Hair, skin, nails and grooming for women and men, on the 3rd floor.",
     "url": "https://aurumastra.in",
     "address": {
      "@type": "PostalAddress",
@@ -987,11 +987,25 @@ h2{font:500 clamp(2rem,4.4vw,3.1rem)/1.1 var(--serif);margin:0 0 14px;max-width:
 .newbox p{color:var(--mut);margin:0 0 20px}
 
 /* areas */
-.areas{display:grid;gap:0 40px}
-@media(min-width:760px){.areas{grid-template-columns:1fr 1fr}}
-.areas div{padding:20px 0;border-top:1px solid var(--iline)}
-.areas h3{font:500 1.25rem/1.3 var(--serif);margin:0 0 6px}
-.areas p{margin:0;color:var(--imut);font-size:.96rem}
+/* ===== Section 15: areas we serve ===== */
+.areas{display:grid;gap:0}
+.areas details{border-top:1px solid var(--iline)}
+.areas details:last-child{border-bottom:1px solid var(--iline)}
+.areas summary{list-style:none;cursor:pointer;padding:11px 26px 11px 0;position:relative}
+.areas summary::-webkit-details-marker{display:none}
+.areas h3{font:500 16px/1.3 var(--serif);margin:0}
+.areas summary::after{content:"+";position:absolute;right:4px;top:8px;font:400 1.35rem/1 var(--sans);color:var(--gold-d);transition:transform .2s}
+.areas details[open] summary::after{transform:rotate(45deg)}
+.areas p{margin:0 0 10px;color:var(--imut);font-size:.9rem}
+@media(min-width:1024px){
+  .areas{grid-template-columns:repeat(3,1fr);column-gap:40px;row-gap:32px}
+  .areas details{border:0;padding:0}
+  .areas details:last-child{border:0}
+  .areas summary{padding:0;cursor:default;pointer-events:none}
+  .areas summary::after{display:none}
+  .areas h3{font-size:20px}
+  .areas p{display:block;margin:0;font-size:14px}
+}
 
 /* find */
 .find{display:grid;gap:36px}
@@ -1004,14 +1018,16 @@ h2{font:500 clamp(2rem,4.4vw,3.1rem)/1.1 var(--serif);margin:0 0 14px;max-width:
 .find .btn{width:100%}
 
 /* faq */
-.faq{max-width:800px}
+/* ===== Section 16: FAQ ===== */
+.faq{max-width:820px;margin:0 auto}
 .faq details{border-top:1px solid var(--iline)}
 .faq details:last-child{border-bottom:1px solid var(--iline)}
-.faq summary{list-style:none;cursor:pointer;padding:18px 40px 18px 0;position:relative;font:500 1.15rem/1.35 var(--serif)}
+.faq summary{list-style:none;cursor:pointer;padding:18px 40px 18px 0;position:relative;min-height:56px;display:flex;align-items:center;font:500 17px/1.35 var(--serif)}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";position:absolute;right:6px;top:14px;font:400 1.5rem/1 var(--sans);color:var(--gold-text)}
-.faq details[open] summary::after{content:"−"}
-.faq details p{margin:0 0 18px;color:var(--imut);max-width:66ch}
+.faq summary::after{content:"+";position:absolute;right:6px;top:50%;margin-top:-14px;font:400 1.5rem/28px var(--sans);color:var(--gold-d);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin:0 0 18px;color:var(--imut);max-width:68ch;font:15px/1.6 var(--sans)}
+@media(min-width:760px){.faq summary{font-size:19px}}
 
 /* closer */
 .closer{text-align:center;padding:96px 0}
@@ -1019,16 +1035,41 @@ h2{font:500 clamp(2rem,4.4vw,3.1rem)/1.1 var(--serif);margin:0 0 14px;max-width:
 .closer p{color:var(--mut);max-width:48ch;margin:0 auto 30px}
 .closer .btns{justify-content:center}
 
+/* ===== Section 17: closing CTA ===== */
+.closer .line{font-size:32px}
+.closer .btns{flex-direction:column}
+.closer .btns .btn{width:100%}
+@media(min-width:760px){
+  .closer .line{font-size:48px}
+  .closer .btns{flex-direction:row}
+  .closer .btns .btn{width:auto;min-width:220px}
+}
+
 /* also search */
 .also{padding:32px 0 36px;border-top:1px solid var(--line)}
 .also h2{font:500 1rem/1.3 var(--sans);color:var(--mut);margin:0 0 12px;max-width:none}
-.also ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
-.also a{display:inline-block;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:.74rem;line-height:1.5;color:var(--mut);white-space:nowrap}
+.also ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.also a{display:inline-flex;align-items:center;height:32px;box-sizing:border-box;text-decoration:none;border:1px solid var(--line);border-radius:4px;padding:0 12px;font-size:13px;color:var(--mut);white-space:nowrap}
 .also a:hover{color:var(--champ);border-color:var(--champ)}
+.also-more{display:none}
+@media(max-width:759px){
+  .also ul li:nth-child(n+7){display:none}
+  .also.expanded ul li{display:list-item}
+  .also-more{display:block;margin:14px 0 0;padding:0;background:none;border:0;color:var(--champ);font:500 13px/1.3 var(--sans);text-decoration:underline;cursor:pointer}
+}
 
+/* ===== Section 18: also-search + footer ===== */
 footer{padding:40px 0 48px;border-top:1px solid var(--line);color:var(--mut);font-size:.88rem}
 footer p{margin:0 0 8px}
 footer a{color:var(--champ)}
+.foot-grid{display:grid;gap:24px}
+.foot-links ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:2px 12px}
+.foot-links a{display:flex;align-items:center;min-height:44px}
+@media(min-width:760px){
+  .foot-grid{grid-template-columns:1.3fr 1fr 1fr;gap:32px}
+  .foot-links ul{grid-template-columns:1fr;gap:8px}
+  .foot-links a{min-height:0}
+}
 
 .bar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;align-items:stretch;gap:8px;padding:10px 16px;padding-bottom:calc(10px + env(safe-area-inset-bottom));background:rgba(28,7,8,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line)}
 @media(min-width:768px){.bar{display:none}}
@@ -1168,11 +1209,6 @@ section{padding:96px 0}
 
 .rev-arrow{border:0;background:rgba(246,237,226,.08)}
 
-/* keyword links: plain text */
-.also ul{gap:4px 16px}
-.also a{border:0;padding:4px 0;border-radius:0;font-size:.8rem}
-.also a:hover{text-decoration:underline}
-
 /* QR without frame */
 .qr{border:0}
 
@@ -1180,19 +1216,22 @@ section{padding:96px 0}
 .band{position:relative;padding:0;background:var(--night)}
 .band-ph{aspect-ratio:auto;height:min(64vh,560px);border-radius:0;display:block}
 .band-ph.noimg{background:radial-gradient(1px 1px at 20% 30%,rgba(240,195,130,.6) 50%,transparent 52%),radial-gradient(1.2px 1.2px at 70% 60%,rgba(240,195,130,.5) 50%,transparent 52%),radial-gradient(ellipse 70% 90% at 70% 40%,var(--wine),var(--night))}
-.band-ph::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(28,7,8,0) 35%,rgba(28,7,8,.85) 100%);pointer-events:none}
+.band-ph::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(28,7,8,0) 50%,rgba(28,7,8,.85) 100%);pointer-events:none}
 .band-text{position:absolute;left:0;right:0;bottom:44px;z-index:2}
 .band-line{font:400 clamp(1.7rem,4vw,3rem)/1.15 var(--serif);max-width:20ch;margin:0;color:var(--ivory);text-wrap:balance}
 @media(max-width:640px){.band-ph{height:62vh}.band-text{bottom:30px}}
 .band-ph.empty::after{z-index:3;top:14px;bottom:auto}
 
 /* pull quote */
-.pull{padding:110px 0;background:var(--night)}
-.pull blockquote{margin:0 auto;max-width:880px;text-align:center}
-.pull p{font:italic 400 clamp(1.8rem,4.4vw,3.2rem)/1.2 var(--serif);color:var(--ivory);margin:0 0 22px;text-wrap:balance}
+.pull{padding:var(--section-y-m) 0;background:var(--night)}
+.pull blockquote{margin:0 auto;max-width:760px;text-align:center}
+.pull p{font:italic 400 26px/1.3 var(--serif);color:var(--ivory);margin:0 0 22px;text-wrap:balance;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .pull p::before{content:"“";display:block;font:400 5rem/0.5 var(--serif);color:var(--champ);margin-bottom:26px}
 .pull footer{font-size:.9rem;color:var(--mut);border:0;padding:0}
-@media(max-width:640px){.pull{padding:76px 0}}
+@media(min-width:1024px){
+  .pull{padding:var(--section-y) 0}
+  .pull p{font-size:40px;line-height:1.2;-webkit-line-clamp:2}
+}
 
 /* gallery on cream */
 #inside .ph.empty::after{background:rgba(28,7,8,.75)}
@@ -1331,11 +1370,14 @@ svg.ic{fill:none;stroke:currentColor;stroke-width:1.5}
 
 /* couples icon list */
 .icon-list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
-.icon-list li{display:flex;gap:14px;align-items:flex-start;padding:16px;border-radius:12px;background:#fffaf3;box-shadow:0 1px 0 rgba(172,127,63,.18),0 8px 20px -16px rgba(42,18,19,.35)}
-.li-ic{width:42px;height:42px;flex:none;display:grid;place-items:center;border-radius:50%;background:linear-gradient(160deg,#4a1618,#2b0c0d);color:var(--champ)}
+.icon-list li{display:flex;gap:14px;align-items:flex-start;padding:24px;border-radius:var(--card-radius);background:#fffaf3;border:1px solid var(--iline)}
+.li-ic{width:42px;height:42px;flex:none;display:grid;place-items:center;border-radius:50%;background:var(--wine);color:var(--champ)}
 .li-ic .ic{width:21px;height:21px}
-.icon-list b{display:block;font:500 1.12rem/1.3 var(--serif);margin-bottom:2px}
-.icon-list span{color:var(--imut);font-size:.92rem}
+.icon-list b{display:block;font:500 20px/1.3 var(--serif);margin-bottom:2px;color:var(--ink)}
+.icon-list span{display:block;color:var(--imut);font-size:.92rem}
+.icon-list .li-price{margin-top:8px;font-weight:600;color:var(--gold-text)}
+.icon-list .btn-text{margin-top:10px}
+#couples .li-ic{background:var(--wine);color:var(--champ)}
 
 /* areas + visit icons */
 .areas h3{display:flex;align-items:center;gap:8px}
@@ -1423,7 +1465,6 @@ h2{font-size:clamp(1.75rem,min(4.2vw,5.4vh),3rem)}
 .feat .ph,#couples .ph{aspect-ratio:auto;height:clamp(150px,26vh,300px)}
 .find .ph{aspect-ratio:auto;height:clamp(150px,26vh,300px)}
 @media(min-width:900px){.gallery{grid-auto-rows:clamp(140px,24vh,260px)}}
-.band-ph{height:min(62svh,560px)}
 
 /* ===== Fit pass 2 ===== */
 section{padding:clamp(40px,7vh,96px) 0}
@@ -1634,7 +1675,41 @@ section{padding:clamp(40px,7vh,96px) 0}
   .find .btns{background:var(--wine2);border:1px solid var(--line);border-radius:var(--card-radius);padding:32px}
 }
 
-@media(prefers-reduced-motion:reduce){.card,.btn,.bar{transition:none}html{scroll-behavior:auto}.card.flash{animation:none}}
+/* ===== Section 11: mood band ===== */
+.band-ph{height:min(70svh,560px)}
+.band-text.wrap{display:flex;flex-direction:column;align-items:flex-start;padding:0 24px;bottom:24px}
+.band-line{font-size:34px}
+.band-text .btn{margin-top:20px;width:100%;justify-content:center}
+@media(min-width:1024px){
+  .band-ph{height:min(70vh,640px)}
+  .band-text.wrap{padding:0 64px;bottom:64px}
+  .band-line{font-size:56px}
+  .band-text .btn{width:auto;min-width:220px}
+}
+
+/* ===== Section 12: inside gallery ===== */
+.gallery .ph{border-radius:8px}
+@media(max-width:899px){
+  #inside .intro{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .gallery{gap:0}
+  .gallery .ph{aspect-ratio:1/1}
+  .gallery .ph:first-child{grid-column:1/-1;aspect-ratio:4/3}
+}
+@media(min-width:900px){.gallery{gap:8px}}
+
+/* ===== Section 13: couples & packages ===== */
+#couples .ph{border-radius:var(--card-radius)}
+#couples .btns{display:flex;flex-direction:column;gap:10px}
+#couples .btns .btn{width:100%}
+@media(min-width:1024px){
+  #couples .feat{grid-template-columns:45fr 55fr}
+  #couples .ph{aspect-ratio:4/5}
+  .icon-list{grid-template-columns:1fr 1fr}
+  #couples .btns{flex-direction:row}
+  #couples .btns .btn{width:auto;flex:1 1 0}
+}
+
+@media(prefers-reduced-motion:reduce){.card,.btn,.bar,.areas summary::after,.faq summary::after{transition:none}html{scroll-behavior:auto}.card.flash{animation:none}}
 </style>
 <script>
 /* Photos: on the live site a missing photo quietly disappears.
@@ -2000,6 +2075,7 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
   </figure>
   <div class="band-text wrap">
     <p class="band-line">Lights low. Phone away. Nowhere else to be.</p>
+    <a class="btn btn-wa wa-link btn-secondary" data-msg="Hi Aurum Astra, I'd love some time to unwind. Could you share your prices and today's slots?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>Reserve your hour</span></a>
   </div>
 </section>
 
@@ -2025,13 +2101,13 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
 <figure class="ph " data-slot="9" data-file="couple-suite.webp" data-size="1200 × 900 px, landscape 4:3" data-desc="Couple's suite, both beds prepared, warm low light"><img src="img/couples-massage-suite-hennur.webp" alt="Couple's spa suite for anniversary and honeymoon massage in Bengaluru" loading="lazy" decoding="async" onerror="imgMissing(this)"></figure>
       <h2 style="margin-top:28px">Couple spa in Bengaluru, made for occasions</h2>
       <p class="intro">An evening that's just the two of you. Side by side in a private suite, two therapists moving in step, then a quiet soak together in the jacuzzi.</p>
-      <div class="btns"><a class="btn btn-call" href="tel:+919353639507" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span>Call now for price</span></a><a class="btn btn-wa wa-link" data-msg="Hi Aurum Astra, we'd love to plan a couple's evening at the spa. What would you suggest?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>Plan on WhatsApp</span></a></div>
+      <div class="btns"><a class="btn btn-wa wa-link btn-primary" data-msg="Hi Aurum Astra, we'd love to plan a couple's evening at the spa. What would you suggest?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>Plan on WhatsApp</span></a><a class="btn btn-call btn-secondary" href="tel:+919353639507" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span>Call us</span></a></div>
     </div>
     <ul class="icon-list">
-      <li><span class="li-ic"><svg class="ic" aria-hidden="true"><use href="#i-two"/></svg></span><div><b>Couple's Massage, 90 minutes</b><span>Two therapists, one shared private suite.</span></div></li>
-      <li><span class="li-ic"><svg class="ic" aria-hidden="true"><use href="#i-heart"/></svg></span><div><b>Honeymoon &amp; Anniversary Package</b><span>Foot ritual, a massage each, scrub, private jacuzzi and chocolates.</span></div></li>
-      <li><span class="li-ic"><svg class="ic" aria-hidden="true"><use href="#i-bubbles"/></svg></span><div><b>Signature Spa Journey</b><span>Massage, scrub, de-tan, polish and jacuzzi in one afternoon.</span></div></li>
-      <li><span class="li-ic"><svg class="ic" aria-hidden="true"><use href="#i-gift"/></svg></span><div><b>Spa gift vouchers</b><span>Any amount or therapy, printed or digital, valid a full year.</span></div></li>
+      <li><span class="li-ic"><svg class="ic" aria-hidden="true"><use href="#i-two"/></svg></span><div><b>Couple's Massage, 90 minutes</b><span>Two therapists, one shared private suite.</span><span class="li-price">Price on request</span><a class="btn wa-link btn-wa btn-text" data-msg="Hi, I'd like to know about the Couple's Massage, 90 minutes." href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp">Enquire &rarr;</a></div></li>
+      <li><span class="li-ic"><svg class="ic" aria-hidden="true"><use href="#i-heart"/></svg></span><div><b>Honeymoon &amp; Anniversary Package</b><span>Foot ritual, a massage each, scrub, private jacuzzi and chocolates.</span><span class="li-price">Price on request</span><a class="btn wa-link btn-wa btn-text" data-msg="Hi, I'd like to know about the Honeymoon &amp; Anniversary Package." href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp">Enquire &rarr;</a></div></li>
+      <li><span class="li-ic"><svg class="ic" aria-hidden="true"><use href="#i-bubbles"/></svg></span><div><b>Signature Spa Journey</b><span>Massage, scrub, de-tan, polish and jacuzzi in one afternoon.</span><span class="li-price">Price on request</span><a class="btn wa-link btn-wa btn-text" data-msg="Hi, I'd like to know about the Signature Spa Journey." href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp">Enquire &rarr;</a></div></li>
+      <li><span class="li-ic"><svg class="ic" aria-hidden="true"><use href="#i-gift"/></svg></span><div><b>Spa gift vouchers</b><span>Any amount or therapy, printed or digital, valid a full year.</span><a class="btn wa-link btn-wa btn-text" data-msg="Hi, I'd like to know about Spa gift vouchers." href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp">Enquire &rarr;</a></div></li>
     </ul>
   </div>
 </section>
@@ -2040,8 +2116,8 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
 <section class="pull" aria-label="What a guest said">
   <div class="wrap">
     <blockquote>
-      <p>The entire premises are super clean and hygienic. The staff members are very professional…</p>
-      <footer>Google review, haircut and massage guest</footer>
+      <p>I left feeling completely refreshed.</p>
+      <footer>— Aashique, Google review</footer>
     </blockquote>
   </div>
 </section>
@@ -2052,12 +2128,12 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
     <h2>The spa near you in North-East Bengaluru</h2>
     <p class="intro">Guests come to us from across Hennur and the neighbourhoods around it.</p>
     <div class="areas">
-      <div><h3><svg class="ic a-ic" aria-hidden="true"><use href="#i-pin"/></svg>Spa in Hennur</h3><p>On Hennur–Bagalur Main Road in Hennur Bande. Your nearest luxury spa if you live in Hennur.</p></div>
-      <div><h3><svg class="ic a-ic" aria-hidden="true"><use href="#i-pin"/></svg>Spa near Kothanur</h3><p>A quick drive across for a full body massage, couple's session or jacuzzi.</p></div>
-      <div><h3><svg class="ic a-ic" aria-hidden="true"><use href="#i-pin"/></svg>Spa near Kalyan Nagar and HRBR Layout</h3><p>Straight up Hennur Main Road, with parking at the building.</p></div>
-      <div><h3><svg class="ic a-ic" aria-hidden="true"><use href="#i-pin"/></svg>Spa near Hennur Gardens and Hennur Cross</h3><p>Minutes away, and open late enough for an evening massage.</p></div>
-      <div><h3><svg class="ic a-ic" aria-hidden="true"><use href="#i-pin"/></svg>Spa near Byrathi and Bagalur Road</h3><p>An easy stop along the Hennur–Bagalur corridor.</p></div>
-      <div><h3><svg class="ic a-ic" aria-hidden="true"><use href="#i-pin"/></svg>Spa near Kammanahalli and Manyata</h3><p>Close enough for an after-work deep tissue or Swedish massage.</p></div>
+      <details open><summary><h3><svg class="ic a-ic" aria-hidden="true"><use href="#i-pin"/></svg>Spa in Hennur</h3></summary><p>On Hennur–Bagalur Main Road in Hennur Bande. Your nearest luxury spa if you live in Hennur.</p></details>
+      <details><summary><h3><svg class="ic a-ic" aria-hidden="true"><use href="#i-pin"/></svg>Spa near Kothanur</h3></summary><p>A quick drive across for a full body massage, couple's session or jacuzzi.</p></details>
+      <details><summary><h3><svg class="ic a-ic" aria-hidden="true"><use href="#i-pin"/></svg>Spa near Kalyan Nagar and HRBR Layout</h3></summary><p>Straight up Hennur Main Road, with parking at the building.</p></details>
+      <details><summary><h3><svg class="ic a-ic" aria-hidden="true"><use href="#i-pin"/></svg>Spa near Hennur Gardens and Hennur Cross</h3></summary><p>Minutes away, and open late enough for an evening massage.</p></details>
+      <details><summary><h3><svg class="ic a-ic" aria-hidden="true"><use href="#i-pin"/></svg>Spa near Byrathi and Bagalur Road</h3></summary><p>An easy stop along the Hennur–Bagalur corridor.</p></details>
+      <details><summary><h3><svg class="ic a-ic" aria-hidden="true"><use href="#i-pin"/></svg>Spa near Kammanahalli and Manyata</h3></summary><p>Close enough for an after-work deep tissue or Swedish massage.</p></details>
     </div>
   </div>
 </section>
@@ -2087,8 +2163,8 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
     <p class="line">The room is warm. The oil is ready.</p>
     <p>Same-day slots are often open until 10 PM. One message, and the rest of your evening takes care of itself.</p>
     <div class="btns">
-      <a class="btn btn-call" href="tel:+919353639507" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span>Call to reserve</span></a>
-      <a class="btn btn-wa wa-link" data-msg="Hi Aurum Astra, I'd love to come in today. What slots are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>Reserve on WhatsApp</span></a>
+      <a class="btn btn-wa wa-link btn-primary" data-msg="Hi Aurum Astra, I'd love to come in today. What slots are free?" href="https://wa.me/919353639507" target="_blank" rel="noopener" data-track="whatsapp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span>Book on WhatsApp</span></a>
+      <a class="btn btn-call btn-secondary" href="tel:+919353639507" data-track="call"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span>Call us</span></a>
     </div>
   </div>
 </section>
@@ -2119,16 +2195,30 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
       <li><a href="#visit">Spa on Hennur Bagalur Road</a></li>
       <li><a href="#faq">Spa open now near me</a></li>
     </ul>
+    <button type="button" class="also-more" aria-expanded="false">Show more</button>
   </div>
 </section>
 </main>
 
 <footer>
-  <div class="wrap">
-    <p><b>Aurum Astra Unisex Salon &amp; Luxury Spa</b>, 3rd Floor, AM Plaza, Hennur–Bagalur Main Road, Hennur Bande, Bengaluru 560043. +91 91486 27266 / +91 93536 39507. Open daily 10:00 AM – 10:00 PM.</p>
-    <p>Strictly a professional salon and wellness spa. Operated by Aurum Astra Pvt Ltd.</p>
-    <p><a href="/terms-and-conditions">Terms &amp; Conditions</a> &nbsp; <a href="/privacy-policy">Privacy Policy</a> &nbsp; <a href="/refund-policy">Refund Policy</a></p>
-    <p><a href="https://aurumastra.in">aurumastra.in</a> &nbsp; <a href="https://instagram.com/aurumastra" target="_blank" rel="noopener">Instagram</a></p>
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <p><b>Aurum Astra Unisex Salon &amp; Luxury Spa</b>, 3rd Floor, AM Plaza, Hennur–Bagalur Main Road, Hennur Bande, Bengaluru 560043.</p>
+      <p>Strictly a professional salon and wellness spa. Operated by Aurum Astra Pvt Ltd.</p>
+    </div>
+    <div class="foot-contact">
+      <p>Open daily 10:00 AM – 10:00 PM.</p>
+      <p><a href="tel:+919353639507">+91 93536 39507</a></p>
+    </div>
+    <div class="foot-links">
+      <ul>
+        <li><a href="/terms-and-conditions">Terms &amp; Conditions</a></li>
+        <li><a href="/privacy-policy">Privacy Policy</a></li>
+        <li><a href="/refund-policy">Refund Policy</a></li>
+        <li><a href="https://aurumastra.in">aurumastra.in</a></li>
+        <li><a href="https://instagram.com/aurumastra" target="_blank" rel="noopener">Instagram</a></li>
+      </ul>
+    </div>
   </div>
 </footer>
 
@@ -2390,6 +2480,18 @@ if (matchMedia('(hover:hover) and (pointer:fine)').matches){
 
 /* Hero offer chip follows the offer settings */
 if (CONFIG.offer.chip) $('#hero-offer').textContent = CONFIG.offer.chip; else $('#hero-offer').hidden = true;
+
+/* "People also search for" — mobile show-more toggle */
+(function(){
+  const also = document.querySelector('.also');
+  const btn = also && also.querySelector('.also-more');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const expanded = also.classList.toggle('expanded');
+    btn.textContent = expanded ? 'Show less' : 'Show more';
+    btn.setAttribute('aria-expanded', expanded);
+  });
+})();
 
 /* Sticky mobile bar: hidden while the hero, #visit or .closer buttons are in view */
 (function(){
