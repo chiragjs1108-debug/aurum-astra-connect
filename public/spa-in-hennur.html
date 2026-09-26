@@ -1047,7 +1047,7 @@ h2{font:500 clamp(2rem,4.4vw,3.1rem)/1.1 var(--serif);margin:0 0 14px;max-width:
 }
 
 /* also search */
-.also{padding:32px 0 36px;border-top:1px solid var(--line)}
+.also{padding:32px 0 28px;border-top:1px solid var(--line)}
 .also h2{font:500 1rem/1.3 var(--sans);color:var(--mut);margin:0 0 12px;max-width:none}
 .also ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
 .also a{display:inline-flex;align-items:center;height:32px;box-sizing:border-box;text-decoration:none;border:1px solid var(--line);border-radius:4px;padding:0 12px;font-size:13px;color:var(--mut);white-space:nowrap}
@@ -1060,12 +1060,19 @@ h2{font:500 clamp(2rem,4.4vw,3.1rem)/1.1 var(--serif);margin:0 0 14px;max-width:
 }
 
 /* ===== Section 18: also-search + footer ===== */
-footer{padding:40px 0 48px;border-top:1px solid var(--line);color:var(--mut);font-size:.88rem}
+footer{padding:32px 0 28px;border-top:1px solid var(--line);color:var(--mut);font-size:.88rem}
 footer p{margin:0 0 8px}
 footer a{color:var(--champ)}
-.foot-grid{display:grid;gap:24px}
+.foot-logo{display:block;height:36px;width:auto;margin-bottom:16px}
+.foot-name{margin:0 0 4px;font:500 1.02rem/1.3 var(--serif);color:var(--ivory)}
+.foot-address{margin:0}
+.foot-heading{margin:0 0 12px;font:600 .78rem/1 var(--sans);color:var(--ivory);text-transform:uppercase;letter-spacing:.07em}
+.foot-grid{display:grid;gap:28px}
 .foot-links ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:2px 12px}
 .foot-links a{display:flex;align-items:center;min-height:44px}
+.foot-fine{margin-top:24px;padding-top:18px;border-top:1px solid var(--iline);font-size:.78rem}
+.foot-fine p{margin:0 0 6px}
+.foot-fine p:last-child{margin-bottom:0}
 @media(min-width:760px){
   .foot-grid{grid-template-columns:1.3fr 1fr 1fr;gap:32px}
   .foot-links ul{grid-template-columns:1fr;gap:8px}
@@ -1693,13 +1700,15 @@ section{padding:clamp(40px,7vh,96px) 0}
 
 /* ===== Section 12: inside gallery ===== */
 .gallery .ph{border-radius:8px}
+.gallery .ph::after{content:"";position:absolute;inset:auto 0 0 0;height:55%;background:linear-gradient(180deg,rgba(28,7,8,0) 0%,rgba(28,7,8,.78) 100%);pointer-events:none}
+.gallery .ph figcaption{display:block;position:absolute;left:0;right:0;bottom:0;z-index:2;padding:12px 14px;color:var(--ivory);font:500 .85rem/1.3 var(--serif);text-shadow:0 1px 4px rgba(0,0,0,.5)}
 @media(max-width:899px){
   #inside .intro{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  .gallery{gap:0}
+  .gallery{gap:10px}
   .gallery .ph{aspect-ratio:1/1}
   .gallery .ph:first-child{grid-column:1/-1;aspect-ratio:4/3}
 }
-@media(min-width:900px){.gallery{gap:8px}}
+@media(min-width:900px){.gallery{gap:12px}}
 
 /* ===== Section 13: couples & packages ===== */
 #couples .ph{border-radius:var(--card-radius)}
@@ -2088,11 +2097,11 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
     <span class="orn" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-star"/></svg></span><h2>Inside Aurum Astra, Hennur</h2>
     <p class="intro">Two floors, 2,400 sq ft, and every room private. This is the space you'll unwind in.</p>
     <div class="gallery">
-      <figure class="ph big" data-slot="4" data-file="room.webp" data-size="1200 × 1500 px, portrait 4:5" data-desc="Gallery (large): therapy room, wider angle, lights dimmed"><img src="/img/spa-therapy-room-hennur.webp?v=2" alt="Private spa therapy room with massage bed at Aurum Astra Hennur" loading="lazy" decoding="async" onerror="imgMissing(this)"></figure>
-      <figure class="ph " data-slot="5" data-file="jacuzzi.webp" data-size="1200 × 900 px, landscape 4:3" data-desc="Gallery: jacuzzi with warm light and rising steam"><img src="/img/private-jacuzzi-hennur.webp?v=2" alt="Private jacuzzi and hydro jet bath at Aurum Astra spa, Bengaluru" loading="lazy" decoding="async" onerror="imgMissing(this)"></figure>
-      <figure class="ph " data-slot="6" data-file="couple-suite.webp" data-size="1200 × 900 px, landscape 4:3" data-desc="Couple's suite, both beds prepared, warm low light"><img src="/img/couples-massage-suite-hennur.webp?v=2" alt="Couple's massage suite with two beds at Aurum Astra spa Hennur" loading="lazy" decoding="async" onerror="imgMissing(this)"></figure>
-      <figure class="ph " data-slot="7" data-file="spa-shower-hennur.webp" data-size="1200 × 900 px, landscape 4:3" data-desc="Gallery: in-room shower, robe and towels laid out, warm light"><img src="/img/spa-shower-hennur.webp?v=2" alt="In-room shower with robes and fresh towels at Aurum Astra spa in Hennur" loading="lazy" decoding="async" onerror="imgMissing(this)"></figure>
-      <figure class="ph " data-slot="8" data-file="spa-waiting-lounge-hennur.webp" data-size="1200 × 900 px, landscape 4:3" data-desc="Gallery: waiting lounge, warm low light"><img src="/img/spa-waiting-lounge-hennur.webp?v=2" alt="Waiting lounge at Aurum Astra spa in Hennur" loading="lazy" decoding="async" onerror="imgMissing(this)"></figure>
+      <figure class="ph big" data-slot="4" data-file="room.webp" data-size="1200 × 1500 px, portrait 4:5" data-desc="Gallery (large): therapy room, wider angle, lights dimmed"><img src="/img/spa-therapy-room-hennur.webp?v=2" alt="Private spa therapy room with massage bed at Aurum Astra Hennur" loading="lazy" decoding="async" onerror="imgMissing(this)"><figcaption>Private Therapy Room</figcaption></figure>
+      <figure class="ph " data-slot="5" data-file="jacuzzi.webp" data-size="1200 × 900 px, landscape 4:3" data-desc="Gallery: jacuzzi with warm light and rising steam"><img src="/img/private-jacuzzi-hennur.webp?v=2" alt="Private jacuzzi and hydro jet bath at Aurum Astra spa, Bengaluru" loading="lazy" decoding="async" onerror="imgMissing(this)"><figcaption>Private Jacuzzi &amp; Hydro Bath</figcaption></figure>
+      <figure class="ph " data-slot="6" data-file="couple-suite.webp" data-size="1200 × 900 px, landscape 4:3" data-desc="Couple's suite, both beds prepared, warm low light"><img src="/img/couples-massage-suite-hennur.webp?v=2" alt="Couple's massage suite with two beds at Aurum Astra spa Hennur" loading="lazy" decoding="async" onerror="imgMissing(this)"><figcaption>The Couple's Suite</figcaption></figure>
+      <figure class="ph " data-slot="7" data-file="spa-shower-hennur.webp" data-size="1200 × 900 px, landscape 4:3" data-desc="Gallery: in-room shower, robe and towels laid out, warm light"><img src="/img/spa-shower-hennur.webp?v=2" alt="In-room shower with robes and fresh towels at Aurum Astra spa in Hennur" loading="lazy" decoding="async" onerror="imgMissing(this)"><figcaption>Private Shower &amp; Robes</figcaption></figure>
+      <figure class="ph " data-slot="8" data-file="spa-waiting-lounge-hennur.webp" data-size="1200 × 900 px, landscape 4:3" data-desc="Gallery: waiting lounge, warm low light"><img src="/img/spa-waiting-lounge-hennur.webp?v=2" alt="Waiting lounge at Aurum Astra spa in Hennur" loading="lazy" decoding="async" onerror="imgMissing(this)"><figcaption>The Waiting Lounge</figcaption></figure>
     </div>
   </div>
 </section>
@@ -2204,23 +2213,32 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
 </main>
 
 <footer>
-  <div class="wrap foot-grid">
-    <div class="foot-brand">
-      <p><b>Aurum Astra Unisex Salon &amp; Luxury Spa</b>, 3rd Floor, AM Plaza, Hennur–Bagalur Main Road, Hennur Bande, Bengaluru 560043.</p>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img class="foot-logo" src="/img/logo-full.webp" alt="Aurum Astra" width="1301" height="280">
+        <p class="foot-name">Aurum Astra Unisex Salon &amp; Luxury Spa</p>
+        <p class="foot-address">3rd Floor, AM Plaza, Hennur–Bagalur Main Road,<br>Hennur Bande, Bengaluru 560043.</p>
+      </div>
+      <div class="foot-contact">
+        <p class="foot-heading">Hours &amp; Contact</p>
+        <p>Open daily 10:00 AM – 10:00 PM.</p>
+        <p><a href="tel:+919353639507">+91 93536 39507</a></p>
+      </div>
+      <div class="foot-links">
+        <p class="foot-heading">Important Links</p>
+        <ul>
+          <li><a href="/terms-and-conditions">Terms &amp; Conditions</a></li>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/refund-policy">Refund Policy</a></li>
+          <li><a href="https://aurumastra.in">aurumastra.in</a></li>
+          <li><a href="https://instagram.com/aurumastra" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-fine">
       <p>Strictly a professional salon and wellness spa. Operated by Aurum Astra Pvt Ltd.</p>
-    </div>
-    <div class="foot-contact">
-      <p>Open daily 10:00 AM – 10:00 PM.</p>
-      <p><a href="tel:+919353639507">+91 93536 39507</a></p>
-    </div>
-    <div class="foot-links">
-      <ul>
-        <li><a href="/terms-and-conditions">Terms &amp; Conditions</a></li>
-        <li><a href="/privacy-policy">Privacy Policy</a></li>
-        <li><a href="/refund-policy">Refund Policy</a></li>
-        <li><a href="https://aurumastra.in">aurumastra.in</a></li>
-        <li><a href="https://instagram.com/aurumastra" target="_blank" rel="noopener">Instagram</a></li>
-      </ul>
+      <p>Photos on this page are for reference only. For actual photos of our space, please visit our <a href="https://maps.app.goo.gl/1UoDa68v2FxfZRhf6" target="_blank" rel="noopener">Google Business profile</a>.</p>
     </div>
   </div>
 </footer>
