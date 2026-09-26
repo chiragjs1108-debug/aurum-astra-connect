@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import {
-  SparkIcon,
   ScissorsIcon,
   DropletIcon,
   WaveIcon,
@@ -912,8 +911,7 @@ function Salon() {
       <header className="cat-topbar" ref={topbarRef}>
         <div className="cat-topbar-inner">
           <div className="cat-brand">
-            <SparkIcon className="cat-brand-spark" />
-            <span>Aurum Astra</span>
+            <img src="/img/logo-full-salon.webp" alt="Aurum Astra Unisex Salon &amp; Luxury Spa" className="cat-brand-logo" />
           </div>
           <nav className="cat-tabs" aria-label="Service category">
             <span className="cat-tab active">Salon</span>

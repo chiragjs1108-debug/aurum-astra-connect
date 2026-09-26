@@ -72,6 +72,12 @@
   flex-shrink: 0;
 }
 
+.hub-brand-logo {
+  display: block;
+  height: 26px;
+  width: auto;
+}
+
 /* ============================= hero ============================= */
 
 .hub-hero {

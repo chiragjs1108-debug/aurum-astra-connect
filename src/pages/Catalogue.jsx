@@ -2,7 +2,6 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   IconWrap,
-  SparkIcon,
   ScissorsIcon,
   DropletIcon,
   WaveIcon,
@@ -165,8 +164,7 @@ function Catalogue() {
     <div className="catalogue-hub">
       <header className="hub-topbar">
         <div className="hub-brand">
-          <SparkIcon className="hub-brand-spark" />
-          <span>Aurum Astra</span>
+          <img src="/img/logo-full-salon.webp" alt="Aurum Astra Unisex Salon &amp; Luxury Spa" className="hub-brand-logo" />
         </div>
       </header>
 

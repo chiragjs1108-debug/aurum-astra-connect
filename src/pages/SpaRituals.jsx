@@ -314,8 +314,7 @@ function SpaRituals() {
       <header className="sr-topbar">
         <div className="sr-topbar-inner">
           <div className="sr-brand">
-            <SparkIcon className="sr-brand-spark" />
-            <span>Aurum Astra</span>
+            <img src="/img/logo-full-salon.webp" alt="Aurum Astra Unisex Salon &amp; Luxury Spa" className="sr-brand-logo" />
           </div>
           <nav className="sr-page-tabs" aria-label="Service category">
             <Link to="/salon" className="sr-page-tab">

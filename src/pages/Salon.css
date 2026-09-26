@@ -82,6 +82,12 @@
   flex-shrink: 0;
 }
 
+.cat-brand-logo {
+  display: block;
+  height: 26px;
+  width: auto;
+}
+
 .gender-toggle {
   display: flex;
   background: rgba(255, 255, 255, 0.04);
