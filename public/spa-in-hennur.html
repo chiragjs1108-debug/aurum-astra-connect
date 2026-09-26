@@ -1595,19 +1595,22 @@ section{padding:clamp(40px,7vh,96px) 0}
 
 /* ===== Section 5: Signature Session ===== */
 @media(max-width:767px){
+  #signature{padding:36px 0}
+  #signature .sig{gap:0;grid-template-columns:1fr}
   #signature .sig>div:first-child{display:contents}
   #signature .sig-side{display:contents}
-  #signature .ribbon{order:1}
-  #signature h2{order:2;font-size:30px}
-  #signature .sig-side .ph{order:3;aspect-ratio:4/3;height:auto;border-radius:var(--card-radius);margin:0 0 20px}
-  #signature .intro{order:4;margin-bottom:16px}
-  #signature .bonus{order:5}
-  #signature .perks{order:6;display:block;margin:20px 0 0}
-  #signature .perks li{padding:12px 0;border-radius:0;background:none;border:0;border-bottom:1px solid var(--iline)}
+  #signature .ribbon{order:1;grid-row:1;grid-column:1;margin-bottom:12px}
+  #signature h2{order:2;grid-row:2;grid-column:1;position:relative;z-index:2;align-self:end;margin:0;padding:0 18px 18px;max-width:none;font-size:26px;line-height:1.15;color:var(--ivory)}
+  #signature .sig-side .ph{order:2;grid-row:2;grid-column:1;position:relative;overflow:hidden;aspect-ratio:4/3;height:auto;border-radius:var(--card-radius);margin:0}
+  #signature .sig-side .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,7,8,0) 45%,rgba(28,7,8,.85) 100%)}
+  #signature .intro{order:3;grid-row:3;grid-column:1;margin:14px 0 10px}
+  #signature .bonus{order:4;grid-row:4;grid-column:1;margin:0 0 14px}
+  #signature .perks{order:5;grid-row:5;grid-column:1;display:block;margin:0 0 4px}
+  #signature .perks li{padding:10px 0;border-radius:0;background:none;border:0;border-bottom:1px solid var(--iline)}
   #signature .perks li:last-child{border-bottom:0}
   #signature .perk-ic{width:32px;height:32px}
   #signature .perk-ic .ic{width:16px;height:16px}
-  #signature .btns{order:7;display:grid;grid-template-columns:1fr;gap:10px;margin-top:22px}
+  #signature .btns{order:6;grid-row:6;grid-column:1;display:grid;grid-template-columns:1fr;gap:10px;margin-top:16px}
   #signature .btns .btn{width:100%}
 }
 @media(min-width:1024px){
