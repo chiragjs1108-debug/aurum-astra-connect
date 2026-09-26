@@ -853,8 +853,9 @@ h2{font:500 clamp(2rem,4.4vw,3.1rem)/1.1 var(--serif);margin:0 0 14px;max-width:
 .nav .wrap{display:flex;align-items:center;gap:24px;height:56px}
 @media(min-width:768px){.nav .wrap{height:68px}}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto}
-.brand svg{width:32px;height:32px}
+.brand svg{width:32px;height:32px;flex:none}
 .brand b{font:500 1.15rem/1 var(--serif);letter-spacing:.07em}
+.brand-word{display:block;height:26px;width:auto}
 .links{display:none;gap:22px;font-size:13px}
 .links a{text-decoration:none;color:var(--mut);padding-bottom:3px;border-bottom:1px solid transparent}
 .links a:hover{color:var(--ivory);border-bottom-color:var(--champ)}
@@ -1774,7 +1775,7 @@ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('figu
   <div class="wrap">
     <a class="brand" href="#top" aria-label="Aurum Astra home">
       <svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#9c7c3f"/><stop offset=".5" stop-color="#d9bc84"/><stop offset="1" stop-color="#a38b52"/></linearGradient></defs><path fill="url(#g)" d="M44 10h12l30 80H73l-9-24-6-3 1-1 5 2L50 22 36 60l-5 2-9 28H14z"/><path fill="#c09565" d="M50 44c1.6 11 5 15 17 17-12 2-15.4 6-17 17-1.6-11-5-15-17-17 12-2 15.4-6 17-17z"/></svg>
-      <b>AURUM ASTRA</b>
+      <img class="brand-word" src="/img/logo-wordmark.webp" alt="" width="1149" height="140">
     </a>
     <nav class="links" aria-label="Sections">
       <a href="#signature">Signature session</a><a href="#massages">Massages</a><a href="#hour">Your hour</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a>
