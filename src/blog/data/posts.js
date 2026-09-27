@@ -6,6 +6,8 @@
  * they only ever import `posts` from here.
  */
 
+import spaTherapies, { SPA_WHATSAPP_NUMBER } from './spaTherapies.js'
+
 const posts = [
   {
     slug: 'hair-spa-101-what-it-is-and-why-your-hair-needs-it',
@@ -192,6 +194,40 @@ const posts = [
         heading: 'Start your countdown today',
         actions: [
           { kind: 'whatsapp', label: 'Enquire About Bridal Packages', message: "Hi Aurum Astra, I'd like to know more about your bridal skin packages." },
+          { kind: 'call', label: 'Call the Studio' },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'which-massage-is-right-for-you',
+    title: 'Which Massage Is Right For You? A Guide to Our 11 Spa Therapies',
+    excerpt:
+      'From a firm Deep Tissue reset to a private Jacuzzi soak — a quick guide to every therapy on our menu, so you know exactly what to book.',
+    coverImage: '/img/spa-therapy-room-hennur.webp',
+    date: '2026-09-25',
+    tags: ['Spa Rituals', 'Massage'],
+    metaTitle: 'Which Massage Is Right For You? Spa Therapy Guide | Aurum Astra',
+    metaDescription:
+      'A guide to all 11 spa and massage therapies at Aurum Astra in Hennur, Bengaluru — pressure level, duration, and what each one is best for.',
+    blocks: [
+      {
+        type: 'paragraph',
+        text:
+          "Eleven therapies, one thing in common: a therapist who finds the tight spot before you've finished describing it. Not sure where to start? Here's what each one actually feels like, so you can book with confidence.",
+      },
+      {
+        type: 'service-cards',
+        heading: 'Choose your therapy',
+        intro: "We'll take care of the rest.",
+        whatsappNumber: SPA_WHATSAPP_NUMBER,
+        items: spaTherapies,
+      },
+      {
+        type: 'cta',
+        heading: 'Still not sure which one?',
+        actions: [
+          { kind: 'whatsapp', label: 'Ask Us on WhatsApp', message: "Hi Aurum Astra, I'm not sure which massage to book — can you help me choose?" },
           { kind: 'call', label: 'Call the Studio' },
         ],
       },

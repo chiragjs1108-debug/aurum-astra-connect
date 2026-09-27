@@ -18,6 +18,7 @@ function BlogFooter() {
         <span>&copy; {new Date().getFullYear()}</span>
       </div>
       <nav className="blog-footer-links" aria-label="Policies">
+        <a href="/contact-us">Contact Us</a>
         <a href="/terms-and-conditions">Terms &amp; Conditions</a>
         <a href="/privacy-policy">Privacy Policy</a>
         <a href="/refund-policy">Refund Policy</a>

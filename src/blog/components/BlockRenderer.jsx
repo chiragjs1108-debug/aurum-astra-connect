@@ -12,6 +12,7 @@ import Stats from './blocks/Stats.jsx'
 import Video from './blocks/Video.jsx'
 import Callout from './blocks/Callout.jsx'
 import Divider from './blocks/Divider.jsx'
+import ServiceCards from './blocks/ServiceCards.jsx'
 
 const BLOCK_COMPONENTS = {
   paragraph: Paragraph,
@@ -28,6 +29,7 @@ const BLOCK_COMPONENTS = {
   video: Video,
   callout: Callout,
   divider: Divider,
+  'service-cards': ServiceCards,
 }
 
 function BlockRenderer({ blocks = [] }) {
