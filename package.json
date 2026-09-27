@@ -7,12 +7,16 @@
     "node": ">=20.19"
   },
   "scripts": {
+    "predev": "node scripts/copy-admin-assets.mjs",
     "dev": "vite",
+    "prebuild": "node scripts/copy-admin-assets.mjs",
     "build": "vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cms:local": "decap-server"
   },
   "dependencies": {
+    "js-yaml": "^5.4.2",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.3"
@@ -21,6 +25,8 @@
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
     "@vitejs/plugin-react": "^6.1.0",
+    "decap-cms": "^3.16.3",
+    "decap-server": "^3.11.3",
     "oxlint": "^1.79.0",
     "vite": "^8.2.2"
   }

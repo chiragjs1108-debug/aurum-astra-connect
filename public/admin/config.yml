@@ -1,0 +1,350 @@
+# Decap CMS configuration for the Aurum Astra blog.
+#
+# GitHub OAuth is wired up via a Cloudflare Worker (see oauth-worker/) that
+# holds the OAuth app's client secret and implements the login handshake.
+#
+# You CAN also test this config without any of that, using Decap's local
+# backend: run `npm run cms:local` in the project root, then open /admin/
+# while running the site locally — it reads/writes real files on disk.
+
+backend:
+  name: github
+  repo: chiragjs1108-debug/aurum-astra-connect
+  branch: main
+  base_url: https://aurum-astra-cms-auth.gentle-math-33b2.workers.dev
+  auth_endpoint: auth
+
+local_backend: true
+
+media_folder: "public/img/blog"
+public_folder: "/img/blog"
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    label_singular: "Post"
+    folder: "content/blog"
+    create: true
+    slug: "{{slug}}"
+    format: "frontmatter"
+    extension: "md"
+    summary: "{{title}} — {{date}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Excerpt", name: "excerpt", widget: "text", hint: "Shown on the blog listing page." }
+      - { label: "Cover Image", name: "coverImage", widget: "image" }
+      - { label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        field: { label: "Tag", name: "tag", widget: "string" }
+      - { label: "SEO Title", name: "metaTitle", widget: "string", required: false, hint: "Falls back to Title if left blank." }
+      - { label: "SEO Description", name: "metaDescription", widget: "text", required: false, hint: "Falls back to Excerpt if left blank." }
+
+      - label: "Content Blocks"
+        name: "blocks"
+        widget: "list"
+        min: 1
+        types:
+          - label: "Paragraph"
+            name: "paragraph"
+            widget: "object"
+            fields:
+              - { label: "Text", name: "text", widget: "text" }
+              - &anchorId { label: "Anchor ID (optional, for Table of Contents)", name: "id", widget: "string", required: false }
+
+          - label: "Image"
+            name: "image"
+            widget: "object"
+            fields:
+              - { label: "Image", name: "src", widget: "image" }
+              - { label: "Alt Text", name: "alt", widget: "string", required: false }
+              - { label: "Caption", name: "caption", widget: "string", required: false }
+              - *anchorId
+
+          - label: "Bullet List"
+            name: "bullet-list"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string", required: false }
+              - label: "Items"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text", required: false }
+              - *anchorId
+
+          - label: "Card Grid"
+            name: "card-grid"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string", required: false }
+              - label: "Cards"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text", required: false }
+                  - { label: "Image", name: "image", widget: "image", required: false }
+              - *anchorId
+
+          - label: "Carousel"
+            name: "carousel"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string", required: false }
+              - label: "Slides"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text", required: false }
+                  - { label: "Image", name: "image", widget: "image", required: false }
+              - *anchorId
+
+          - label: "Quote"
+            name: "quote"
+            widget: "object"
+            fields:
+              - { label: "Quote Text", name: "text", widget: "text" }
+              - { label: "Attribution", name: "attribution", widget: "string", required: false }
+              - *anchorId
+
+          - label: "Call To Action"
+            name: "cta"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string", required: false }
+              - { label: "Supporting Text", name: "text", widget: "text", required: false }
+              - label: "Buttons"
+                name: "actions"
+                widget: "list"
+                fields: &actionFields
+                  - { label: "Type", name: "kind", widget: "select", options: ["whatsapp", "call", "link"] }
+                  - { label: "Button Label", name: "label", widget: "string" }
+                  - { label: "WhatsApp Message", name: "message", widget: "string", required: false, hint: "Only used when Type is WhatsApp" }
+                  - { label: "Link URL", name: "href", widget: "string", required: false, hint: "Only used when Type is Link" }
+              - *anchorId
+
+          - label: "FAQ"
+            name: "faq"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string", required: false }
+              - label: "Questions"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Question", name: "question", widget: "string" }
+                  - { label: "Answer", name: "answer", widget: "text" }
+              - *anchorId
+
+          - label: "Before / After Slider"
+            name: "before-after"
+            widget: "object"
+            fields:
+              - { label: "Before Image", name: "beforeImage", widget: "image" }
+              - { label: "After Image", name: "afterImage", widget: "image" }
+              - { label: "Before Label", name: "beforeLabel", widget: "string", required: false, default: "Before" }
+              - { label: "After Label", name: "afterLabel", widget: "string", required: false, default: "After" }
+              - { label: "Caption", name: "caption", widget: "string", required: false }
+              - *anchorId
+
+          - label: "Numbered Steps"
+            name: "steps"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string", required: false }
+              - label: "Steps"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text", required: false }
+              - *anchorId
+
+          - label: "Stat Highlights"
+            name: "stats"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string", required: false }
+              - label: "Stats"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Value", name: "value", widget: "string", hint: "e.g. 4.9★, 15+, 10k+" }
+                  - { label: "Label", name: "label", widget: "string" }
+              - *anchorId
+
+          - label: "Video Embed"
+            name: "video"
+            widget: "object"
+            fields:
+              - { label: "YouTube URL", name: "url", widget: "string", hint: "Paste a normal YouTube link, e.g. https://www.youtube.com/watch?v=..." }
+              - { label: "Caption", name: "caption", widget: "string", required: false }
+              - *anchorId
+
+          - label: "Callout / Tip Box"
+            name: "callout"
+            widget: "object"
+            fields:
+              - { label: "Tone", name: "tone", widget: "select", options: ["tip", "note", "warning"], default: "tip" }
+              - { label: "Text", name: "text", widget: "text" }
+              - *anchorId
+
+          - label: "Section Divider"
+            name: "divider"
+            widget: "object"
+            fields:
+              - *anchorId
+
+          - label: "Spa Service Cards"
+            name: "service-cards"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string", required: false }
+              - { label: "Intro", name: "intro", widget: "string", required: false }
+              - label: "Therapies"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Name", name: "name", widget: "string" }
+                  - { label: "Tag", name: "tag", widget: "string", required: false }
+                  - { label: "Image", name: "image", widget: "image" }
+                  - { label: "Description", name: "description", widget: "text" }
+                  - { label: "Duration", name: "duration", widget: "string" }
+                  - { label: "Medium (e.g. Warm oil)", name: "medium", widget: "string", required: false }
+                  - { label: "Pressure Label (e.g. Medium)", name: "pressureLabel", widget: "string", required: false }
+                  - { label: "Pressure Level (1-5, leave blank if not a massage)", name: "pressureLevel", widget: "number", required: false, min: 1, max: 5, value_type: "int" }
+                  - { label: "Feel (used instead of Pressure for non-massage items)", name: "feel", widget: "string", required: false }
+                  - { label: "WhatsApp Booking Message", name: "whatsappMessage", widget: "string" }
+              - *anchorId
+
+          - label: "Timeline"
+            name: "timeline"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string", required: false }
+              - { label: "Intro", name: "intro", widget: "string", required: false }
+              - label: "Steps"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "When (e.g. On arrival)", name: "when", widget: "string" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+              - *anchorId
+
+          - label: "Trust Feature List"
+            name: "feature-list"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string", required: false }
+              - { label: "Intro", name: "intro", widget: "string", required: false }
+              - label: "Features"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Icon", name: "icon", widget: "select", options: ["person", "droplet", "shield", "gem", "chat", "spark"] }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+              - *anchorId
+
+          - label: "Testimonials"
+            name: "testimonials"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string", required: false }
+              - { label: "Intro", name: "intro", widget: "string", required: false }
+              - label: "Reviews"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Stars (1-5)", name: "stars", widget: "number", default: 5, min: 1, max: 5, value_type: "int" }
+                  - { label: "Quote", name: "quote", widget: "text" }
+                  - { label: "Author Name", name: "author", widget: "string" }
+                  - { label: "Source (e.g. Google review)", name: "source", widget: "string", required: false }
+              - *anchorId
+
+          - label: "Promo / Offer Banner"
+            name: "promo"
+            widget: "object"
+            fields:
+              - { label: "Badge (e.g. Limited Time)", name: "badge", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Copy", name: "copy", widget: "text", required: false }
+              - label: "Button"
+                name: "action"
+                widget: "object"
+                required: false
+                fields: *actionFields
+              - *anchorId
+
+          - label: "Before / After Gallery"
+            name: "before-after-gallery"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string", required: false }
+              - { label: "Intro", name: "intro", widget: "string", required: false }
+              - label: "Pairs"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Before Image", name: "beforeImage", widget: "image" }
+                  - { label: "After Image", name: "afterImage", widget: "image" }
+                  - { label: "Label", name: "label", widget: "string" }
+              - *anchorId
+
+          - label: "Comparison Table"
+            name: "comparison"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string", required: false }
+              - { label: "Intro", name: "intro", widget: "string", required: false }
+              - label: "Row Labels"
+                name: "rows"
+                widget: "list"
+                field: { label: "Row Label", name: "row", widget: "string" }
+                hint: "e.g. Pressure, Best For, Duration, Starting Price"
+              - label: "Options"
+                name: "options"
+                widget: "list"
+                fields:
+                  - { label: "Name", name: "name", widget: "string" }
+                  - { label: "Highlight as 'Most Popular'", name: "highlight", widget: "boolean", default: false }
+                  - label: "Values"
+                    name: "values"
+                    widget: "list"
+                    field: { label: "Value", name: "value", widget: "string" }
+                    hint: "One value per row label above, in the same order"
+              - *anchorId
+
+          - label: "Price List"
+            name: "price-list"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string", required: false }
+              - { label: "Intro", name: "intro", widget: "string", required: false }
+              - label: "Items"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Name", name: "name", widget: "string" }
+                  - { label: "Duration", name: "duration", widget: "string", required: false }
+                  - { label: "Price", name: "price", widget: "string", hint: "e.g. ₹2,500" }
+                  - { label: "Note", name: "note", widget: "string", required: false }
+              - *anchorId
+
+          - label: "Table of Contents"
+            name: "toc"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string", required: false, default: "On this page" }
+              - label: "Links"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "Anchor ID to jump to", name: "anchorId", widget: "string", hint: "Must match the Anchor ID set on the target block" }
