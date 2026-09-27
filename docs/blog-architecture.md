@@ -262,23 +262,69 @@ production `/admin`).
 Unrelated to the blog specifically, but what actually ships everything:
 `.github/workflows/deploy.yml` triggers on push to `main`, runs
 `npm install && npm run build`, then FTPs `dist/` to
-`connect.aurumastra.in` (`SamKirkland/FTP-Deploy-Action`). No blog-specific
-CI step exists yet — see §9.
+`connect.aurumastra.in` (`SamKirkland/FTP-Deploy-Action`). The SEO/sitemap
+generation in §9 needed no changes here — it rides along inside
+`npm run build` via npm's own `pre`/`post` script hooks.
 
-## 9. Current status vs. what's not built yet
+## 9. SEO and sitemap ("Phase 2")
+
+The blog is still client-side rendered, same as the rest of this React SPA
+— body content is not prerendered. What *is* real, static, and baked into
+the HTML on disk (not just set by JS after load) is each page's `<head>`:
+title, meta description, Open Graph tags, canonical link, and `BlogPosting`
+JSON-LD — the parts that matter most for search snippets and for
+link-preview bots (WhatsApp, Facebook, X, etc.) that never run JavaScript.
+
+- `src/blog/seo/siteInfo.js`, `seoTags.js`, `blogPostingSchema.js` — plain,
+  framework-agnostic functions building tag values and JSON-LD from a post.
+  No Vite- or browser-only APIs, deliberately, so the exact same files are
+  imported both by the React app and by a plain-Node build script.
+- `src/blog/seo/useSeo.js` — a hook, used by `BlogPostPage.jsx` and
+  `BlogListPage.jsx`, that writes those tags into the live `<head>` on
+  mount. This is what keeps tags correct across **client-side** navigation
+  (post → post with no full reload) — a static file alone can't do that.
+- `scripts/generate-static-blog-pages.mjs` (npm `postbuild`, runs after
+  `vite build`) — covers the case a static file *does* matter: a crawler's
+  or bot's very first, JS-free request. Takes the already-built
+  `dist/index.html` (same JS/CSS bundle every route shares) and writes a
+  copy per blog route with just the `<head>` tags swapped, to
+  `dist/blog/index.html` and `dist/blog/<slug>/index.html`. Relies on the
+  site's existing `.htaccess` serving a directory's `index.html`
+  automatically — no server config changes needed.
+- `scripts/generate-sitemap.mjs` (npm `prebuild`) — regenerates
+  `public/sitemap.xml` from scratch every build: a fixed list of the site's
+  static pages plus every file in `content/blog/`. A post can't go missing
+  from the sitemap by someone forgetting a manual step, because there is
+  no manual step.
+- `scripts/lib/loadPostsFromDisk.mjs` — the one bit of real duplication:
+  the same frontmatter-parsing logic as `src/blog/data/posts.js`, but
+  reading via Node's `fs` instead of Vite's `import.meta.glob`, since the
+  build scripts run outside Vite. Kept deliberately small.
+
+Verified end to end: built the project, inspected the raw generated HTML
+files directly (title/meta/OG/canonical/JSON-LD all correct, including
+against the real "test-post" created live through the CMS), confirmed
+`sitemap.xml` lists every post with its real date, and used a real browser
+to confirm both a fresh direct load of a static page and client-side
+navigation between blog pages keep `<head>` correct.
+
+**What's still not built:** true static pre-rendering of post *bodies*
+(a full SSG/hydration migration) — this was deliberately scoped out as
+bigger and riskier than the actual SEO gap needed closing. Also not
+built: an automated sitemap ping to Google/Bing after deploy (one-time
+manual submission in Search Console still covers this).
+
+## 10. Current status vs. what's not built yet
 
 **Live and working:** the full block library, the blog pages (mobile-first,
 with header/hamburger nav/footer), cross-links to the rest of the site, the
-Decap CMS dashboard with real GitHub auth, and the deploy pipeline.
+Decap CMS dashboard with real GitHub auth, the deploy pipeline, and the
+per-post SEO tags/schema + sitemap from §9.
 
-**Explicitly not built yet — "Phase 2" from the original plan:** the blog is
-still client-side rendered like the rest of this React SPA. There is no
-static pre-rendering, so a post has no real per-request `<title>`/meta tags
-and no server-rendered HTML for crawlers — bad for the SEO goal this blog
-was built for. Also not built: an auto-generated `sitemap.xml` entry per
-post. Both were deferred, not forgotten.
+**Not built:** full static-rendering of post bodies (see §9's last
+paragraph) — everything else from the original roadmap is done.
 
-## 10. Notes for brainstorming content automation
+## 11. Notes for brainstorming content automation
 
 Whatever gets designed for auto-generating and pushing posts, the one fact
 that should drive the design: **the CMS is not the source of truth, `content/
@@ -303,3 +349,6 @@ they reuse what already exists:
 - `id`/`toc` pairing (§3) is manual bookkeeping today; an automated writer
   would need to generate matching anchor IDs itself if it wants a working
   table of contents.
+- SEO/sitemap (§9) needs no attention from an automation pipeline — any
+  post file that shows up in `content/blog/` gets picked up by the same
+  `prebuild`/`postbuild` scripts as one written by hand or through the CMS.
