@@ -107,6 +107,13 @@ For each row at `Planned`:
 
 ### Generating an image
 
+**Read `docs/brand-guidelines.md` before generating anything** and append
+its fixed style suffix to every prompt — including its Indian-ethnicity
+rule whenever a person appears in the image. This is a hard requirement,
+not a stylistic default: the business is based in Bengaluru, and a
+generated face defaulting to a non-Indian appearance misrepresents the
+actual clientele.
+
 Two tiers, in order — try the first, fall back to the second, and only fall
 back to a placeholder if both are unavailable:
 
@@ -119,7 +126,7 @@ endpoint). The current stable model is `gemini-3.1-flash-image`:
 curl -s -X POST \
   "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-image:generateContent?key=$GEMINI_API_KEY" \
   -H "Content-Type: application/json" \
-  -d "{\"contents\":[{\"parts\":[{\"text\":\"<the slot's prompt>, editorial photography, warm natural light, matches an upscale salon and spa's brand photography\"}]}]}"
+  -d "{\"contents\":[{\"parts\":[{\"text\":\"<the slot's prompt>, <docs/brand-guidelines.md fixed style suffix, plus the Indian-ethnicity line if a person is in the shot>\"}]}]}"
 ```
 
 If that model name 404s (Google renames/versions these), call
@@ -140,9 +147,27 @@ node scripts/convert-to-webp.mjs /tmp/generated.png /tmp/generated.webp
 **2. Canva, if Gemini isn't available.** The `generate-image` /
 `get-generate-image-job` tools (load via `ToolSearch` if not already
 available) work with no API key and no billing dependency on this project
-at all. Call `generate-image` with the slot's prompt, poll
-`get-generate-image-job` with the returned `jobId` until `SUCCESS`, then
-download the result and convert to `.webp` the same way.
+at all — same brand-guidelines suffix applies to the prompt. Two things to
+know before relying on this tier:
+
+- **Needs `canva.com` and `media.canva.com` allowed on this environment's
+  network policy.** Without them, the generated image can't actually be
+  fetched (confirmed directly: `media.canva.com` was denied by the egress
+  proxy in the environment this was built in). If a call to
+  `get-generate-image-job` or a later download fails on either host,
+  that's this, not a bug — say so in the report and fall through to a
+  placeholder rather than retrying.
+- **Full-resolution export is unverified.** `get-assets` only ever returned
+  a small, signed, capped thumbnail (200×112) for a generated image whose
+  real metadata reported 1680×944 — there was no confirmed way to pull the
+  full-resolution file through the available Canva tools in the session
+  this was built in. If network access is opened up, re-test whether a
+  larger export becomes reachable before trusting this tier for real
+  publish-quality images; don't assume it's solved just because the network
+  block is gone.
+
+Once a usable image is actually in hand, download the result and convert to
+`.webp` the same way.
 
 **Free-tier Gemini keys cannot do either of the above — don't try them.**
 Verified directly: both `gemini-3.1-flash-image` and
@@ -196,8 +221,11 @@ For each row at `Approved to Publish`:
   this environment (the environment's Edit menu in the session title bar),
   not pasted into chat or committed anywhere. Without it, Step 2 falls back
   to Canva, and only skips generation entirely if that's unavailable too.
-- **The Canva connector** — no key to manage, just needs to be connected
-  for this chat/environment, same as Google Sheets and Drive.
+- **The Canva connector**, plus `canva.com` and `media.canva.com` allowed
+  on this environment's network policy (Edit → Network access) — without
+  the network access, Canva's tools accept the generation request but the
+  result can't actually be fetched. No key to manage otherwise, just needs
+  to be connected, same as Google Sheets and Drive.
 - **A scheduled Routine** pointed at this skill (`create_trigger`,
   `create_new_session_on_fire: true`, prompt: run this pipeline) is what
   makes this actually recurring rather than something run by hand.
