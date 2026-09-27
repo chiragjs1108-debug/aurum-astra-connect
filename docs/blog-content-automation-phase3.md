@@ -54,13 +54,27 @@ bottom as its `Status` advances.
 | Primary/Secondary Keywords | You | SEO targets for this post |
 | Internal-linking directions | You | Specific pages you want linked, if any |
 | Related directions | You | Any other constraints or ideas |
-| Blocks Plan | Claude | Which of the 23 block types this post will use, and how many |
-| Image Prompts | Claude | One generation prompt per image slot the plan needs |
+| Blocks Plan | Claude | Which of the 23 block types this post will use, how many of each, and which need images |
+| Image Prompts | Claude | A numbered list, one line per image slot the post needs (see §4.2) |
 | Status | You (Claude only reads it) | `Idea → Planned → Drafted → Approved to Publish → Published` |
 
 Claude never writes to `Status`. You are the only writer of that column —
 Claude reads it to know what to do next, and moving a row to
 `Approved to Publish` is the only thing that makes a post go live.
+
+**`Internal-linking directions` changed ownership.** It was originally a
+column you'd fill in as an instruction. It's now primarily Claude's: since
+Claude is the one writing the content, deciding which internal links
+actually serve the post's SEO is Claude's judgment call, made by
+cross-referencing the post's keywords against the Site Pages Reference sheet
+(§3.3) and the live list of existing posts. If you write something in this
+cell before planning runs, Claude treats it as a hard requirement and links
+it in addition to whatever else it decides. Either way, Claude overwrites
+the cell with the actual set of pages it linked, so the row documents what
+happened, not just what was asked for.
+
+**`Related directions` is unchanged** — still your free-form notes, read but
+never written by Claude.
 
 ### 3.2 Media Library (the asset index)
 
@@ -87,18 +101,33 @@ folder — not a daily task, only when you actually have something new.
 ### 3.3 Site Pages Reference (the internal-linking map)
 
 [Sheet link](https://docs.google.com/spreadsheets/d/1kv5R8LUdul14vKwm_PGDSqXhn322nk2Hhk0wd4xa8QY/edit)
-— `Page Title | URL Path | Focus Primary Keyword | Excerpt / What it's about`.
+— `Page Title | URL Path | Focus Primary Keyword | Excerpt / What it's about | Added By`.
 
-You maintain this one by hand, and it only needs to cover the site's
-**static pages** (Catalogue, Salon, Spa, Spa in Hennur, policy pages) — the
-small, fixed set that doesn't already carry SEO metadata anywhere else.
-**Blog posts are deliberately not logged here.** Every published post's
-title, excerpt, and keyword already live in its own frontmatter in
-`content/blog/`, so the automation reads that list straight from the repo at
-planning time — always current, nothing to keep in sync, the same principle
-the sitemap already uses (Phase 2 §4). When planning a new post's internal
-links, Claude checks both: this sheet for static pages, and the live repo
-listing for other blog posts.
+Two kinds of rows, two owners:
+
+- **Static pages** (Catalogue, Salon, Spa, Spa in Hennur, policy pages) —
+  you maintain these by hand, same as before. `Added By: You`.
+- **Blog posts** — Claude's responsibility, in two ways:
+  1. **At publish time** (§6, Step 4), the moment Claude commits a new post,
+     it appends that post's row here directly — Title and Excerpt from the
+     post itself, URL Path from its slug, Focus Primary Keyword carried over
+     from that row's own `Primary/Secondary Keywords` cell on the Editorial
+     sheet. `Added By: Claude — published`.
+  2. **Periodic reconciliation** (§6, Step 0), run at the start of every
+     automation pass: list every file in `content/blog/`, compare against
+     the URL Paths already logged here, and add a row for any post that's
+     live but missing — a post published through Decap directly, or by a
+     different thread working on the same repo. Its Focus Primary Keyword is
+     inferred from the post's own tags/title, since no Editorial row exists
+     for it. `Added By: Claude — reconciled`.
+
+Reconciliation only ever **adds** a missing row; it never edits or removes
+one that's already there, so a static-page row you wrote is never touched by
+it. This sheet is now the single place to see every page on the site, static
+or blog, rather than splitting the answer between a sheet and a live repo
+read — but the underlying data for blog rows still ultimately comes from the
+repo, the same source-of-truth principle as everywhere else in this
+pipeline.
 
 ### 3.4 The two media folders
 
@@ -158,6 +187,28 @@ Studio web UI is needed.
   committed to the repo, same rule as the Decap OAuth Worker's secrets
   (`oauth-worker/README.md`).
 
+### 4.2 A post needs more than one image
+
+`Image Prompts` is a numbered list, one line per image slot the post
+actually needs, each labeled with the block it belongs to — not a single
+prompt for the whole post. A post with a cover image, a 4-item card-grid,
+and a before/after block has 6 slots, for example:
+
+```
+1. Cover — [prompt]
+2. Card-grid item 1 (Hair Spa Oil) — [prompt]
+3. Card-grid item 2 (Head Massage) — [prompt]
+4. Card-grid item 3 (Scalp Treatment) — [prompt]
+5. Before/after, before — [prompt]
+6. Before/after, after — [prompt]
+```
+
+The numbers match the slots named in `Blocks Plan`. At drafting time (§6,
+Step 2), Claude works through this list slot by slot, running the real →
+reuse → generate decision (§4) independently for each one — a post's cover
+might come from the Real Media Library while its card-grid items are freshly
+generated, all in the same pass.
+
 ## 5. Where images actually land
 
 Confirmed from the live repo: Decap's media folder is `public/img/blog`
@@ -181,19 +232,32 @@ A scheduled Claude Code session (cron-triggered) runs the following, plus
 the same logic is available on demand via a manual chat command for
 anything that shouldn't wait for the next scheduled run.
 
-**Step 1 — Plan.** Read the Editorial sheet for rows whose `Schedule date`
-has arrived and whose `Status` is empty/`Idea`. For each: decide which block
-types the post needs and how many, write that into `Blocks Plan`; write one
-image-generation prompt per image slot into `Image Prompts`; set
-`Status → Planned`.
+**Step 0 — Reconcile.** Before anything else, list `content/blog/*.md` in
+the repo and compare against the Site Pages Reference sheet's URL Paths.
+Append a row for any post that's live but not yet listed (§3.3) —
+`Added By: Claude — reconciled`. This runs every pass, so a post published
+outside this pipeline never stays untracked for long.
 
-**Step 2 — Draft.** For rows at `Planned`: pick images per §4 (real → reuse
-→ generate, archiving any newly generated image); write full post content —
-frontmatter, all blocks, SEO fields — following the exact schemas in
-`blog-architecture.md`, cross-referencing the Site Pages Reference sheet and
-the live list of existing posts for natural internal links; create a Google
-Doc in `Drafts/` containing the text and the chosen images together for
-review; set `Status → Drafted`.
+**Step 1 — Plan.** Read the Editorial sheet for rows whose `Schedule date`
+has arrived and whose `Status` is empty/`Idea`. For each:
+- Decide which block types the post needs, how many of each, and which need
+  images; write that into `Blocks Plan`.
+- Write the full numbered image-slot list into `Image Prompts` (§4.2) — one
+  entry per image the post's blocks actually need, not one per post.
+- Decide internal links: cross-reference the post's keywords against the
+  Site Pages Reference sheet (both static and blog rows). If
+  `Internal-linking directions` already has something in it, treat it as a
+  requirement and build around it; otherwise decide entirely from SEO
+  judgment. Overwrite the cell with the actual pages chosen.
+- Set `Status → Planned`.
+
+**Step 2 — Draft.** For rows at `Planned`: work through every slot in
+`Image Prompts` in order, running the real → reuse → generate decision (§4)
+independently for each one; write full post content — frontmatter, all
+blocks, SEO fields, and the internal links decided in Step 1 — following the
+exact schemas in `blog-architecture.md`; create a Google Doc in `Drafts/`
+containing the text and every chosen image together for review; set
+`Status → Drafted`.
 
 **Step 3 — Review.** You open the Drive draft, edit anything you want
 directly in the doc.
@@ -205,8 +269,9 @@ chat), the automation converts the reviewed draft into a real
 images it needs into `public/img/blog/`, commits and pushes both — which
 runs the existing `prebuild`/`postbuild` scripts (sitemap regeneration,
 static per-post `<head>` injection from Phase 2) and triggers the existing
-GitHub Actions FTP deploy, same as a manual CMS save does today. Sets
-`Status → Published`.
+GitHub Actions FTP deploy, same as a manual CMS save does today. Appends the
+new post's row to Site Pages Reference (§3.3, `Added By: Claude —
+published`). Sets `Status → Published`.
 
 **Manual override, either direction:** you can always say "draft row N now"
 or "publish row N now" in chat to act outside the schedule, without waiting
