@@ -1,6 +1,6 @@
-function buildWhatsAppLink(number, message) {
-  return `https://wa.me/${number}?text=${encodeURIComponent(message)}`
-}
+import { useRef } from 'react'
+import { ChevronIcon } from '../../../components/icons.jsx'
+import { buildWhatsAppLink } from '../../data/contact.js'
 
 function PressureGauge({ label, level }) {
   return (
@@ -16,7 +16,7 @@ function PressureGauge({ label, level }) {
   )
 }
 
-function ServiceCard({ item, whatsappNumber }) {
+function ServiceCard({ item }) {
   return (
     <article className="sc-card">
       <div className="sc-card-photo">
@@ -37,27 +37,40 @@ function ServiceCard({ item, whatsappNumber }) {
           <span className="sc-pressure-value">{item.feel}</span>
         </div>
       )}
-      <a
-        href={buildWhatsAppLink(whatsappNumber, item.whatsappMessage)}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="sc-card-cta"
-      >
+      <a href={buildWhatsAppLink(item.whatsappMessage)} target="_blank" rel="noopener noreferrer" className="sc-card-cta">
         Book this &rarr;
       </a>
     </article>
   )
 }
 
-function ServiceCards({ heading, intro, whatsappNumber, items = [] }) {
+function ServiceCards({ heading, intro, items = [] }) {
+  const trackRef = useRef(null)
+
+  function scrollByCard(direction) {
+    const track = trackRef.current
+    if (!track) return
+    const card = track.querySelector('.sc-card')
+    const amount = card ? card.getBoundingClientRect().width + 12 : 260
+    track.scrollBy({ left: direction * amount, behavior: 'smooth' })
+  }
+
   return (
     <div className="block-service-cards">
       {heading && <h3>{heading}</h3>}
       {intro && <p className="sc-intro">{intro}</p>}
-      <div className="sc-grid">
-        {items.map((item) => (
-          <ServiceCard key={item.name} item={item} whatsappNumber={whatsappNumber} />
-        ))}
+      <div className="sc-wrap">
+        <div className="sc-track" ref={trackRef}>
+          {items.map((item) => (
+            <ServiceCard key={item.name} item={item} />
+          ))}
+        </div>
+        <button type="button" className="sc-nav sc-nav-prev" aria-label="Previous" onClick={() => scrollByCard(-1)}>
+          <ChevronIcon className="sc-nav-icon sc-nav-icon-prev" />
+        </button>
+        <button type="button" className="sc-nav sc-nav-next" aria-label="Next" onClick={() => scrollByCard(1)}>
+          <ChevronIcon className="sc-nav-icon" />
+        </button>
       </div>
     </div>
   )

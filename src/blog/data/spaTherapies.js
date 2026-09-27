@@ -2,14 +2,8 @@
  * Ported from public/spa-in-hennur.html's #massages section — the site's
  * existing, real therapy menu and copy, so any spa/massage post can drop
  * in the same cards via the `service-cards` block instead of re-typing them.
- *
- * NOTE: this page uses WhatsApp number 919353639507, which differs from the
- * 919148627266 used elsewhere in this app (src/blog/data/contact.js, Home.jsx,
- * SpaRituals.jsx). Kept as-is since it's what the source page actually uses —
- * confirm which number is correct before this goes live.
+ * Booking messages use the shared WhatsApp number from ./contact.js.
  */
-
-export const SPA_WHATSAPP_NUMBER = '919353639507'
 
 const spaTherapies = [
   {

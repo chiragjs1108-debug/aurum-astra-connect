@@ -986,20 +986,32 @@
   color: var(--ink-soft);
 }
 
-.sc-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+.sc-wrap {
+  position: relative;
+}
+
+.sc-track {
+  display: flex;
   gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.sc-track::-webkit-scrollbar {
+  display: none;
 }
 
 @media (min-width: 640px) {
-  .sc-grid {
-    grid-template-columns: repeat(3, 1fr);
+  .sc-track {
     gap: 16px;
   }
 }
 
 .sc-card {
+  flex: 0 0 min(240px, 74vw);
+  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
   border: 1px solid var(--border);
@@ -1007,6 +1019,45 @@
   background: var(--card-bg);
   overflow: hidden;
   padding-bottom: 12px;
+}
+
+.sc-nav {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--color-white);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.sc-nav-prev {
+  left: -14px;
+}
+
+.sc-nav-next {
+  right: -14px;
+}
+
+.sc-nav-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.sc-nav-icon-prev {
+  transform: scaleX(-1);
+}
+
+@media (max-width: 640px) {
+  .sc-nav {
+    display: none;
+  }
 }
 
 .sc-card-photo {
@@ -1259,5 +1310,216 @@
 @media (min-width: 640px) {
   .related-post-card h3 {
     font-size: 15px;
+  }
+}
+
+/* ---------------------------------- block: timeline ---------------------------------- */
+/* Ported from public/spa-in-hennur.html's #hour section ("How your hour unfolds"). */
+
+.timeline-intro {
+  margin: -6px 0 16px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.timeline-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 20px;
+  border-left: 2px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.timeline-item {
+  position: relative;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -25px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--bg);
+}
+
+.timeline-when {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin-bottom: 2px;
+}
+
+.timeline-item h4 {
+  font-family: var(--font-heading);
+  color: var(--ink);
+  font-size: 16px;
+  margin: 0 0 4px;
+}
+
+.timeline-item p {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* ---------------------------------- block: feature list ---------------------------------- */
+/* Ported from public/spa-in-hennur.html's #why section ("Why guests choose Aurum Astra"). */
+
+.feature-list-intro {
+  margin: -6px 0 16px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.feature-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.feature-list li {
+  display: flex;
+  gap: 14px;
+}
+
+.feature-list-icon {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(240, 195, 130, 0.25);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-list-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.feature-list li h4 {
+  font-family: var(--font-heading);
+  color: var(--ink);
+  font-size: 15px;
+  margin: 0 0 2px;
+}
+
+.feature-list li p {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* ---------------------------------- block: testimonials ---------------------------------- */
+/* Ported from public/spa-in-hennur.html's #reviews section — real guest reviews. */
+
+.testimonials-intro {
+  margin: -6px 0 16px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.testimonials-wrap {
+  position: relative;
+}
+
+.testimonials-track {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.testimonials-track::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .testimonials-track {
+    gap: 16px;
+  }
+}
+
+.testimonial-card {
+  flex: 0 0 min(260px, 78vw);
+  scroll-snap-align: start;
+  margin: 0;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card-bg);
+}
+
+.testimonial-stars {
+  color: var(--color-secondary);
+  font-size: 14px;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.testimonial-card blockquote {
+  margin: 0 0 10px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.testimonial-card figcaption {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  opacity: 0.8;
+}
+
+.testimonials-nav {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--color-white);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.testimonials-nav-prev {
+  left: -14px;
+}
+
+.testimonials-nav-next {
+  right: -14px;
+}
+
+.testimonials-nav-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.testimonials-nav-icon-prev {
+  transform: scaleX(-1);
+}
+
+@media (max-width: 640px) {
+  .testimonials-nav {
+    display: none;
   }
 }

@@ -127,6 +127,20 @@ export const JournalIcon = () => (
   </IconWrap>
 )
 
+export const ShieldIcon = () => (
+  <IconWrap>
+    <path d="M12 3l7 3v5c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6z" />
+    <path d="M9 12l2 2 4-4" />
+  </IconWrap>
+)
+
+export const PersonIcon = () => (
+  <IconWrap>
+    <circle cx="12" cy="7.5" r="3.5" />
+    <path d="M5 21a7 7 0 0 1 14 0" />
+  </IconWrap>
+)
+
 export const BrushIcon = () => (
   <IconWrap>
     <path d="M18.5 3.5 20.5 5.5 11.5 14.5l-2-2Z" />

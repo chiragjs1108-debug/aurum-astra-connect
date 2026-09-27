@@ -6,7 +6,7 @@
  * they only ever import `posts` from here.
  */
 
-import spaTherapies, { SPA_WHATSAPP_NUMBER } from './spaTherapies.js'
+import spaTherapies from './spaTherapies.js'
 
 const posts = [
   {
@@ -219,9 +219,41 @@ const posts = [
       {
         type: 'service-cards',
         heading: 'Choose your therapy',
-        intro: "We'll take care of the rest.",
-        whatsappNumber: SPA_WHATSAPP_NUMBER,
+        intro: "We'll take care of the rest. Swipe to see all 11.",
         items: spaTherapies,
+      },
+      {
+        type: 'timeline',
+        heading: 'How your hour unfolds',
+        intro: 'Nothing is rushed. This hour is yours.',
+        items: [
+          { when: 'On arrival', title: 'You arrive and slow down', description: 'Shoes off, phone on silent. Tell us where it aches and how you like your pressure.' },
+          { when: 'First minutes', title: 'Warmed oil, long strokes', description: 'The oil is warmed before it touches your skin. Shoulders first, where the day sits.' },
+          { when: 'The heart of it', title: 'Tension lets go', description: 'Slower, deeper work on the tight spots, always at the pressure you chose.' },
+          { when: 'After', title: 'A hot shower, then stillness', description: 'Take your time. Then the terrace lounge, for as long as you like.' },
+        ],
+      },
+      {
+        type: 'feature-list',
+        heading: 'Why guests choose Aurum Astra',
+        items: [
+          { icon: 'person', title: 'Trained female therapists', description: 'Every therapy, every guest. Men are welcome too.' },
+          { icon: 'droplet', title: 'Your own room and shower', description: 'Private, with lockers, robes and a hot shower.' },
+          { icon: 'shield', title: 'Hygiene you can see', description: 'Single-use kits, sterilised tools, fresh linen.' },
+          { icon: 'gem', title: "Luxury you won't find nearby", description: "Jacuzzi, couple's suites and a terrace lounge." },
+          { icon: 'chat', title: 'Speak your language', description: 'Kannada, other South Indian languages, Hindi, English.' },
+        ],
+      },
+      {
+        type: 'testimonials',
+        heading: 'Rated 4.9 by our guests',
+        intro: '★★★★★ 4.9 on Google, since we opened in September 2026.',
+        items: [
+          { stars: 5, quote: 'Amazing experience 😊 the staff is professional and friendly 👍', author: 'Mery', source: 'Google review' },
+          { stars: 5, quote: 'Really good experience here. The staff were friendly and understood exactly what I wanted. The place was clean. Will definitely come back again.', author: 'Akhil', source: 'Google review' },
+          { stars: 5, quote: 'Had a really good experience at Aurum Astra Unisex Salon & Spa in Hennur, Bangalore. Would recommend to anyone looking for a good unisex salon and spa.', author: 'Raghunathan', source: 'Google review' },
+          { stars: 5, quote: 'The space was clean and relaxing, and the service felt thoughtful from start to finish. I left feeling completely refreshed.', author: 'Aashique', source: 'Google review' },
+        ],
       },
       {
         type: 'cta',

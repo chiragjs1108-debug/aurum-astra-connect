@@ -13,6 +13,9 @@ import Video from './blocks/Video.jsx'
 import Callout from './blocks/Callout.jsx'
 import Divider from './blocks/Divider.jsx'
 import ServiceCards from './blocks/ServiceCards.jsx'
+import Timeline from './blocks/Timeline.jsx'
+import FeatureList from './blocks/FeatureList.jsx'
+import Testimonials from './blocks/Testimonials.jsx'
 
 const BLOCK_COMPONENTS = {
   paragraph: Paragraph,
@@ -30,6 +33,9 @@ const BLOCK_COMPONENTS = {
   callout: Callout,
   divider: Divider,
   'service-cards': ServiceCards,
+  timeline: Timeline,
+  'feature-list': FeatureList,
+  testimonials: Testimonials,
 }
 
 function BlockRenderer({ blocks = [] }) {
