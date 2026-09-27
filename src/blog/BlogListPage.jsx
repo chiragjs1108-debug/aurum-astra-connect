@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import posts from './data/posts.js'
 import BlogLayout from './components/BlogLayout.jsx'
+import { useSeo } from './seo/useSeo.js'
+import { BLOG_LIST_SEO } from './seo/seoTags.js'
 import './BlogPost.css'
 
 function formatDate(iso) {
@@ -8,6 +10,8 @@ function formatDate(iso) {
 }
 
 function BlogListPage() {
+  useSeo(BLOG_LIST_SEO)
+
   return (
     <BlogLayout>
       <div className="blog-list">

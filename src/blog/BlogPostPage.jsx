@@ -1,9 +1,13 @@
+import { useMemo } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import posts from './data/posts.js'
 import BlockRenderer from './components/BlockRenderer.jsx'
 import ServiceCategories from './components/ServiceCategories.jsx'
 import RelatedPosts from './components/RelatedPosts.jsx'
 import BlogLayout from './components/BlogLayout.jsx'
+import { useSeo } from './seo/useSeo.js'
+import { buildPostSeoTags } from './seo/seoTags.js'
+import { buildBlogPostingSchema } from './seo/blogPostingSchema.js'
 import './BlogPost.css'
 
 function formatDate(iso) {
@@ -13,6 +17,12 @@ function formatDate(iso) {
 function BlogPostPage() {
   const { slug } = useParams()
   const post = posts.find((p) => p.slug === slug)
+
+  const seoTags = useMemo(
+    () => (post ? { ...buildPostSeoTags(post), jsonLd: buildBlogPostingSchema(post) } : null),
+    [post],
+  )
+  useSeo(seoTags)
 
   if (!post) {
     return (
