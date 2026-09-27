@@ -1523,3 +1523,293 @@
     display: none;
   }
 }
+
+.block-anchor {
+  scroll-margin-top: 16px;
+}
+
+/* ---------------------------------- block: promo / offer ---------------------------------- */
+
+.block-promo {
+  position: relative;
+  padding: 24px 20px;
+  border: 2px dashed var(--color-secondary);
+  border-radius: 16px;
+  background: rgba(240, 195, 130, 0.14);
+  text-align: center;
+}
+
+.promo-badge {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.block-promo h3 {
+  font-size: 20px;
+  margin: 0 0 8px;
+}
+
+.block-promo p {
+  margin: 0 0 16px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.promo-cta {
+  display: inline-block;
+  padding: 11px 24px;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+/* ---------------------------------- block: before/after gallery ---------------------------------- */
+
+.bag-intro {
+  margin: -6px 0 14px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.bag-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.bag-photos {
+  display: flex;
+  gap: 2px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.bag-photo {
+  position: relative;
+  flex: 1;
+  aspect-ratio: 1 / 1;
+}
+
+.bag-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.bag-tag {
+  position: absolute;
+  left: 4px;
+  bottom: 4px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: rgba(63, 17, 19, 0.75);
+  color: var(--color-white);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.bag-label {
+  margin: 8px 0 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink);
+  text-align: center;
+}
+
+/* ---------------------------------- block: comparison table ---------------------------------- */
+
+.comparison-intro {
+  margin: -6px 0 14px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.comparison-track {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.comparison-track::-webkit-scrollbar {
+  display: none;
+}
+
+.comparison-card {
+  flex: 0 0 min(220px, 70vw);
+  scroll-snap-align: start;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card-bg);
+}
+
+.comparison-card.highlight {
+  border-color: var(--color-secondary);
+  border-width: 2px;
+}
+
+.comparison-highlight-tag {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--color-secondary);
+  color: var(--color-white);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.comparison-card h4 {
+  font-family: var(--font-heading);
+  color: var(--ink);
+  font-size: 17px;
+  margin: 0 0 10px;
+}
+
+.comparison-card dl {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.comparison-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.comparison-row:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.comparison-row dt {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  opacity: 0.75;
+}
+
+.comparison-row dd {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ---------------------------------- block: price list ---------------------------------- */
+
+.price-list-intro {
+  margin: -6px 0 14px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.price-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+}
+
+.price-list li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.price-list-name {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.price-list-name span:first-child {
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 14.5px;
+}
+
+.price-list-duration {
+  font-size: 12px;
+  color: var(--ink-soft);
+  opacity: 0.8;
+}
+
+.price-list-price {
+  flex: none;
+  text-align: right;
+  font-weight: 700;
+  color: var(--color-secondary);
+  font-size: 15px;
+}
+
+.price-list-note {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  opacity: 0.8;
+}
+
+/* ---------------------------------- block: table of contents ---------------------------------- */
+
+.block-toc {
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card-bg);
+}
+
+.block-toc h3 {
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+
+.block-toc ol {
+  margin: 0;
+  padding: 0 0 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.block-toc a {
+  font-size: 14px;
+  color: var(--color-secondary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.block-toc a:hover {
+  text-decoration: underline;
+}

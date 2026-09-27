@@ -16,6 +16,11 @@ import ServiceCards from './blocks/ServiceCards.jsx'
 import Timeline from './blocks/Timeline.jsx'
 import FeatureList from './blocks/FeatureList.jsx'
 import Testimonials from './blocks/Testimonials.jsx'
+import Promo from './blocks/Promo.jsx'
+import BeforeAfterGallery from './blocks/BeforeAfterGallery.jsx'
+import ComparisonTable from './blocks/ComparisonTable.jsx'
+import PriceList from './blocks/PriceList.jsx'
+import TableOfContents from './blocks/TableOfContents.jsx'
 
 const BLOCK_COMPONENTS = {
   paragraph: Paragraph,
@@ -36,6 +41,11 @@ const BLOCK_COMPONENTS = {
   timeline: Timeline,
   'feature-list': FeatureList,
   testimonials: Testimonials,
+  promo: Promo,
+  'before-after-gallery': BeforeAfterGallery,
+  comparison: ComparisonTable,
+  'price-list': PriceList,
+  toc: TableOfContents,
 }
 
 function BlockRenderer({ blocks = [] }) {
@@ -49,7 +59,12 @@ function BlockRenderer({ blocks = [] }) {
           }
           return null
         }
-        return <Component key={`${block.type}-${index}`} {...block} />
+        // `id` lets a block be a jump target for a `toc` block elsewhere in the post.
+        return (
+          <div key={`${block.type}-${index}`} id={block.id || undefined} className="block-anchor">
+            <Component {...block} />
+          </div>
+        )
       })}
     </>
   )

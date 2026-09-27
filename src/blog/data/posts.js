@@ -190,6 +190,15 @@ const posts = [
         ],
       },
       {
+        type: 'before-after-gallery',
+        heading: 'The 8-week difference',
+        intro: 'Placeholder gallery — swap in real client transformation photos here.',
+        items: [
+          { beforeImage: '/categories/women-skin-rituals.jpg', afterImage: '/categories/women-makeup-bridal.jpg', label: 'Deep-clean to bridal glow' },
+          { beforeImage: '/img/oil.webp', afterImage: '/categories/women-hair-spa.jpg', label: 'Hydration-only final week' },
+        ],
+      },
+      {
         type: 'cta',
         heading: 'Start your countdown today',
         actions: [
@@ -217,12 +226,31 @@ const posts = [
           "Eleven therapies, one thing in common: a therapist who finds the tight spot before you've finished describing it. Not sure where to start? Here's what each one actually feels like, so you can book with confidence.",
       },
       {
+        type: 'toc',
+        items: [
+          { label: 'Choose your therapy', anchorId: 'choose-therapy' },
+          { label: 'How your hour unfolds', anchorId: 'your-hour' },
+          { label: 'Swedish vs. Deep Tissue vs. Thai', anchorId: 'compare-massages' },
+          { label: 'Full price list', anchorId: 'price-list' },
+          { label: 'Why guests choose us', anchorId: 'why-us' },
+        ],
+      },
+      {
+        type: 'promo',
+        badge: 'Limited Time',
+        title: 'Your first visit, 10% off',
+        copy: "Just opened in Hennur. Mention this page when you book.",
+        action: { kind: 'whatsapp', label: 'Claim 10% Off', message: "Hi Aurum Astra, I'd like to book my first visit and use the 10% off offer." },
+      },
+      {
+        id: 'choose-therapy',
         type: 'service-cards',
         heading: 'Choose your therapy',
         intro: "We'll take care of the rest. Swipe to see all 11.",
         items: spaTherapies,
       },
       {
+        id: 'your-hour',
         type: 'timeline',
         heading: 'How your hour unfolds',
         intro: 'Nothing is rushed. This hour is yours.',
@@ -234,6 +262,38 @@ const posts = [
         ],
       },
       {
+        id: 'compare-massages',
+        type: 'comparison',
+        heading: 'Swedish vs. Deep Tissue vs. Thai',
+        intro: 'The three most-asked-about therapies, side by side.',
+        rows: ['Pressure', 'Best for', 'Duration', 'Starting price'],
+        options: [
+          { name: 'Swedish', values: ['Light', 'Winding down, poor sleep', '45–120 min', '₹1,800'] },
+          { name: 'Deep Tissue', highlight: true, values: ['Firm', "Knots that won't let go", '45–120 min', '₹2,500'] },
+          { name: 'Thai', values: ['Medium–firm, no oil', 'Stiffness, tight hips/back', '45–120 min', '₹2,500'] },
+        ],
+      },
+      {
+        id: 'price-list',
+        type: 'price-list',
+        heading: 'Full price list',
+        intro: 'Starting prices — all include taxes.',
+        items: [
+          { name: 'Swedish Massage', duration: '45–120 min', price: '₹1,800' },
+          { name: 'Aromatherapy Massage', duration: '45–120 min', price: '₹1,800' },
+          { name: 'Signature Body Massage', duration: '45–120 min', price: '₹2,500' },
+          { name: 'Deep Tissue Massage', duration: '45–120 min', price: '₹2,500' },
+          { name: 'Ayurvedic Abhyanga', duration: '45–90 min', price: '₹2,500' },
+          { name: 'Balinese Massage', duration: '45–120 min', price: '₹2,500' },
+          { name: 'Thai Massage', duration: '45–120 min', price: '₹2,500' },
+          { name: 'Sports Massage', duration: '45–120 min', price: '₹2,500' },
+          { name: 'Chocolate & Wine Therapy', duration: '60 min', price: '₹4,000' },
+          { name: "Couple's Massage", duration: '90 min, for two', price: '₹6,000' },
+          { name: 'Jacuzzi & Hydro Jet Bath', duration: '60 or 90 min', price: '₹7,000' },
+        ],
+      },
+      {
+        id: 'why-us',
         type: 'feature-list',
         heading: 'Why guests choose Aurum Astra',
         items: [
