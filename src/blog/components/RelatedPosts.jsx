@@ -23,11 +23,11 @@ function RelatedPosts({ currentSlug, tags }) {
       <div className="related-posts-grid">
         {related.map((post) => (
           <Link key={post.slug} to={`/blog/${post.slug}`} className="related-post-card">
-            <img src={post.coverImage} alt="" loading="lazy" />
-            <div className="related-post-body">
-              <h3>{post.title}</h3>
-              <p>{post.excerpt}</p>
+            <div className="related-post-media">
+              <img src={post.coverImage} alt="" loading="lazy" />
+              {post.tags?.[0] && <span className="related-post-pill">{post.tags[0]}</span>}
             </div>
+            <h3>{post.title}</h3>
           </Link>
         ))}
       </div>
