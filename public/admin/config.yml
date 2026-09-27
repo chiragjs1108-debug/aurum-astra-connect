@@ -2,8 +2,9 @@
 #
 # SETUP STILL NEEDED before a writer can log in:
 #   `backend.base_url` below must point to a running OAuth proxy (Decap's
-#   GitHub backend needs one to authenticate). See docs/blog-architecture.md
-#   or ask for help setting up the small Cloudflare Worker that provides this.
+#   GitHub backend needs one to authenticate). See oauth-worker/README.md
+#   for the step-by-step walkthrough (create a GitHub OAuth App, deploy
+#   the Worker in that folder, then paste its URL in as base_url below).
 #
 # You CAN test this config right now without that, using Decap's local
 # backend: run `npm run cms:local` in the project root, then open /admin/
