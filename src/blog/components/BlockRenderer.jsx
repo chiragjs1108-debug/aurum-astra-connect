@@ -5,6 +5,13 @@ import CardGrid from './blocks/CardGrid.jsx'
 import Carousel from './blocks/Carousel.jsx'
 import Quote from './blocks/Quote.jsx'
 import CallToAction from './blocks/CallToAction.jsx'
+import Faq from './blocks/Faq.jsx'
+import BeforeAfter from './blocks/BeforeAfter.jsx'
+import Steps from './blocks/Steps.jsx'
+import Stats from './blocks/Stats.jsx'
+import Video from './blocks/Video.jsx'
+import Callout from './blocks/Callout.jsx'
+import Divider from './blocks/Divider.jsx'
 
 const BLOCK_COMPONENTS = {
   paragraph: Paragraph,
@@ -14,6 +21,13 @@ const BLOCK_COMPONENTS = {
   carousel: Carousel,
   quote: Quote,
   cta: CallToAction,
+  faq: Faq,
+  'before-after': BeforeAfter,
+  steps: Steps,
+  stats: Stats,
+  video: Video,
+  callout: Callout,
+  divider: Divider,
 }
 
 function BlockRenderer({ blocks = [] }) {

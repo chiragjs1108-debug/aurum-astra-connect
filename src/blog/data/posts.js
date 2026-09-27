@@ -25,6 +25,14 @@ const posts = [
           "If your hair feels rough by 3pm, colour fades faster than it should, or your scalp itches more than it used to — that's not just \"bad hair,\" it's usually a scalp and moisture problem. A hair spa is the fix most people skip, right up until they try it once.",
       },
       {
+        type: 'stats',
+        items: [
+          { value: '4.9★', label: 'Average rating' },
+          { value: '15+', label: 'Years of craft' },
+          { value: '10k+', label: 'Rituals booked' },
+        ],
+      },
+      {
         type: 'image',
         src: '/img/hero-bg.webp',
         alt: 'Hair spa treatment station at Aurum Astra',
@@ -44,6 +52,15 @@ const posts = [
           { title: 'An itchy or flaky scalp', description: 'Product buildup and dryness — not always dandruff.' },
           { title: 'Hair that feels fine but looks flat', description: 'Low shine is a moisture issue a wash-and-go never fixes.' },
         ],
+      },
+      { type: 'divider' },
+      {
+        type: 'before-after',
+        beforeImage: '/categories/women-hair-treatments.jpg',
+        afterImage: '/categories/women-hair-colour.jpg',
+        beforeLabel: 'Before',
+        afterLabel: 'After',
+        caption: 'Drag to compare — a Colour-Protect Spa right after a colour service.',
       },
       {
         type: 'card-grid',
@@ -77,6 +94,15 @@ const posts = [
         attribution: 'Aurum Astra styling team',
       },
       {
+        type: 'steps',
+        heading: 'How to book one',
+        items: [
+          { title: 'Message us on WhatsApp', description: 'Tell us your hair concern and we\'ll suggest a ritual.' },
+          { title: 'Pick a slot', description: 'Same-day slots are usually available on weekdays.' },
+          { title: 'Arrive & relax', description: 'The full ritual takes 45–60 minutes, start to finish.' },
+        ],
+      },
+      {
         type: 'carousel',
         heading: 'What the ritual looks like, step by step',
         items: [
@@ -84,6 +110,25 @@ const posts = [
           { title: '2. Cleanse', description: 'A sulphate-free wash that clears buildup without stripping natural oils.', image: '/img/oil.webp' },
           { title: '3. Mask & steam', description: 'Warm steam opens the cuticle so the mask actually absorbs.', image: '/img/spa-therapy-room-hennur.webp' },
           { title: '4. Scalp massage', description: 'Improves circulation and helps the treatment settle in for longer.', image: '/img/signature-body-massage-in-hennur.webp' },
+        ],
+      },
+      {
+        type: 'callout',
+        tone: 'tip',
+        text: 'Avoid heat styling for 24 hours after a hair spa — the cuticle is still settling and heat undoes some of the moisture work.',
+      },
+      {
+        type: 'video',
+        url: 'https://www.youtube.com/watch?v=jNQXAC9IVRw',
+        caption: 'Placeholder embed — swap the URL for a real studio or Reels video.',
+      },
+      {
+        type: 'faq',
+        heading: 'Frequently asked questions',
+        items: [
+          { question: 'How long does a hair spa take?', answer: 'Usually 45–60 minutes depending on hair length and the ritual chosen.' },
+          { question: 'Can I get one right after colouring my hair?', answer: 'Yes — the Colour-Protect Spa is specifically formulated for this and is best done within a week of colouring.' },
+          { question: 'How often should I book one?', answer: 'Most guests come in every 3 to 4 weeks, more often if you colour or heat-style frequently.' },
         ],
       },
       {
