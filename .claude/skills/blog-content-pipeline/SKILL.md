@@ -117,23 +117,35 @@ actual clientele.
 Two tiers, in order — try the first, fall back to the second, and only fall
 back to a placeholder if both are unavailable:
 
-**1. Gemini (paid), if `GEMINI_API_KEY` is set.** There is no separate
-"Imagen" model any more — image generation is built into Gemini's own
-models, called through `generateContent` (not the older `:predict`
-endpoint). The current stable model is `gemini-3.1-flash-image`:
+**1. Gemini (paid), authenticated automatically — no key handling needed
+in the command at all.** The Gemini key lives as this environment's API
+credential (Edit cloud environment → API credentials → `GEMINI_API_KEY`,
+scoped to `generativelanguage.googleapis.com`), which injects the
+`x-goog-api-key` header into any outbound call to that host transparently.
+Verified directly: a call with zero auth handling and no
+`GEMINI_API_KEY` env var present still reached Google authenticated as the
+right project (confirmed via a `402` billing error, which only happens
+*after* successful auth — an actually-unauthenticated call gets a `403`
+instead). So: just call the API plainly, nothing to read or pass.
+
+There is no separate "Imagen" model any more — image generation is built
+into Gemini's own models, called through `generateContent` (not the older
+`:predict` endpoint). The current stable model is `gemini-3.1-flash-image`:
 
 ```bash
 curl -s -X POST \
-  "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-image:generateContent?key=$GEMINI_API_KEY" \
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-image:generateContent" \
   -H "Content-Type: application/json" \
   -d "{\"contents\":[{\"parts\":[{\"text\":\"<the slot's prompt>, <docs/brand-guidelines.md fixed style suffix, plus the Indian-ethnicity line if a person is in the shot>\"}]}]}"
 ```
 
 If that model name 404s (Google renames/versions these), call
-`GET https://generativelanguage.googleapis.com/v1beta/models?key=$GEMINI_API_KEY`
-and pick a current model whose name contains `image` from the list, rather
-than guessing further names. A `402`/`429` billing or quota error means
-this tier is unavailable right now — move to tier 2, don't retry in a loop.
+`GET https://generativelanguage.googleapis.com/v1beta/models` (same,
+no key needed) and pick a current model whose name contains `image` from
+the list, rather than guessing further names. A `402`/`429` billing or
+quota error means this tier is unavailable right now (as of this writing,
+this is exactly the state it's in — the underlying billing account's
+prepay balance is still settling) — move to tier 2, don't retry in a loop.
 
 The result's `candidates[0].content.parts[]` contains a part with
 `inlineData.data` — a base64 PNG. Decode it to a file, then convert to
@@ -216,11 +228,13 @@ For each row at `Approved to Publish`:
 
 ## Setup this pipeline needs once
 
-- **`GEMINI_API_KEY`** — a *paid* Gemini key (a free-tier key can't
-  generate images at all — see above), added as an environment variable on
-  this environment (the environment's Edit menu in the session title bar),
-  not pasted into chat or committed anywhere. Without it, Step 2 falls back
-  to Canva, and only skips generation entirely if that's unavailable too.
+- **A *paid* Gemini key** (a free-tier key can't generate images at all —
+  see above), added as this environment's API credential (Edit cloud
+  environment → API credentials → name it `GEMINI_API_KEY`, allowed website
+  `generativelanguage.googleapis.com`, custom header `x-goog-api-key` with
+  no prefix) — verified working this way: calls authenticate with no key
+  handling in the command at all. Without it, Step 2 falls back to Canva,
+  and only skips generation entirely if that's unavailable too.
 - **The Canva connector**, plus `canva.com` and `media.canva.com` allowed
   on this environment's network policy (Edit → Network access) — without
   the network access, Canva's tools accept the generation request but the
