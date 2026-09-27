@@ -107,35 +107,59 @@ For each row at `Planned`:
 
 ### Generating an image
 
-Requires a Gemini API key in the `GEMINI_API_KEY` environment variable (see
-"Setup" below — if it's missing, skip generation for that slot, leave a
-placeholder note in the draft instead, and say so plainly in your final
-report; don't block the whole row on one missing image).
+Two tiers, in order — try the first, fall back to the second, and only fall
+back to a placeholder if both are unavailable:
+
+**1. Gemini (paid), if `GEMINI_API_KEY` is set.** There is no separate
+"Imagen" model any more — image generation is built into Gemini's own
+models, called through `generateContent` (not the older `:predict`
+endpoint). The current stable model is `gemini-3.1-flash-image`:
 
 ```bash
 curl -s -X POST \
-  "https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=$GEMINI_API_KEY" \
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-image:generateContent?key=$GEMINI_API_KEY" \
   -H "Content-Type: application/json" \
-  -d "{\"instances\":[{\"prompt\":\"<the slot's prompt>, editorial photography, warm natural light, matches an upscale salon and spa's brand photography\"}],\"parameters\":{\"sampleCount\":1}}"
+  -d "{\"contents\":[{\"parts\":[{\"text\":\"<the slot's prompt>, editorial photography, warm natural light, matches an upscale salon and spa's brand photography\"}]}]}"
 ```
 
-If that model ID 404s (Google renames/versions these), call
+If that model name 404s (Google renames/versions these), call
 `GET https://generativelanguage.googleapis.com/v1beta/models?key=$GEMINI_API_KEY`
-and pick the current Imagen model from the list rather than guessing
-further model names.
+and pick a current model whose name contains `image` from the list, rather
+than guessing further names. A `402`/`429` billing or quota error means
+this tier is unavailable right now — move to tier 2, don't retry in a loop.
 
-The response's `predictions[0].bytesBase64Encoded` is a PNG. Decode it to a
-file, then convert to `.webp` with the repo's own converter — every
-existing image on the site is `.webp`, and this keeps generated ones
-consistent:
+The result's `candidates[0].content.parts[]` contains a part with
+`inlineData.data` — a base64 PNG. Decode it to a file, then convert to
+`.webp` with the repo's own converter, since every existing image on the
+site is `.webp`:
 
 ```bash
 node scripts/convert-to-webp.mjs /tmp/generated.png /tmp/generated.webp
 ```
 
-Upload the result to the AI-generated Media Library Drive folder
-(`create_file` with `base64Content`), then log it in the Media Library
-sheet as described above.
+**2. Canva, if Gemini isn't available.** The `generate-image` /
+`get-generate-image-job` tools (load via `ToolSearch` if not already
+available) work with no API key and no billing dependency on this project
+at all. Call `generate-image` with the slot's prompt, poll
+`get-generate-image-job` with the returned `jobId` until `SUCCESS`, then
+download the result and convert to `.webp` the same way.
+
+**Free-tier Gemini keys cannot do either of the above — don't try them.**
+Verified directly: both `gemini-3.1-flash-image` and
+`gemini-2.5-flash-image` return `429` with `limit: 0` for
+`generate_content_free_tier_requests` on a free-tier key. This is a flat
+product-tier restriction, not a rate limit that clears with time, so a free
+key belongs nowhere in this fallback chain for images specifically (it's
+fine for other things, just not this).
+
+**If both tiers are unavailable** (no `GEMINI_API_KEY` and Canva's tools
+can't be loaded or fail), skip generation for that slot, leave a clear
+placeholder note in the draft instead, and say so plainly in your final
+report — don't block the whole row on one missing image.
+
+Either way, upload the result to the AI-generated Media Library Drive
+folder (`create_file` with `base64Content`), then log it in the Media
+Library sheet as described above.
 
 ## Step 3 — Review
 
@@ -167,10 +191,13 @@ For each row at `Approved to Publish`:
 
 ## Setup this pipeline needs once
 
-- **`GEMINI_API_KEY`** — add it as an environment variable on this
-  environment (the environment's Edit menu in the session title bar), not
-  pasted into chat or committed anywhere. Without it, Step 2 still runs but
-  skips image generation for any slot with no real/reused match.
+- **`GEMINI_API_KEY`** — a *paid* Gemini key (a free-tier key can't
+  generate images at all — see above), added as an environment variable on
+  this environment (the environment's Edit menu in the session title bar),
+  not pasted into chat or committed anywhere. Without it, Step 2 falls back
+  to Canva, and only skips generation entirely if that's unavailable too.
+- **The Canva connector** — no key to manage, just needs to be connected
+  for this chat/environment, same as Google Sheets and Drive.
 - **A scheduled Routine** pointed at this skill (`create_trigger`,
   `create_new_session_on_fire: true`, prompt: run this pipeline) is what
   makes this actually recurring rather than something run by hand.

@@ -179,28 +179,43 @@ For every image slot a post's block plan calls for, in this order:
 ### 4.1 How generation actually happens
 
 Confirmed this session: this environment can reach
-`generativelanguage.googleapis.com` directly (a real, authenticated API
-error came back, not a network-level block), so Claude can call Google's
-Imagen/Gemini image API itself — no manual round-trip through the Google AI
-Studio web UI is needed.
+`generativelanguage.googleapis.com` directly, so Claude can call Google's
+Gemini image API itself — no manual round-trip through the Google AI Studio
+web UI is needed. The model landscape moved since this design was first
+written, so this section reflects what was actually verified working, not
+the original plan:
 
-- **Model:** Imagen (Google's text-to-image model) for fresh photographic
-  images — treatment shots, product shots, interiors. Gemini's own image
-  model ("Nano Banana") is kept in reserve for posts that need a visually
-  consistent series (same look reused across several images in one post),
-  since it's stronger at that than at fresh photorealism.
+- **There's no separate "Imagen" model any more.** Image generation is
+  built directly into Gemini's own models, branded "Nano Banana" —
+  `gemini-3.1-flash-image` is the current stable one, called through
+  `generateContent` rather than the older `:predict` endpoint Imagen used.
+- **Two-tier fallback, verified for real:**
+  1. **Gemini (paid)** — works once the project's billing is actually
+     funded. Tested and confirmed 402 (`RESOURCE_EXHAUSTED`,
+     "prepayment credits are depleted") when the billing account's balance
+     was ₹0, which is expected, not a bug.
+  2. **Canva** — free, already connected, no billing dependency on the
+     Gemini project at all. Tested end-to-end (prompt → generated image)
+     and produced a genuinely usable, on-brief result with zero setup.
+  A free-tier Gemini key is **not** a usable third tier: tested directly,
+  both current image models return a flat `limit: 0` for
+  `generate_content_free_tier_requests` — a product-tier restriction, not
+  a quota that clears with time. Free-tier Gemini keys are fine for other
+  things; they cannot generate images at all.
 - **Prompting:** Claude writes one prompt per image slot during planning,
   grounded in the post's topic/keywords, plus a fixed style suffix (applied
   to every generation) so images read as one consistent brand rather than a
   different look per post.
-- **Cost:** paid from the user's existing Google AI Studio Pro credits
-  ($100 balance as of this design). Per-image cost is a few cents; exact
-  current pricing should be checked against AI Studio's pricing page before
-  building, since rates change.
-- **API key handling:** a Gemini API key from AI Studio, stored only as a
-  secret on whatever environment runs the scheduled automation — never
-  committed to the repo, same rule as the Decap OAuth Worker's secrets
-  (`oauth-worker/README.md`).
+- **Cost:** the paid tier draws from the user's Google Cloud billing
+  account (Mahaguru-Core project); the Canva tier is free within the user's
+  Canva plan limits. Per-image cost on the Gemini side is a few cents;
+  check current pricing before relying on volume estimates, since rates
+  change.
+- **API key handling:** the paid Gemini key is stored only as a secret
+  (`GEMINI_API_KEY`) on whatever environment runs the scheduled automation
+  — never committed to the repo, same rule as the Decap OAuth Worker's
+  secrets (`oauth-worker/README.md`). Canva needs no key at all, just the
+  connector enabled.
 
 ### 4.2 A post needs more than one image
 
