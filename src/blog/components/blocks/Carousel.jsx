@@ -19,7 +19,7 @@ function Carousel({ heading, items = [] }) {
         <div className="carousel-track" ref={trackRef}>
           {items.map((item) => (
             <article key={item.title} className="carousel-item">
-              {item.image && <img src={item.image} alt="" loading="lazy" />}
+              {item.image && <img src={item.image} alt={item.alt || item.title} loading="lazy" />}
               <h4>{item.title}</h4>
               {item.description && <p>{item.description}</p>}
             </article>

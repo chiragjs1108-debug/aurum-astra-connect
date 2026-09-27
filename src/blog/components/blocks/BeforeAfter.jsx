@@ -1,15 +1,15 @@
 import { useState } from 'react'
 
-function BeforeAfter({ beforeImage, afterImage, beforeLabel = 'Before', afterLabel = 'After', caption }) {
+function BeforeAfter({ beforeImage, afterImage, beforeLabel = 'Before', afterLabel = 'After', beforeAlt, afterAlt, caption }) {
   const [position, setPosition] = useState(50)
 
   return (
     <figure className="block-before-after">
       <div className="before-after-frame">
-        <img src={afterImage} alt="" className="before-after-img" loading="lazy" />
+        <img src={afterImage} alt={afterAlt || afterLabel} className="before-after-img" loading="lazy" />
         <img
           src={beforeImage}
-          alt=""
+          alt={beforeAlt || beforeLabel}
           className="before-after-img"
           loading="lazy"
           style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}

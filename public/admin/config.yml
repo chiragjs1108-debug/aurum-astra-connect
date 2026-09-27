@@ -34,6 +34,7 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Excerpt", name: "excerpt", widget: "text", hint: "Shown on the blog listing page." }
       - { label: "Cover Image", name: "coverImage", widget: "image" }
+      - { label: "Cover Image Alt Text", name: "coverImageAlt", widget: "string", required: false, hint: "Describe what's in the photo, for accessibility and Google Image search. Falls back to Title if left blank." }
       - { label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
       - label: "Tags"
         name: "tags"
@@ -88,6 +89,7 @@ collections:
                   - { label: "Title", name: "title", widget: "string" }
                   - { label: "Description", name: "description", widget: "text", required: false }
                   - { label: "Image", name: "image", widget: "image", required: false }
+                  - &imageAltField { label: "Image Alt Text", name: "alt", widget: "string", required: false, hint: "Describe the photo. Falls back to Title if left blank." }
               - *anchorId
 
           - label: "Carousel"
@@ -102,6 +104,7 @@ collections:
                   - { label: "Title", name: "title", widget: "string" }
                   - { label: "Description", name: "description", widget: "text", required: false }
                   - { label: "Image", name: "image", widget: "image", required: false }
+                  - *imageAltField
               - *anchorId
 
           - label: "Quote"
@@ -146,7 +149,9 @@ collections:
             widget: "object"
             fields:
               - { label: "Before Image", name: "beforeImage", widget: "image" }
+              - { label: "Before Image Alt Text", name: "beforeAlt", widget: "string", required: false, hint: "Falls back to Before Label if left blank." }
               - { label: "After Image", name: "afterImage", widget: "image" }
+              - { label: "After Image Alt Text", name: "afterAlt", widget: "string", required: false, hint: "Falls back to After Label if left blank." }
               - { label: "Before Label", name: "beforeLabel", widget: "string", required: false, default: "Before" }
               - { label: "After Label", name: "afterLabel", widget: "string", required: false, default: "After" }
               - { label: "Caption", name: "caption", widget: "string", required: false }

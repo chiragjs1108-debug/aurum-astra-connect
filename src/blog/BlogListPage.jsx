@@ -23,7 +23,7 @@ function BlogListPage() {
         <div className="blog-list-grid">
           {posts.map((post) => (
             <Link key={post.slug} to={`/blog/${post.slug}`} className="blog-list-card">
-              <img src={post.coverImage} alt="" loading="lazy" />
+              <img src={post.coverImage} alt={post.coverImageAlt || post.title} loading="lazy" />
               <div className="blog-list-card-body">
                 {post.tags?.[0] && <span className="blog-list-card-tag">{post.tags[0]}</span>}
                 <h2>{post.title}</h2>
