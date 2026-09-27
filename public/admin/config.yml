@@ -1,12 +1,9 @@
 # Decap CMS configuration for the Aurum Astra blog.
 #
-# SETUP STILL NEEDED before a writer can log in:
-#   `backend.base_url` below must point to a running OAuth proxy (Decap's
-#   GitHub backend needs one to authenticate). See oauth-worker/README.md
-#   for the step-by-step walkthrough (create a GitHub OAuth App, deploy
-#   the Worker in that folder, then paste its URL in as base_url below).
+# GitHub OAuth is wired up via a Cloudflare Worker (see oauth-worker/) that
+# holds the OAuth app's client secret and implements the login handshake.
 #
-# You CAN test this config right now without that, using Decap's local
+# You CAN also test this config without any of that, using Decap's local
 # backend: run `npm run cms:local` in the project root, then open /admin/
 # while running the site locally — it reads/writes real files on disk.
 
@@ -14,7 +11,7 @@ backend:
   name: github
   repo: chiragjs1108-debug/aurum-astra-connect
   branch: main
-  base_url: https://REPLACE-WITH-YOUR-OAUTH-PROXY.example.com
+  base_url: https://aurum-astra-cms-auth.gentle-math-33b2.workers.dev
   auth_endpoint: auth
 
 local_backend: true
