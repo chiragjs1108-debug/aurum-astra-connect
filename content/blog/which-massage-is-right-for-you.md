@@ -3,8 +3,8 @@ title: Which Massage Is Right For You? A Guide to Our 11 Spa Therapies
 excerpt: From a firm Deep Tissue reset to a private Jacuzzi soak — a quick guide to every therapy on our menu, so you know exactly what to book.
 coverImage: /img/spa-therapy-room-hennur.webp
 date: '2026-09-25'
-tags:
-  - Spa Rituals
+mainCategory: Spa & Massage
+subCategories:
   - Massage
 metaTitle: Which Massage Is Right For You? Spa Therapy Guide | Aurum Astra
 metaDescription: A guide to all 11 spa and massage therapies at Aurum Astra in Hennur, Bengaluru — pressure level, duration, and what each one is best for.

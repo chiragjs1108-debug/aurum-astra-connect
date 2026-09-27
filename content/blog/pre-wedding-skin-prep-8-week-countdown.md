@@ -3,8 +3,8 @@ title: 'Pre-Wedding Skin Prep: The 8-Week Countdown'
 excerpt: Bridal skin glow is built, not rushed. Here is the week-by-week ritual schedule our estheticians actually recommend before the big day.
 coverImage: /categories/women-skin-rituals.jpg
 date: '2026-09-10'
-tags:
-  - Skin Rituals
+mainCategory: Skin Rituals & Treatment
+subCategories:
   - Bridal
 metaTitle: 'Pre-Wedding Skin Prep: The 8-Week Countdown | Aurum Astra'
 metaDescription: A week-by-week facial and skin ritual schedule to start 8 weeks before your wedding, from Aurum Astra's estheticians in Hennur, Bengaluru.

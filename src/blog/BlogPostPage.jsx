@@ -42,7 +42,7 @@ function BlogPostPage() {
           <Link to="/blog" className="blog-post-back">
             &larr; The Journal
           </Link>
-          {post.tags?.[0] && <p className="eyebrow">{post.tags[0]}</p>}
+          {post.mainCategory && <p className="eyebrow">{post.mainCategory}</p>}
           <h1>{post.title}</h1>
           <p className="blog-post-date">{formatDate(post.date)}</p>
         </header>
@@ -54,7 +54,7 @@ function BlogPostPage() {
         </div>
 
         <ServiceCategories />
-        <RelatedPosts currentSlug={post.slug} tags={post.tags} />
+        <RelatedPosts currentSlug={post.slug} mainCategory={post.mainCategory} subCategories={post.subCategories} />
       </article>
     </BlogLayout>
   )

@@ -1,20 +1,22 @@
 import { Link } from 'react-router-dom'
 import posts from '../data/posts.js'
 
-function getRelatedPosts(currentSlug, tags = [], limit = 3) {
+function getRelatedPosts(currentSlug, mainCategory, subCategories = [], limit = 3) {
   return posts
     .filter((post) => post.slug !== currentSlug)
     .map((post) => ({
       post,
-      sharedTags: post.tags?.filter((tag) => tags.includes(tag)).length || 0,
+      score:
+        (post.mainCategory === mainCategory ? 10 : 0) +
+        (post.subCategories?.filter((sub) => subCategories.includes(sub)).length || 0),
     }))
-    .sort((a, b) => b.sharedTags - a.sharedTags || new Date(b.post.date) - new Date(a.post.date))
+    .sort((a, b) => b.score - a.score || new Date(b.post.date) - new Date(a.post.date))
     .slice(0, limit)
     .map((entry) => entry.post)
 }
 
-function RelatedPosts({ currentSlug, tags }) {
-  const related = getRelatedPosts(currentSlug, tags)
+function RelatedPosts({ currentSlug, mainCategory, subCategories }) {
+  const related = getRelatedPosts(currentSlug, mainCategory, subCategories)
   if (related.length === 0) return null
 
   return (
@@ -25,7 +27,7 @@ function RelatedPosts({ currentSlug, tags }) {
           <Link key={post.slug} to={`/blog/${post.slug}`} className="related-post-card">
             <div className="related-post-media">
               <img src={post.coverImage} alt="" loading="lazy" />
-              {post.tags?.[0] && <span className="related-post-pill">{post.tags[0]}</span>}
+              {post.mainCategory && <span className="related-post-pill">{post.mainCategory}</span>}
             </div>
             <h3>{post.title}</h3>
           </Link>

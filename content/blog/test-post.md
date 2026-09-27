@@ -3,7 +3,8 @@ title: Test Post
 excerpt: Test Excerpt
 coverImage: /img/blog/oil.webp
 date: 2026-09-27
-tags:
+mainCategory: Hair Treatment
+subCategories:
   - Test Tag
 metaTitle: SEO Title
 metaDescription: SEO Description

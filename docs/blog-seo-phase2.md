@@ -125,7 +125,7 @@ generated automatically — nothing sits in between:
 | Before/after image alt text | "Before/After Image Alt Text" | You write it (falls back to the Before/After label) |
 | `og:title`, `og:description`, `og:image`, `og:url` | — no field | Fully automatic — built from Title/SEO Title, Excerpt/SEO Description, Cover Image |
 | Canonical URL | — no field | Fully automatic — derived from the post's filename/slug |
-| `BlogPosting` JSON-LD | — no field | Fully automatic — built from Title, SEO Description/Excerpt, Cover Image, Publish Date, plus the fixed business name/logo in `siteInfo.js` |
+| `BlogPosting` JSON-LD | — no field | Fully automatic — built from Title, SEO Description/Excerpt, Cover Image, Publish Date, plus the fixed business name/logo in `siteInfo.js`. Its `keywords` property comes from Main Category + Sub Categories (see `blog-architecture.md`'s post-fields section). |
 
 The fields with no CMS field at all is deliberate, not a gap: canonical
 URLs and JSON-LD are exactly the kind of thing that's actively harmful if

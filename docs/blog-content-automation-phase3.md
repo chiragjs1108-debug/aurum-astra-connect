@@ -54,6 +54,8 @@ bottom as its `Status` advances.
 | Primary/Secondary Keywords | You | SEO targets for this post |
 | Internal-linking directions | You | Specific pages you want linked, if any |
 | Related directions | You | Any other constraints or ideas |
+| Main Category | Claude | One of the site's fixed categories (see below) |
+| Sub Categories | Claude | Specific topics within that category |
 | Blocks Plan | Claude | Which of the 23 block types this post will use, how many of each, and which need images |
 | Image Prompts | Claude | A numbered list, one line per image slot the post needs (see §4.2) |
 | Status | You (Claude only reads it) | `Idea → Planned → Drafted → Approved to Publish → Published` |
@@ -75,6 +77,19 @@ happened, not just what was asked for.
 
 **`Related directions` is unchanged** — still your free-form notes, read but
 never written by Claude.
+
+**`Main Category` / `Sub Categories`** are the post's place in the site's
+taxonomy (`docs/blog-architecture.md`'s post-fields section has the full
+design — this replaced the old freeform `tags` field). Claude decides both
+during planning from the topic, the same "honors a pre-filled requirement,
+otherwise decides itself" pattern as internal linking: if you name a
+category here beforehand, Claude uses it; otherwise it picks the best-fitting
+one of the six fixed options (`Spa & Massage`, `Hair Cut & Styling`,
+`Hair Colour`, `Hair Treatment`, `Skin Rituals & Treatment`,
+`Nails & Hands`) and adds specific sub-category topics. This is what makes a
+future "N posts from this category" widget possible without a manual tagging
+pass — every post is categorized at the moment it's planned, not after the
+fact.
 
 ### 3.2 Media Library (the asset index)
 
@@ -240,6 +255,8 @@ outside this pipeline never stays untracked for long.
 
 **Step 1 — Plan.** Read the Editorial sheet for rows whose `Schedule date`
 has arrived and whose `Status` is empty/`Idea`. For each:
+- Decide `Main Category` (one of the six fixed options) and `Sub Categories`
+  from the topic, honoring anything pre-filled as a requirement.
 - Decide which block types the post needs, how many of each, and which need
   images; write that into `Blocks Plan`.
 - Write the full numbered image-slot list into `Image Prompts` (§4.2) — one

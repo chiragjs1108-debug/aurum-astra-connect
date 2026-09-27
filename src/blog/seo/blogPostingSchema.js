@@ -9,6 +9,7 @@ export function buildBlogPostingSchema(post) {
     description: post.metaDescription || post.excerpt,
     image: absoluteUrl(post.coverImage),
     datePublished: post.date,
+    keywords: [post.mainCategory, ...(post.subCategories || [])].filter(Boolean).join(', '),
     author: { '@type': 'Organization', name: SITE_NAME },
     publisher: {
       '@type': 'Organization',

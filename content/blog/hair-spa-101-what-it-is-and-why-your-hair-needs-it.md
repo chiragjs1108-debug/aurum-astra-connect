@@ -3,7 +3,8 @@ title: 'Hair Spa 101: What It Is and Why Your Hair Needs It'
 excerpt: Dryness, frizz, and dull strands are usually a scalp problem in disguise. Here is what a proper hair spa ritual actually fixes — and how often you really need one.
 coverImage: /categories/women-hair-spa.jpg
 date: '2026-09-20'
-tags:
+mainCategory: Hair Treatment
+subCategories:
   - Hair Care
   - Spa Rituals
 metaTitle: 'Hair Spa 101: What It Is and Why Your Hair Needs It | Aurum Astra'

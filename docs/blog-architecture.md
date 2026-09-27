@@ -163,8 +163,8 @@ title: Which Massage Is Right For You? A Guide to Our 11 Spa Therapies
 excerpt: From a firm Deep Tissue reset to a private Jacuzzi soak — a quick guide...
 coverImage: /img/spa-therapy-room-hennur.webp
 date: '2026-09-25'
-tags:
-  - Spa Rituals
+mainCategory: Spa & Massage
+subCategories:
   - Massage
 metaTitle: Which Massage Is Right For You? Spa Therapy Guide | Aurum Astra
 metaDescription: A guide to all 11 spa and massage therapies...
@@ -189,9 +189,28 @@ blocks:
 ```
 
 Top-level post fields: `title`, `excerpt`, `coverImage`, `coverImageAlt`
-(optional, falls back to `title`), `date` (`YYYY-MM-DD`), `tags` (list of
-strings), `metaTitle` (optional, falls back to `title`), `metaDescription`
-(optional, falls back to `excerpt`), `blocks`.
+(optional, falls back to `title`), `date` (`YYYY-MM-DD`), `mainCategory`
+(single value, one of a fixed list — see below), `subCategories` (list of
+strings, freeform), `metaTitle` (optional, falls back to `title`),
+`metaDescription` (optional, falls back to `excerpt`), `blocks`.
+
+**`mainCategory` replaced the old freeform `tags` field** (added after the
+first few posts were written; those posts were migrated). It's a controlled
+vocabulary — a Decap `select` widget, not free text — because it's what
+drives the category pill shown on the listing page, on each post, and on
+related-post cards, and it's the field a future "N posts from this category"
+widget would filter on. The current options: `Spa & Massage`,
+`Hair Cut & Styling`, `Hair Colour`, `Hair Treatment`,
+`Skin Rituals & Treatment`, `Nails & Hands` — matching the site's real
+service lines (`ServiceCategories.jsx`). Add a new option to the `select`
+widget in `config.yml` before using it on a post; don't invent an off-list
+value in a post's frontmatter.
+
+`subCategories` is the finer-grained, freeform half — a specific topic
+*within* that main category (e.g. `Bridal` under `Skin Rituals &
+Treatment`, or `Deep Tissue` under `Spa & Massage`). `RelatedPosts.jsx`
+scores matches by shared `mainCategory` first, shared `subCategories`
+second.
 
 `content/blog/CLAUDE.md` carries the same rules for any Claude Code session
 that touches this folder.

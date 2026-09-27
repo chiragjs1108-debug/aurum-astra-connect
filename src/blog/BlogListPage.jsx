@@ -25,7 +25,7 @@ function BlogListPage() {
             <Link key={post.slug} to={`/blog/${post.slug}`} className="blog-list-card">
               <img src={post.coverImage} alt={post.coverImageAlt || post.title} loading="lazy" />
               <div className="blog-list-card-body">
-                {post.tags?.[0] && <span className="blog-list-card-tag">{post.tags[0]}</span>}
+                {post.mainCategory && <span className="blog-list-card-tag">{post.mainCategory}</span>}
                 <h2>{post.title}</h2>
                 <p>{post.excerpt}</p>
                 <span className="blog-list-card-date">{formatDate(post.date)}</span>

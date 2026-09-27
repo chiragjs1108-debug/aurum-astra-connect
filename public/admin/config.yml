@@ -36,10 +36,23 @@ collections:
       - { label: "Cover Image", name: "coverImage", widget: "image" }
       - { label: "Cover Image Alt Text", name: "coverImageAlt", widget: "string", required: false, hint: "Describe what's in the photo, for accessibility and Google Image search. Falls back to Title if left blank." }
       - { label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
-      - label: "Tags"
-        name: "tags"
+      - label: "Main Category"
+        name: "mainCategory"
+        widget: "select"
+        hint: "Drives the category pill shown on the listing page, the post itself, and related-post cards — and is what a future category widget would filter on."
+        options:
+          - "Spa & Massage"
+          - "Hair Cut & Styling"
+          - "Hair Colour"
+          - "Hair Treatment"
+          - "Skin Rituals & Treatment"
+          - "Nails & Hands"
+      - label: "Sub Categories"
+        name: "subCategories"
         widget: "list"
-        field: { label: "Tag", name: "tag", widget: "string" }
+        required: false
+        hint: "More specific topics within the Main Category above (e.g. under Spa & Massage: Deep Tissue, Balinese)."
+        field: { label: "Sub Category", name: "subCategory", widget: "string" }
       - { label: "SEO Title", name: "metaTitle", widget: "string", required: false, hint: "Falls back to Title if left blank." }
       - { label: "SEO Description", name: "metaDescription", widget: "text", required: false, hint: "Falls back to Excerpt if left blank." }
 
