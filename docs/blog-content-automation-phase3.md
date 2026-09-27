@@ -255,8 +255,14 @@ outside this pipeline never stays untracked for long.
 
 **Step 1 — Plan.** Read the Editorial sheet for rows whose `Schedule date`
 has arrived and whose `Status` is empty/`Idea`. For each:
-- Decide `Main Category` (one of the six fixed options) and `Sub Categories`
-  from the topic, honoring anything pre-filled as a requirement.
+- Decide `Main Category` (one of the fixed options) and `Sub Categories`
+  from the topic, honoring anything pre-filled as a requirement. If a
+  pre-filled `Main Category` doesn't match any current option, that's not
+  invalid input — it's the user registering a new category by using it.
+  Run the `/blog-category-generator` skill with that value before
+  continuing, which registers it everywhere the list is kept (CMS config,
+  both architecture docs, this sheet's own column note), then proceed with
+  the row using the newly added category.
 - Decide which block types the post needs, how many of each, and which need
   images; write that into `Blocks Plan`.
 - Write the full numbered image-slot list into `Image Prompts` (§4.2) — one
