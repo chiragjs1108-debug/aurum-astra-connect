@@ -1,0 +1,384 @@
+/* ---------------------------------- shared ---------------------------------- */
+
+.blog-list,
+.blog-post {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 48px 20px 96px;
+}
+
+.blog-list .eyebrow,
+.blog-post .eyebrow {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin: 0 0 8px;
+}
+
+/* ---------------------------------- list page ---------------------------------- */
+
+.blog-list-head {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.blog-list-head h1 {
+  font-size: clamp(28px, 4vw, 40px);
+}
+
+.blog-list-grid {
+  display: grid;
+  gap: 24px;
+}
+
+.blog-list-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--card-bg);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.blog-list-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -12px rgba(63, 17, 19, 0.25);
+}
+
+.blog-list-card img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.blog-list-card-body {
+  padding: 20px;
+}
+
+.blog-list-card-tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin-bottom: 8px;
+}
+
+.blog-list-card h2 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.blog-list-card p {
+  margin: 0 0 12px;
+  font-size: 15px;
+}
+
+.blog-list-card-date {
+  font-size: 13px;
+  color: var(--ink-soft);
+  opacity: 0.75;
+}
+
+/* ---------------------------------- post page ---------------------------------- */
+
+.blog-post-back {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-secondary);
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+
+.blog-post-back:hover {
+  text-decoration: underline;
+}
+
+.blog-post-head h1 {
+  font-size: clamp(28px, 4.5vw, 42px);
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+
+.blog-post-date {
+  font-size: 14px;
+  color: var(--ink-soft);
+  opacity: 0.75;
+  margin: 0 0 28px;
+}
+
+.blog-post-cover {
+  width: 100%;
+  border-radius: 16px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  margin-bottom: 32px;
+}
+
+.blog-post-body {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.blog-post-missing {
+  text-align: center;
+  padding-top: 96px;
+}
+
+/* ---------------------------------- block: paragraph ---------------------------------- */
+
+.block-paragraph {
+  margin: 0;
+}
+
+/* ---------------------------------- block: image ---------------------------------- */
+
+.block-image {
+  margin: 0;
+}
+
+.block-image img {
+  width: 100%;
+  border-radius: 12px;
+  display: block;
+}
+
+.block-image figcaption {
+  font-size: 13px;
+  color: var(--ink-soft);
+  opacity: 0.75;
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* ---------------------------------- block: bullet list ---------------------------------- */
+
+.block-bullet-list h3,
+.block-card-grid h3,
+.block-carousel h3 {
+  font-size: 20px;
+  margin-bottom: 14px;
+}
+
+.block-bullet-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.block-bullet-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-left: 22px;
+  position: relative;
+}
+
+.block-bullet-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.bullet-item-title {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.bullet-item-description {
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+
+/* ---------------------------------- block: card grid ---------------------------------- */
+
+.card-grid-items {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.card-grid-item {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card-bg);
+  overflow: hidden;
+}
+
+.card-grid-item img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.card-grid-item h4 {
+  font-family: var(--font-heading);
+  color: var(--ink);
+  font-size: 16px;
+  margin: 12px 14px 4px;
+}
+
+.card-grid-item p {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin: 0 14px 14px;
+}
+
+/* ---------------------------------- block: carousel ---------------------------------- */
+
+.carousel-wrap {
+  position: relative;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-item {
+  flex: 0 0 240px;
+  scroll-snap-align: start;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card-bg);
+  overflow: hidden;
+}
+
+.carousel-item img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel-item h4 {
+  font-family: var(--font-heading);
+  color: var(--ink);
+  font-size: 16px;
+  margin: 12px 14px 4px;
+}
+
+.carousel-item p {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin: 0 14px 14px;
+}
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--color-white);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.carousel-prev {
+  left: -14px;
+}
+
+.carousel-next {
+  right: -14px;
+}
+
+.carousel-nav-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.carousel-nav-icon-prev {
+  transform: scaleX(-1);
+}
+
+@media (max-width: 640px) {
+  .card-grid-items {
+    grid-template-columns: 1fr;
+  }
+
+  .carousel-nav {
+    display: none;
+  }
+}
+
+/* ---------------------------------- block: quote ---------------------------------- */
+
+.block-quote {
+  margin: 0;
+  padding: 4px 0 4px 20px;
+  border-left: 3px solid var(--color-accent);
+}
+
+.block-quote p {
+  font-family: var(--font-heading);
+  font-size: 21px;
+  color: var(--ink);
+  margin: 0 0 8px;
+}
+
+.block-quote cite {
+  font-size: 13px;
+  color: var(--ink-soft);
+  opacity: 0.75;
+  font-style: normal;
+}
+
+/* ---------------------------------- block: cta ---------------------------------- */
+
+.block-cta {
+  text-align: center;
+  padding: 32px 24px;
+  border-radius: 16px;
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.block-cta p {
+  margin: 0 0 16px;
+  font-family: var(--font-heading);
+  font-size: 20px;
+}
+
+.block-cta-button {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: none;
+}
