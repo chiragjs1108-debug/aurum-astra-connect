@@ -63,11 +63,11 @@ bullet-list
 
 card-grid
   heading?: string
-  items: [{ title: string, description?: string, image?: image }]
+  items: [{ title: string, description?: string, image?: image, alt?: string }]  # alt falls back to title
 
 carousel
   heading?: string
-  items: [{ title: string, description?: string, image?: image }]   # swipeable
+  items: [{ title: string, description?: string, image?: image, alt?: string }]  # swipeable, alt falls back to title
 
 quote
   text: string, attribution?: string
@@ -82,7 +82,8 @@ faq
   items: [{ question: string, answer: string }]        # accordion
 
 before-after
-  beforeImage: image, afterImage: image
+  beforeImage: image, beforeAlt?: string (falls back to beforeLabel)
+  afterImage: image, afterAlt?: string (falls back to afterLabel)
   beforeLabel?: string (default "Before"), afterLabel?: string (default "After")
   caption?: string                                       # one interactive drag-to-compare slider
 
@@ -187,9 +188,10 @@ blocks:
 ---
 ```
 
-Top-level post fields: `title`, `excerpt`, `coverImage`, `date`
-(`YYYY-MM-DD`), `tags` (list of strings), `metaTitle` (optional, falls back
-to `title`), `metaDescription` (optional, falls back to `excerpt`), `blocks`.
+Top-level post fields: `title`, `excerpt`, `coverImage`, `coverImageAlt`
+(optional, falls back to `title`), `date` (`YYYY-MM-DD`), `tags` (list of
+strings), `metaTitle` (optional, falls back to `title`), `metaDescription`
+(optional, falls back to `excerpt`), `blocks`.
 
 `content/blog/CLAUDE.md` carries the same rules for any Claude Code session
 that touches this folder.

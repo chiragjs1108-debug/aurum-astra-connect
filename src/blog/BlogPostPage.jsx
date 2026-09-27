@@ -47,7 +47,7 @@ function BlogPostPage() {
           <p className="blog-post-date">{formatDate(post.date)}</p>
         </header>
 
-        <img className="blog-post-cover" src={post.coverImage} alt="" />
+        <img className="blog-post-cover" src={post.coverImage} alt={post.coverImageAlt || post.title} />
 
         <div className="blog-post-body">
           <BlockRenderer blocks={post.blocks} />
