@@ -12,6 +12,7 @@ import {
   DropletIcon,
   WaveIcon,
   GemIcon,
+  JournalIcon,
 } from '../components/icons.jsx'
 import './Home.css'
 
@@ -30,6 +31,13 @@ const TOUCHPOINTS = [
     subtitle: 'Browse our full salon & spa menu',
     href: '/catalogue',
     icon: GlobeIcon,
+    external: false,
+  },
+  {
+    title: 'The Journal',
+    subtitle: 'Hair & skin rituals, explained',
+    href: '/blog',
+    icon: JournalIcon,
     external: false,
   },
   {

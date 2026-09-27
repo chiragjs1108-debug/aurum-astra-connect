@@ -1,6 +1,8 @@
 import { Link, useParams } from 'react-router-dom'
 import posts from './data/posts.js'
 import BlockRenderer from './components/BlockRenderer.jsx'
+import ServiceCategories from './components/ServiceCategories.jsx'
+import RelatedPosts from './components/RelatedPosts.jsx'
 import './BlogPost.css'
 
 function formatDate(iso) {
@@ -36,6 +38,9 @@ function BlogPostPage() {
       <div className="blog-post-body">
         <BlockRenderer blocks={post.blocks} />
       </div>
+
+      <ServiceCategories />
+      <RelatedPosts currentSlug={post.slug} tags={post.tags} />
     </article>
   )
 }

@@ -120,6 +120,13 @@ export const GiftIcon = () => (
   </IconWrap>
 )
 
+export const JournalIcon = () => (
+  <IconWrap>
+    <path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H12v16H5.5A1.5 1.5 0 0 1 4 18.5v-13Z" />
+    <path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H12v16h6.5a1.5 1.5 0 0 0 1.5-1.5v-13Z" />
+  </IconWrap>
+)
+
 export const BrushIcon = () => (
   <IconWrap>
     <path d="M18.5 3.5 20.5 5.5 11.5 14.5l-2-2Z" />
