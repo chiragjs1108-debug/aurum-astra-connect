@@ -156,30 +156,33 @@ site is `.webp`:
 node scripts/convert-to-webp.mjs /tmp/generated.png /tmp/generated.webp
 ```
 
-**2. Canva, if Gemini isn't available.** The `generate-image` /
-`get-generate-image-job` tools (load via `ToolSearch` if not already
-available) work with no API key and no billing dependency on this project
-at all — same brand-guidelines suffix applies to the prompt. Two things to
-know before relying on this tier:
+**2. Canva — good for preview and quality, confirmed NOT usable for
+automated publish-quality output.** `generate-image` produces genuinely
+good, on-brief results (verified against real Aurum Astra prompts, not
+just generically) — but there is no way, through any Canva tool available
+in this pipeline, to pull the full-resolution file back out:
 
-- **Needs `canva.com` and `media.canva.com` allowed on this environment's
-  network policy.** Without them, the generated image can't actually be
-  fetched (confirmed directly: `media.canva.com` was denied by the egress
-  proxy in the environment this was built in). If a call to
-  `get-generate-image-job` or a later download fails on either host,
-  that's this, not a bug — say so in the report and fall through to a
-  placeholder rather than retrying.
-- **Full-resolution export is unverified.** `get-assets` only ever returned
-  a small, signed, capped thumbnail (200×112) for a generated image whose
-  real metadata reported 1680×944 — there was no confirmed way to pull the
-  full-resolution file through the available Canva tools in the session
-  this was built in. If network access is opened up, re-test whether a
-  larger export becomes reachable before trusting this tier for real
-  publish-quality images; don't assume it's solved just because the network
-  block is gone.
+- `get-assets` only ever returns a small, signed, capped thumbnail
+  (200×112), regardless of the real image's resolution (confirmed against
+  a 1680×944 source) and regardless of account tier (confirmed on a Canva
+  Pro account) or network access (confirmed with `canva.com` and
+  `media.canva.com` both allowed).
+- `export-design` needs an actual design (`D...` id) — a generated image
+  is a MEDIA asset, not a design, and no available tool faithfully wraps
+  one into a design without risking Canva regenerating or altering it.
 
-Once a usable image is actually in hand, download the result and convert to
-`.webp` the same way.
+So: **do not treat Canva as an automated fallback for images actually
+committed to the site.** It's useful for showing the user a preview of
+what a prompt would look like, or for the user to manually open the
+"Open generated image" link and download full-resolution through Canva's
+own web UI themselves — but the pipeline's only real automated path for a
+publish-quality image is tier 1 (Gemini). If Gemini is unavailable, skip
+straight to the placeholder-note fallback below; don't burn a generation
+call on Canva expecting a usable file to come out of it.
+
+Once a usable full-resolution image is actually in hand (from Gemini, or
+a human-downloaded Canva file placed manually into the Real Media
+Library), convert it to `.webp` the same way.
 
 **Free-tier Gemini keys cannot do either of the above — don't try them.**
 Verified directly: both `gemini-3.1-flash-image` and
@@ -233,13 +236,9 @@ For each row at `Approved to Publish`:
   environment → API credentials → name it `GEMINI_API_KEY`, allowed website
   `generativelanguage.googleapis.com`, custom header `x-goog-api-key` with
   no prefix) — verified working this way: calls authenticate with no key
-  handling in the command at all. Without it, Step 2 falls back to Canva,
-  and only skips generation entirely if that's unavailable too.
-- **The Canva connector**, plus `canva.com` and `media.canva.com` allowed
-  on this environment's network policy (Edit → Network access) — without
-  the network access, Canva's tools accept the generation request but the
-  result can't actually be fetched. No key to manage otherwise, just needs
-  to be connected, same as Google Sheets and Drive.
+  handling in the command at all. This is the only real automated image
+  source — see §Generating an image above for why Canva isn't a usable
+  substitute for it, whatever the account tier.
 - **A scheduled Routine** pointed at this skill (`create_trigger`,
   `create_new_session_on_fire: true`, prompt: run this pipeline) is what
   makes this actually recurring rather than something run by hand.

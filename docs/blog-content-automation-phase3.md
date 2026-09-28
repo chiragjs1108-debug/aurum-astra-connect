@@ -189,16 +189,28 @@ the original plan:
   built directly into Gemini's own models, branded "Nano Banana" —
   `gemini-3.1-flash-image` is the current stable one, called through
   `generateContent` rather than the older `:predict` endpoint Imagen used.
-- **Two-tier fallback, verified for real:**
-  1. **Gemini (paid)** — works once the project's billing is actually
-     funded. Tested and confirmed 402 (`RESOURCE_EXHAUSTED`,
-     "prepayment credits are depleted") when the billing account's balance
-     was ₹0, which is expected, not a bug.
-  2. **Canva** — free, already connected, no billing dependency on the
-     Gemini project at all. Tested end-to-end (prompt → generated image)
-     and produced a genuinely usable, on-brief result with zero setup.
-  A free-tier Gemini key is **not** a usable third tier: tested directly,
-  both current image models return a flat `limit: 0` for
+- **Only one real automated tier: Gemini (paid).** Works once the
+  project's billing is actually funded; confirmed authenticating correctly
+  via the environment's API credential (no key handling needed in the
+  call at all), currently returning `402` (`RESOURCE_EXHAUSTED`,
+  "prepayment credits are depleted") because the billing account's balance
+  is still ₹0 — expected, not a bug, and resolves the moment that clears.
+- **Canva is not a usable fallback for real publish-quality images, on
+  any plan.** It generates genuinely good, on-brief results (verified
+  twice, including once on a Canva Pro account) — the problem is
+  retrieval, not quality. No tool available through the connector
+  returns a full-resolution file: `get-assets` only ever returns a small,
+  signed, capped thumbnail (200×112, confirmed against a real 1680×944
+  source) regardless of account tier or network access, and `export-design`
+  needs an actual Canva design, not a generated image asset, with no
+  reliable way to wrap one into a design without risking Canva altering
+  it. Confirmed with `canva.com`/`media.canva.com` both allowed on the
+  environment's network policy — that wasn't the blocker either. Useful
+  for previewing what a prompt would produce, or for a human to download
+  manually through Canva's own web UI; not wired into the automated
+  pipeline.
+  A free-tier Gemini key is **not** a usable substitute either: tested
+  directly, both current image models return a flat `limit: 0` for
   `generate_content_free_tier_requests` — a product-tier restriction, not
   a quota that clears with time. Free-tier Gemini keys are fine for other
   things; they cannot generate images at all.
@@ -206,16 +218,13 @@ the original plan:
   grounded in the post's topic/keywords, plus a fixed style suffix (applied
   to every generation) so images read as one consistent brand rather than a
   different look per post.
-- **Cost:** the paid tier draws from the user's Google Cloud billing
-  account (Mahaguru-Core project); the Canva tier is free within the user's
-  Canva plan limits. Per-image cost on the Gemini side is a few cents;
-  check current pricing before relying on volume estimates, since rates
-  change.
+- **Cost:** draws from the user's Google Cloud billing account
+  (Mahaguru-Core project) — a few cents per image; check current pricing
+  before relying on volume estimates, since rates change.
 - **API key handling:** the paid Gemini key is stored only as a secret
   (`GEMINI_API_KEY`) on whatever environment runs the scheduled automation
   — never committed to the repo, same rule as the Decap OAuth Worker's
-  secrets (`oauth-worker/README.md`). Canva needs no key at all, just the
-  connector enabled.
+  secrets (`oauth-worker/README.md`).
 
 ### 4.2 A post needs more than one image
 
