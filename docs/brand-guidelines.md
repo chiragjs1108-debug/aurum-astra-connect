@@ -7,6 +7,14 @@ business owner that isn't in the deck. Read by
 image — this is the single place that fixed style suffix comes from, so
 updating the brand means updating it here, not in the skill itself.
 
+The same brand, in two other forms: `docs/design-tokens.json` is the
+machine-readable version of everything below (colors in both themes, full
+type scale, spacing, radius) for any tool or future session that needs to
+consume it programmatically rather than read prose. The
+[Aurum Astra Design System](https://claude.ai/artifact/VGLGfHYLtAS2eetBtz3cDN)
+artifact is the same system as a browsable page, with a cover showing the
+brand's own mark. Keep all three in sync if the brand changes.
+
 ## Colors
 
 | Hex | Role |

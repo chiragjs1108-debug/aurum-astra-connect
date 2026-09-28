@@ -1,0 +1,101 @@
+{
+  "name": "Aurum Astra",
+  "version": 1,
+  "_readme": "Canonical, machine-readable design tokens for Aurum Astra — colors (both themes), type scale, spacing, and radius. Source: docs/brand/AURUM_ASTRA_Brand_Guidelines.pdf plus the photography/voice extensions in docs/brand-guidelines.md. The same tokens also live as a browsable page at the 'Aurum Astra Design System' artifact (https://claude.ai/artifact/VGLGfHYLtAS2eetBtz3cDN) — update both together if either changes.",
+  "color": {
+    "themes": [
+      { "id": "dark", "name": "Dark (Native)" },
+      { "id": "light", "name": "Light" }
+    ],
+    "tokens": [
+      {
+        "name": "surface",
+        "value": { "dark": "#3f1113", "light": "#fffdf9" },
+        "usage": "Page background. Dark is the brand's true, most-used ground — maroon interiors, hero sections, the primary logo lockup. Light is the deck's own alternate for pale print/UI contexts."
+      },
+      {
+        "name": "surface-raised",
+        "value": { "dark": "#54181c", "light": "#f7efe0" },
+        "usage": "Cards, panels, and any surface sitting above the page background."
+      },
+      {
+        "name": "ink",
+        "value": { "dark": "#f0c382", "light": "#3f1113" },
+        "usage": "Primary text, and the wordmark's ink color on each surface."
+      },
+      {
+        "name": "ink-muted",
+        "value": { "dark": "#d9c3a3", "light": "#6b5240" },
+        "usage": "Secondary text, captions, supporting copy, the descriptor line under the wordmark."
+      },
+      {
+        "name": "accent",
+        "value": { "dark": "#ac7f3f", "light": "#ac7f3f" },
+        "usage": "Links, active states, the brandmark's star accent and circular enclosure line."
+      },
+      {
+        "name": "accent-strong",
+        "value": { "dark": "#f0c382", "light": "#3f1113" },
+        "usage": "Primary buttons and key calls to action — the color that must draw the eye on each surface."
+      },
+      {
+        "name": "maroon",
+        "value": { "dark": "#3f1113", "light": "#3f1113" },
+        "usage": "Raw brand maroon from the source deck (#3f1113), for anywhere a component needs the exact brand maroon regardless of active theme."
+      },
+      {
+        "name": "gold-bronze",
+        "value": { "dark": "#ac7f3f", "light": "#ac7f3f" },
+        "usage": "Raw brand gold from the source deck (#ac7f3f) — the darker stop of the metallic gradient used on logo lockups and gold cards."
+      },
+      {
+        "name": "gold-mid",
+        "value": { "dark": "#ba8c50", "light": "#ba8c50" },
+        "usage": "Raw brand gold from the source deck (#ba8c50) — the metallic gradient's midtone."
+      },
+      {
+        "name": "gold-champagne",
+        "value": { "dark": "#f0c382", "light": "#f0c382" },
+        "usage": "Raw brand gold from the source deck (#f0c382) — the lightest, highlight stop of the metallic gradient."
+      },
+      {
+        "name": "border",
+        "value": { "dark": "#6b3438", "light": "#e3d3b8" },
+        "usage": "Hairline dividers and card borders."
+      }
+    ]
+  },
+  "type": {
+    "families": {
+      "display": "'Circe Contrast', Georgia, 'Times New Roman', serif",
+      "body": "Inter, -apple-system, 'Segoe UI', sans-serif"
+    },
+    "_note": "Circe Contrast is a licensed typeface — not bundled in this repo. Inter is hosted on Google Fonts and already used by the live site.",
+    "scale": [
+      { "name": "display-lg", "fontSize": "56px", "lineHeight": "60px", "fontWeight": 400, "family": "display" },
+      { "name": "h1", "fontSize": "40px", "lineHeight": "46px", "fontWeight": 400, "family": "display" },
+      { "name": "h2", "fontSize": "28px", "lineHeight": "34px", "fontWeight": 400, "family": "display" },
+      { "name": "h3", "fontSize": "20px", "lineHeight": "26px", "fontWeight": 600, "family": "body" },
+      { "name": "h4", "fontSize": "16px", "lineHeight": "22px", "fontWeight": 500, "family": "body" },
+      { "name": "body", "fontSize": "15px", "lineHeight": "24px", "fontWeight": 400, "family": "body" },
+      { "name": "body-sm", "fontSize": "13px", "lineHeight": "20px", "fontWeight": 400, "family": "body" },
+      { "name": "caption", "fontSize": "12px", "lineHeight": "16px", "fontWeight": 500, "family": "body" }
+    ]
+  },
+  "spacing": {
+    "tokens": [
+      { "name": "space-2", "value": "8px", "usage": "Tight gaps — icon-to-label, inline chip padding." },
+      { "name": "space-4", "value": "16px", "usage": "Default gap between related elements; card inner padding on mobile." },
+      { "name": "space-6", "value": "24px", "usage": "Card padding on larger surfaces; gap between a heading and its body." },
+      { "name": "space-8", "value": "32px", "usage": "Gap between distinct sections within a page." },
+      { "name": "space-12", "value": "48px", "usage": "Gap between major page sections." }
+    ]
+  },
+  "radius": {
+    "tokens": [
+      { "name": "radius-sm", "value": "4px", "usage": "Chips, small tags, form inputs." },
+      { "name": "radius-md", "value": "8px", "usage": "Buttons, cards." },
+      { "name": "radius-full", "value": "999px", "usage": "Pills, avatar frames, and the circular enclosure around the brandmark." }
+    ]
+  }
+}
