@@ -48,7 +48,7 @@ function upsertJsonLd(data) {
 
 // The sitewide default from index.html — restored when leaving a page that
 // sets its own title, so the tab title doesn't stay stuck on the old one.
-const DEFAULT_TITLE = 'Aurum Astra | Unisex Salon & Luxury Spa in Hennur, Bengaluru'
+const DEFAULT_TITLE = 'Best Salon & Spa Near Me in Hennur, Bengaluru | Aurum Astra'
 
 export function useSeo(tags) {
   useEffect(() => {

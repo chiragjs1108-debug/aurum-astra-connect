@@ -1,4 +1,5 @@
 import { SITE_URL, absoluteUrl } from '../blog/seo/siteInfo.js'
+import { buildPageSchema } from './siteSchema.js'
 
 /*
  * Per-route <head> tags for the four main app pages. Mirrors the pattern
@@ -7,43 +8,63 @@ import { SITE_URL, absoluteUrl } from '../blog/seo/siteInfo.js'
  * scripts/generate-static-site-pages.mjs for the first, JS-free request a
  * crawler or link-preview bot makes.
  *
- * Every title/description below deliberately carries "Hennur" or
- * "Bengaluru" — before this, all four pages inherited the same generic,
- * location-free title and description from index.html, which is why none
- * of them were distinguishable to Google for a local "<service> Hennur"
- * search.
+ * Titles follow a "Best <service> Near Me ... in Hennur" pattern — this
+ * mirrors how people actually search locally ("spa near me", "salon near
+ * me in Hennur") rather than just naming the service. Catalogue/Salon/Spa
+ * each lean on a different angle (menu/prices vs. relaxation) so they
+ * don't cannibalize each other, or spa-in-hennur.html's own booking-intent
+ * targeting of the same location.
  */
 
 const OG_IMAGE = absoluteUrl('/img/og.jpg')
 
+const HOME_URL = `${SITE_URL}/`
+const CATALOGUE_URL = `${SITE_URL}/catalogue`
+const SALON_URL = `${SITE_URL}/salon`
+const SPA_URL = `${SITE_URL}/spa`
+
 export const HOME_SEO = {
-  title: 'Aurum Astra | Unisex Salon & Luxury Spa in Hennur, Bengaluru',
+  title: 'Best Salon & Spa Near Me in Hennur, Bengaluru | Aurum Astra',
   description:
-    'Premium unisex salon & luxury spa in Hennur, Bengaluru. Hair, skin, bridal styling and spa therapies by expert stylists and trained therapists. Book now.',
-  canonicalUrl: `${SITE_URL}/`,
+    'Looking for the best salon & spa near me in Hennur? Aurum Astra offers premium hair, skin, bridal styling and spa therapies by expert stylists. Book now.',
+  canonicalUrl: HOME_URL,
   ogImage: OG_IMAGE,
 }
 
 export const CATALOGUE_SEO = {
-  title: 'Salon & Spa Price Menu in Hennur, Bengaluru | Aurum Astra',
+  title: 'Best Salon & Spa Services Near Me in Hennur | Aurum Astra',
   description:
-    'Browse the full Aurum Astra menu — haircuts, colour, hair spa, facials, waxing, nails, bridal makeup and massage therapies, with prices, in Hennur, Bengaluru.',
-  canonicalUrl: `${SITE_URL}/catalogue`,
+    'The best salon & spa services near me in Hennur — haircuts, colour, hair spa, facials, waxing, nails, bridal makeup and massage therapies, with prices.',
+  canonicalUrl: CATALOGUE_URL,
   ogImage: OG_IMAGE,
+  jsonLd: buildPageSchema([
+    { name: 'Home', url: HOME_URL },
+    { name: 'Explore The Menu', url: CATALOGUE_URL },
+  ]),
 }
 
 export const SALON_SEO = {
-  title: 'Unisex Salon Menu & Prices in Hennur, Bengaluru | Aurum Astra',
+  title: 'Best Unisex Salon Near Me in Hennur, Bengaluru | Aurum Astra',
   description:
-    "Haircuts, hair colour, keratin treatments, hair spa, facials, waxing, nail care and bridal makeup — every salon service and price at Aurum Astra, Hennur.",
-  canonicalUrl: `${SITE_URL}/salon`,
+    'The best unisex salon near me in Hennur — haircuts, hair colour, keratin treatments, hair spa, facials, waxing, nails and bridal makeup, with prices.',
+  canonicalUrl: SALON_URL,
   ogImage: OG_IMAGE,
+  jsonLd: buildPageSchema([
+    { name: 'Home', url: HOME_URL },
+    { name: 'Explore The Menu', url: CATALOGUE_URL },
+    { name: 'Salon Menu', url: SALON_URL },
+  ]),
 }
 
 export const SPA_SEO = {
-  title: 'Spa & Massage Menu with Prices in Hennur | Aurum Astra',
+  title: 'Best Spa Near Me for Relaxation in Hennur | Aurum Astra',
   description:
-    "Swedish, deep tissue, Thai, Balinese, Ayurvedic and couple's massage, wraps and jacuzzi — the full spa ritual menu and prices at Aurum Astra, Hennur.",
-  canonicalUrl: `${SITE_URL}/spa`,
+    "The best spa near me for relaxation in Hennur — Swedish, deep tissue, Thai, Balinese and Ayurvedic massage, couple's therapy, wraps and jacuzzi, with prices.",
+  canonicalUrl: SPA_URL,
   ogImage: OG_IMAGE,
+  jsonLd: buildPageSchema([
+    { name: 'Home', url: HOME_URL },
+    { name: 'Explore The Menu', url: CATALOGUE_URL },
+    { name: 'Spa Rituals', url: SPA_URL },
+  ]),
 }
