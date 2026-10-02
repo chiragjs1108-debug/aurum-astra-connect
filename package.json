@@ -11,7 +11,7 @@
     "dev": "vite",
     "prebuild": "node scripts/copy-admin-assets.mjs && node scripts/generate-sitemap.mjs",
     "build": "vite build",
-    "postbuild": "node scripts/generate-static-blog-pages.mjs",
+    "postbuild": "node scripts/generate-static-blog-pages.mjs && node scripts/generate-static-site-pages.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
     "cms:local": "decap-server"

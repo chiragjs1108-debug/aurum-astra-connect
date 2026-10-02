@@ -14,6 +14,8 @@ import {
   ChatIcon,
 } from '../components/icons.jsx'
 import './Salon.css'
+import { useSeo } from '../blog/seo/useSeo.js'
+import { SALON_SEO } from './seoTags.js'
 
 const WHATSAPP_NUMBER = '919148627266'
 const PHONE_HREF = 'tel:+919148627266'
@@ -849,6 +851,7 @@ function DisciplineCarousel({ disciplines, gender, activeKey, onSelect, stickyTo
 }
 
 function Salon() {
+  useSeo(SALON_SEO)
   const [searchParams] = useSearchParams()
   const [gender, setGender] = useState(() => (searchParams.get('gender') === 'men' ? 'men' : 'women'))
   const [salonDiscipline, setSalonDiscipline] = useState(() => {

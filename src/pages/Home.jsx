@@ -15,6 +15,11 @@ import {
   JournalIcon,
 } from '../components/icons.jsx'
 import './Home.css'
+import { useSeo } from '../blog/seo/useSeo.js'
+import { HOME_SEO } from './seoTags.js'
+import { SITE_LOCAL_BUSINESS_SCHEMA } from './siteSchema.js'
+
+const HOME_SEO_TAGS = { ...HOME_SEO, jsonLd: SITE_LOCAL_BUSINESS_SCHEMA }
 
 const WHATSAPP_NUMBER = '919148627266'
 const PHONE_HREF = 'tel:+919148627266'
@@ -342,6 +347,8 @@ function ReserveForm() {
 /* ---------------------------------- page ---------------------------------- */
 
 function Home() {
+  useSeo(HOME_SEO_TAGS)
+
   return (
     <div className="home">
       <DawnSpine />

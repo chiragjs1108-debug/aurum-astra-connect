@@ -6,6 +6,7 @@ export function buildPostSeoTags(post) {
     description: post.metaDescription || post.excerpt,
     canonicalUrl: `${SITE_URL}/blog/${post.slug}`,
     ogImage: absoluteUrl(post.coverImage),
+    ogType: 'article',
   }
 }
 

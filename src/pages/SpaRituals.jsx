@@ -2,6 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { SparkIcon, ChevronIcon, GiftIcon, IconWrap } from '../components/icons.jsx'
 import './SpaRituals.css'
+import { useSeo } from '../blog/seo/useSeo.js'
+import { SPA_SEO } from './seoTags.js'
 
 const WHATSAPP_NUMBER = '919148627266'
 const PHONE_HREF = 'tel:+919148627266'
@@ -289,6 +291,7 @@ function BrowseTabs({ tabs, activeId, onSelect, label }) {
 }
 
 function SpaRituals() {
+  useSeo(SPA_SEO)
   const [searchParams] = useSearchParams()
   const initialCategoryId = useMemo(() => {
     const requested = searchParams.get('category')

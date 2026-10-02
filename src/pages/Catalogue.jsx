@@ -12,6 +12,8 @@ import {
   RazorIcon,
 } from '../components/icons.jsx'
 import './Catalogue.css'
+import { useSeo } from '../blog/seo/useSeo.js'
+import { CATALOGUE_SEO } from './seoTags.js'
 
 /* ---------------------------------- spa icons (local — mirrors SpaRituals.jsx categories) ---------------------------------- */
 
@@ -157,6 +159,7 @@ function HubGenderToggle({ gender, onChange }) {
 }
 
 function Catalogue() {
+  useSeo(CATALOGUE_SEO)
   const [gender, setGender] = useState('women')
   const salonCategories = useMemo(() => [...SALON_CATEGORIES[gender], KIDS_CATEGORY], [gender])
 

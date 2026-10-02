@@ -46,15 +46,15 @@ function upsertJsonLd(data) {
   el.textContent = JSON.stringify(data)
 }
 
-// The sitewide default from index.html — restored when leaving the blog
-// entirely, so the tab title doesn't stay stuck on the last post's title.
-const DEFAULT_TITLE = 'Aurum Astra | Salon & Spa Menu'
+// The sitewide default from index.html — restored when leaving a page that
+// sets its own title, so the tab title doesn't stay stuck on the old one.
+const DEFAULT_TITLE = 'Aurum Astra | Unisex Salon & Luxury Spa in Hennur, Bengaluru'
 
 export function useSeo(tags) {
   useEffect(() => {
     if (!tags) return undefined
 
-    const { title, description, canonicalUrl, ogImage, jsonLd } = tags
+    const { title, description, canonicalUrl, ogImage, ogType = 'website', jsonLd } = tags
 
     if (title) document.title = title
     upsertMeta('name', 'description', description)
@@ -62,7 +62,7 @@ export function useSeo(tags) {
     upsertMeta('property', 'og:description', description)
     upsertMeta('property', 'og:image', ogImage)
     upsertMeta('property', 'og:url', canonicalUrl)
-    upsertMeta('property', 'og:type', 'article')
+    upsertMeta('property', 'og:type', ogType)
     upsertMeta('name', 'twitter:card', 'summary_large_image')
     upsertLink('canonical', canonicalUrl)
     upsertJsonLd(jsonLd)
